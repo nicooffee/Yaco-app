@@ -1,0 +1,54 @@
+import urllib.request
+import json
+import functools
+import pprint
+import os.path
+
+
+
+
+#input: Diccionario
+#output: JSON
+def desglose(J):
+    resultado = []
+    for word in J:
+        definicion_c = 1
+        if "def" in word:
+            for definicion in word["def"]:
+                tipo = definicion["vd"] if "vd" in definicion else word["fl"]
+                for sense in definicion["sseq"]:
+                    sense = sense[0]
+                    if sense[0] == 'sense':
+                        sense_descrip = sense[1]
+                        palabra = {}
+                        palabra["id"] = word["meta"]["id"]+"-d{}".format(definicion_c)+"s{}".format(sense_descrip["sn"] if "sn" in sense_descrip else "")
+                        palabra["tipo"] = tipo
+                        palabra["definicion_eng"] = sense_descrip["vrs"][0]["va"] if "vrs" in sense_descrip else word["meta"]["stems"][0]
+                        palabra["definicion_esp"] = functools.reduce(lambda x,y: x+y,map(lambda x: def_parser(x[1]),filter(lambda x: x[0]=="text",sense_descrip["dt"])),[])
+                        palabra["es_ofensiva"] = word["meta"]["offensive"]
+                        resultado.append(palabra)
+                definicion_c += 1
+    return json.dumps(resultado)
+
+
+
+
+
+def def_parser(D):
+    return [D]
+
+
+
+
+
+if __name__ == "__main__":
+    APIKEY = 'f9885f23-b685-4818-af4d-2f213fff9a91'
+    palabra = "way"
+    resp = urllib.request.urlopen("https://www.dictionaryapi.com/api/v3/references/spanish/json/"+palabra+"?key="+APIKEY).read()
+    parsed = json.loads(resp)
+    print(desglose(parsed))
+
+
+
+
+

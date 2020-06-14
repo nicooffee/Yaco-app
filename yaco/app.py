@@ -1,13 +1,9 @@
 from flask import Flask
+from principal.Principal import principal
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return "Bienvenido a Yaco xuxetumare"
+app.register_blueprint(principal)
 
-@app.route('/aaaa')
-def aaa():
-    return "gfkdjdfg"
 
 
 if __name__ == '__main__':

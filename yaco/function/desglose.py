@@ -3,6 +3,8 @@ import json
 import functools
 import pprint
 import os.path
+import re
+from parser import def_parser
 
 
 
@@ -24,18 +26,14 @@ def desglose(J):
                         palabra["id"] = word["meta"]["id"]+"-d{}".format(definicion_c)+"s{}".format(sense_descrip["sn"] if "sn" in sense_descrip else "")
                         palabra["tipo"] = tipo
                         palabra["definicion_eng"] = sense_descrip["vrs"][0]["va"] if "vrs" in sense_descrip else word["meta"]["stems"][0]
-                        palabra["definicion_esp"] = functools.reduce(lambda x,y: x+y,map(lambda x: def_parser(x[1]),filter(lambda x: x[0]=="text",sense_descrip["dt"])),[])
-                        palabra["es_ofensiva"] = word["meta"]["offensive"]
-                        resultado.append(palabra)
+                        def_esp = functools.reduce(lambda x,y: x+y,map(lambda x: x[1],filter(lambda x: x[0]=="text",sense_descrip["dt"])),"")
+                        if def_esp is not "":
+                            palabra["definicion_esp"] = def_parser(def_esp)
+                            palabra["es_ofensiva"] = word["meta"]["offensive"]
+                            resultado.append(palabra)
                 definicion_c += 1
-    return json.dumps(resultado)
+    return json.dumps(resultado,indent=4)
 
-
-
-
-
-def def_parser(D):
-    return [D]
 
 
 
@@ -43,10 +41,11 @@ def def_parser(D):
 
 if __name__ == "__main__":
     APIKEY = 'f9885f23-b685-4818-af4d-2f213fff9a91'
-    palabra = "way"
+    palabra = "to%20go%20out"
     resp = urllib.request.urlopen("https://www.dictionaryapi.com/api/v3/references/spanish/json/"+palabra+"?key="+APIKEY).read()
     parsed = json.loads(resp)
-    print(desglose(parsed))
+    with open('resp.json','w') as file:
+        file.write(desglose(parsed))
 
 
 

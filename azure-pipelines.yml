@@ -7,7 +7,7 @@ trigger:
       - dev
  paths:
    include:
-     - yaco/*
+     - 'yaco/*'
 
 variables:
 

@@ -3,6 +3,8 @@ trigger:
   branches:
     include:
       - master
+    exclude:
+      - dev
  paths:
    include:
      - yaco/*

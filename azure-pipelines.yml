@@ -1,13 +1,13 @@
 
 trigger:
+  paths:
+    include:
+      - yaco/*
   branches:
     include:
       - master
     exclude:
       - dev
- paths:
-   include:
-     - 'yaco/*'
 
 variables:
 

@@ -42,7 +42,8 @@ if __name__ == "__main__":
     inExampleList = [
         "{sx|fail||} {bc}fallarse (dícese de la vista, etc.), {a_link|gastarse} (dícese de pilas, etc.), {a_link|estropearse} (dícese de un motor, etc.)",
         '{sx|path||} {sx|road||} {bc}{a_link|camino}, {a_link|vía} ',
-        "{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)"
+        "{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)",
+        "{sx|select||} {bc}decidirse por"
     ]
     inExampleList = map(lambda x: def_parser(x),inExampleList)
     for res in inExampleList:

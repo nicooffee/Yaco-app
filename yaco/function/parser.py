@@ -5,6 +5,7 @@ def def_parser(D):
     wordForm = []
     defRanges = []
     parenDepth = 0
+    print(D)
     for index in range(len(D)):
         if D[index] == ',' and not parenDepth:
             defRanges.append(index)
@@ -32,7 +33,11 @@ def def_parser(D):
                 else:
                     wordForm.append([regex[0], '('+'('.join(regex[1:])])
             except AttributeError:
-                wordForm.append(None)
+                try:
+                    regex = re.search('(\w+ *)+$',word)
+                    wordForm.append([regex[0], ''])
+                except AttributeError:
+                    wordForm.append(None)
     for word in wordForm:
         if re.fullmatch(' +',word[1]):
             word[1] = ''
@@ -40,10 +45,11 @@ def def_parser(D):
 
 if __name__ == "__main__":
     inExampleList = [
-        "{sx|fail||} {bc}fallarse (dícese de la vista, etc.), {a_link|gastarse} (dícese de pilas, etc.), {a_link|estropearse} (dícese de un motor, etc.)",
-        '{sx|path||} {sx|road||} {bc}{a_link|camino}, {a_link|vía} ',
-        "{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)",
-        "{sx|select||} {bc}decidirse por a"
+       # "{sx|fail||} {bc}fallarse (dícese de la vista, etc.), {a_link|gastarse} (dícese de pilas, etc.), {a_link|estropearse} (dícese de un motor, etc.)",
+       # '{sx|path||} {sx|road||} {bc}{a_link|camino}, {a_link|vía} ',
+       # "{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)",
+        #"{sx|select||} {bc}decidirse por a",
+        " reanudar algo"
     ]
     inExampleList = map(lambda x: def_parser(x),inExampleList)
     for res in inExampleList:

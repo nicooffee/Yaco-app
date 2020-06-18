@@ -4,3 +4,6 @@ class RevisionList:
         self.revision_list = revision_list
     
     
+
+    #GETTER###################################
+    #SETTER###################################

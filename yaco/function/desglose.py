@@ -41,7 +41,7 @@ def desglose(J):
 
 if __name__ == "__main__":
     APIKEY = 'f9885f23-b685-4818-af4d-2f213fff9a91'
-    palabra = "to%20go%20out"
+    palabra = "get"
     resp = urllib.request.urlopen("https://www.dictionaryapi.com/api/v3/references/spanish/json/"+palabra+"?key="+APIKEY).read()
     parsed = json.loads(resp)
     with open('resp.json','w') as file:

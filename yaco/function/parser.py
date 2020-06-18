@@ -40,7 +40,7 @@ def def_parser(D):
                         wordForm.append(regex[:2])
                 except AttributeError:
                     wordForm.append(None)
-        print('*',word,'*',wordForm[-1])
+        #print('*',word,'*',wordForm[-1])
     for word in wordForm:
         if re.fullmatch(' +',word[1]):
             word[1] = ''
@@ -48,9 +48,9 @@ def def_parser(D):
 
 if __name__ == "__main__":
     inExampleList = [
-       # "{sx|fail||} {bc}fallarse (dícese de la vista, etc.), {a_link|gastarse} (dícese de pilas, etc.), {a_link|estropearse} (dícese de un motor, etc.)",
-       # '{sx|path||} {sx|road||} {bc}{a_link|camino}, {a_link|vía} ',
-       # "{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)",
+        #"{sx|fail||} {bc}fallarse (dícese de la vista, etc.), {a_link|gastarse} (dícese de pilas, etc.), {a_link|estropearse} (dícese de un motor, etc.)",
+        #'{sx|path||} {sx|road||} {bc}{a_link|camino}, {a_link|vía} ',
+        #"{sx|have||} {bc}{a_link|tener} (una garantía, etc.), {a_link|llevar} (una advertencia)",
         #"{sx|select||} {bc}decidirse por a",
         " reanudar algo"
     ]

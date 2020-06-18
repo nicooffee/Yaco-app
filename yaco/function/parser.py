@@ -5,7 +5,6 @@ def def_parser(D):
     wordForm = []
     defRanges = []
     parenDepth = 0
-    print(D)
     for index in range(len(D)):
         if D[index] == ',' and not parenDepth:
             defRanges.append(index)
@@ -17,7 +16,7 @@ def def_parser(D):
     start = 0
     for word in defRanges:
         wordList.append(D[start:word])
-        start = word+1
+        start = word+2
     for word in wordList:
         try:
             regex = re.search('{a_link\|(.+?)$', word).group(1).split('}')
@@ -31,13 +30,17 @@ def def_parser(D):
                 if len(regex) == 1:
                     wordForm.append([regex[0], ''])
                 else:
-                    wordForm.append([regex[0], '('+'('.join(regex[1:])])
+                    wordForm.append([regex[0][:-1], '('+'('.join(regex[1:])])
             except AttributeError:
                 try:
-                    regex = re.search('(\w+ *)+$',word)
-                    wordForm.append([regex[0], ''])
+                    regex = word.split('(')
+                    if len(regex) == 1:
+                        wordForm.append([regex[0],''])
+                    else:
+                        wordForm.append(regex[:2])
                 except AttributeError:
                     wordForm.append(None)
+        print('*',word,'*',wordForm[-1])
     for word in wordForm:
         if re.fullmatch(' +',word[1]):
             word[1] = ''

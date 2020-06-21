@@ -2,7 +2,12 @@
     {
         "id": "get-d1s1",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "conseguir",
@@ -22,7 +27,12 @@
     {
         "id": "get-d1s2",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "recibir",
@@ -34,7 +44,12 @@
     {
         "id": "get-d1s3",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ganar",
@@ -46,7 +61,12 @@
     {
         "id": "get-d1s4",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "traer",
@@ -58,7 +78,12 @@
     {
         "id": "get-d1s5",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tomar",
@@ -74,7 +99,12 @@
     {
         "id": "get-d1s6",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "agarrar",
@@ -86,7 +116,12 @@
     {
         "id": "get-d1s7",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "agarrar",
@@ -102,7 +137,12 @@
     {
         "id": "get-d1s8",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "mandar",
@@ -118,7 +158,12 @@
     {
         "id": "get-d1s9",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar",
@@ -130,7 +175,12 @@
     {
         "id": "get-d1s10",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer ir/mover",
@@ -142,7 +192,12 @@
     {
         "id": "get-d1s11",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer progresar ",
@@ -154,7 +209,12 @@
     {
         "id": "get-d1s12",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer entrar/pasar",
@@ -166,7 +226,12 @@
     {
         "id": "get-d1s13",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "contagiarse de",
@@ -182,7 +247,12 @@
     {
         "id": "get-d1s14",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "sufrir",
@@ -194,7 +264,12 @@
     {
         "id": "get-d1s15",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "preparar",
@@ -206,7 +281,12 @@
     {
         "id": "get-d1s16",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tener",
@@ -218,7 +298,12 @@
     {
         "id": "get-d1s17",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "causar",
@@ -234,7 +319,12 @@
     {
         "id": "get-d1s20",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "contestar",
@@ -250,7 +340,12 @@
     {
         "id": "get-d1s21",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "molestar",
@@ -266,7 +361,12 @@
     {
         "id": "get-d1s22",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entender",
@@ -278,7 +378,12 @@
     {
         "id": "get-d1s23",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "notar",
@@ -294,7 +399,12 @@
     {
         "id": "get-d1s24",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "agarrar",
@@ -310,7 +420,12 @@
     {
         "id": "get-d1s25",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "enga\u00f1ar",
@@ -322,7 +437,12 @@
     {
         "id": "get-d1s26",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "conmover",
@@ -334,7 +454,12 @@
     {
         "id": "get-d1s27",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "captar",
@@ -350,7 +475,12 @@
     {
         "id": "get-d1s28",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "dar",
@@ -362,7 +492,12 @@
     {
         "id": "get-d1s29",
         "tipo": "transitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "matar",
@@ -378,7 +513,12 @@
     {
         "id": "get-d1s30",
         "tipo": "transitive verb",
-        "definicion_eng": "to get across",
+        "definicion_eng": [
+            [
+                "to get across",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "comunicar",
@@ -394,7 +534,12 @@
     {
         "id": "get-d1s31",
         "tipo": "transitive verb",
-        "definicion_eng": "to get back",
+        "definicion_eng": [
+            [
+                "to get back",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "recuperar",
@@ -406,7 +551,12 @@
     {
         "id": "get-d1s32",
         "tipo": "transitive verb",
-        "definicion_eng": "to get someone back",
+        "definicion_eng": [
+            [
+                "to get someone back",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "vengarse de alguien",
@@ -418,7 +568,12 @@
     {
         "id": "get-d1s33",
         "tipo": "transitive verb",
-        "definicion_eng": "to get down",
+        "definicion_eng": [
+            [
+                "to get down",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "bajar",
@@ -430,7 +585,12 @@
     {
         "id": "get-d1s34",
         "tipo": "transitive verb",
-        "definicion_eng": "to get down",
+        "definicion_eng": [
+            [
+                "to get down",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tragar",
@@ -442,7 +602,12 @@
     {
         "id": "get-d1s35",
         "tipo": "transitive verb",
-        "definicion_eng": "to get down",
+        "definicion_eng": [
+            [
+                "to get down",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "deprimir",
@@ -454,7 +619,12 @@
     {
         "id": "get-d1s36",
         "tipo": "transitive verb",
-        "definicion_eng": "to get down",
+        "definicion_eng": [
+            [
+                "to get down",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "anotar",
@@ -466,7 +636,12 @@
     {
         "id": "get-d1s37",
         "tipo": "transitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entregar",
@@ -478,7 +653,12 @@
     {
         "id": "get-d1s38",
         "tipo": "transitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer",
@@ -494,7 +674,12 @@
     {
         "id": "get-d1s39",
         "tipo": "transitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "arregl\u00e1rselas para hacer ",
@@ -506,7 +691,12 @@
     {
         "id": "get-d1s40",
         "tipo": "transitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "meter",
@@ -518,7 +708,12 @@
     {
         "id": "get-d1s41",
         "tipo": "transitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "quitar",
@@ -530,7 +725,12 @@
     {
         "id": "get-d1s42",
         "tipo": "transitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "librar de",
@@ -546,7 +746,12 @@
     {
         "id": "get-d1s43",
         "tipo": "transitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "mandar",
@@ -562,7 +767,12 @@
     {
         "id": "get-d1s44",
         "tipo": "transitive verb",
-        "definicion_eng": "to get out",
+        "definicion_eng": [
+            [
+                "to get out",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "sacar",
@@ -578,7 +788,12 @@
     {
         "id": "get-d1s45",
         "tipo": "transitive verb",
-        "definicion_eng": "to get something out of someone",
+        "definicion_eng": [
+            [
+                "to get something out of someone",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "sacarle algo a alguien",
@@ -590,7 +805,12 @@
     {
         "id": "get-d1s46",
         "tipo": "transitive verb",
-        "definicion_eng": "to get something over with",
+        "definicion_eng": [
+            [
+                "to get something over with",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "quitarse algo de encima",
@@ -602,7 +822,12 @@
     {
         "id": "get-d1s47",
         "tipo": "transitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer llegar",
@@ -614,7 +839,12 @@
     {
         "id": "get-d1s48",
         "tipo": "transitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "mantener",
@@ -630,7 +860,12 @@
     {
         "id": "get-d1s49",
         "tipo": "transitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "alcanzar",
@@ -642,7 +877,12 @@
     {
         "id": "get-d1s50",
         "tipo": "transitive verb",
-        "definicion_eng": "to get together",
+        "definicion_eng": [
+            [
+                "to get together",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "juntar",
@@ -658,7 +898,12 @@
     {
         "id": "get-d1s51",
         "tipo": "transitive verb",
-        "definicion_eng": "to get up",
+        "definicion_eng": [
+            [
+                "to get up",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "subir",
@@ -670,7 +915,12 @@
     {
         "id": "get-d1s52",
         "tipo": "transitive verb",
-        "definicion_eng": "to get up",
+        "definicion_eng": [
+            [
+                "to get up",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "armarse de",
@@ -686,7 +936,12 @@
     {
         "id": "get-d1s53",
         "tipo": "transitive verb",
-        "definicion_eng": "to get up",
+        "definicion_eng": [
+            [
+                "to get up",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "organizar",
@@ -698,7 +953,12 @@
     {
         "id": "get-d1s54",
         "tipo": "transitive verb",
-        "definicion_eng": "to have got",
+        "definicion_eng": [
+            [
+                "to have got",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tener",
@@ -710,7 +970,12 @@
     {
         "id": "get-d1s55",
         "tipo": "transitive verb",
-        "definicion_eng": "to have got to",
+        "definicion_eng": [
+            [
+                "to have got to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tener que",
@@ -722,7 +987,12 @@
     {
         "id": "get-d2s1",
         "tipo": "intransitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ponerse",
@@ -742,7 +1012,12 @@
     {
         "id": "get-d2s2",
         "tipo": "intransitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ir",
@@ -758,7 +1033,12 @@
     {
         "id": "get-d2s3",
         "tipo": "intransitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "progresar",
@@ -774,7 +1054,12 @@
     {
         "id": "get-d2s4",
         "tipo": "intransitive verb",
-        "definicion_eng": "get",
+        "definicion_eng": [
+            [
+                "get",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llegar",
@@ -786,7 +1071,12 @@
     {
         "id": "get-d2s5",
         "tipo": "intransitive verb",
-        "definicion_eng": "get out (of here)!",
+        "definicion_eng": [
+            [
+                "get out (of here)!",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "\u00a1anda!",
@@ -802,7 +1092,12 @@
     {
         "id": "get-d2s6",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get across",
+        "definicion_eng": [
+            [
+                "to get across",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "comunicarse",
@@ -818,7 +1113,12 @@
     {
         "id": "get-d2s7",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get after",
+        "definicion_eng": [
+            [
+                "to get after",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "estar encima de/a",
@@ -830,7 +1130,12 @@
     {
         "id": "get-d2s8",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get ahead",
+        "definicion_eng": [
+            [
+                "to get ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "adelantarse",
@@ -846,7 +1151,12 @@
     {
         "id": "get-d2s9",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get along",
+        "definicion_eng": [
+            [
+                "to get along",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevarse bien",
@@ -862,7 +1172,12 @@
     {
         "id": "get-d2s10",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get along",
+        "definicion_eng": [
+            [
+                "to get along",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "arregl\u00e1rselas",
@@ -874,7 +1189,12 @@
     {
         "id": "get-d2s11",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get along",
+        "definicion_eng": [
+            [
+                "to get along",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "marchar",
@@ -890,7 +1210,12 @@
     {
         "id": "get-d2s12",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get around",
+        "definicion_eng": [
+            [
+                "to get around",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "difundirse ",
@@ -902,7 +1227,12 @@
     {
         "id": "get-d2s13",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get around",
+        "definicion_eng": [
+            [
+                "to get around",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "evitar",
@@ -918,7 +1248,12 @@
     {
         "id": "get-d2s14",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get around",
+        "definicion_eng": [
+            [
+                "to get around",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "caminar",
@@ -934,7 +1269,12 @@
     {
         "id": "get-d2s15",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get around",
+        "definicion_eng": [
+            [
+                "to get around",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "viajar",
@@ -946,7 +1286,12 @@
     {
         "id": "get-d2s16",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get around to doing something",
+        "definicion_eng": [
+            [
+                "to get around to doing something",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "encontrar el tiempo para hacer algo",
@@ -958,7 +1303,12 @@
     {
         "id": "get-d2s17",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get at",
+        "definicion_eng": [
+            [
+                "to get at",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llegar a",
@@ -974,7 +1324,12 @@
     {
         "id": "get-d2s18",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get at",
+        "definicion_eng": [
+            [
+                "to get at",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "descubrir",
@@ -986,7 +1341,12 @@
     {
         "id": "get-d2s19",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get at",
+        "definicion_eng": [
+            [
+                "to get at",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "insinuar",
@@ -998,7 +1358,12 @@
     {
         "id": "get-d2s20",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get away",
+        "definicion_eng": [
+            [
+                "to get away",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "salir",
@@ -1010,7 +1375,12 @@
     {
         "id": "get-d2s21",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get away",
+        "definicion_eng": [
+            [
+                "to get away",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "escaparse",
@@ -1022,7 +1392,12 @@
     {
         "id": "get-d2s22",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get away",
+        "definicion_eng": [
+            [
+                "to get away",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ir de vacaciones",
@@ -1034,7 +1409,12 @@
     {
         "id": "get-d2s23",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get away",
+        "definicion_eng": [
+            [
+                "to get away",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "arregl\u00e1rselas",
@@ -1046,7 +1426,12 @@
     {
         "id": "get-d2s25",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get back",
+        "definicion_eng": [
+            [
+                "to get back",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "volver",
@@ -1058,7 +1443,12 @@
     {
         "id": "get-d2s26",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get back",
+        "definicion_eng": [
+            [
+                "to get back",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "echarse atr\u00e1s",
@@ -1070,7 +1460,12 @@
     {
         "id": "get-d2s27",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get back at someone",
+        "definicion_eng": [
+            [
+                "to get back at someone",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "vengarse de alguien",
@@ -1082,7 +1477,12 @@
     {
         "id": "get-d2s28",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get back to",
+        "definicion_eng": [
+            [
+                "to get back to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "volver a",
@@ -1098,7 +1498,12 @@
     {
         "id": "get-d2s29",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get back to",
+        "definicion_eng": [
+            [
+                "to get back to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "volver a contactar",
@@ -1110,7 +1515,12 @@
     {
         "id": "get-d2s30",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get behind",
+        "definicion_eng": [
+            [
+                "to get behind",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "atrasarse",
@@ -1122,7 +1532,12 @@
     {
         "id": "get-d2s31",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get behind",
+        "definicion_eng": [
+            [
+                "to get behind",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "apoyar",
@@ -1134,7 +1549,12 @@
     {
         "id": "get-d2s32",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get by",
+        "definicion_eng": [
+            [
+                "to get by",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "arregl\u00e1rselas",
@@ -1146,7 +1566,12 @@
     {
         "id": "get-d2s33",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get down to something",
+        "definicion_eng": [
+            [
+                "to get down to something",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ponerse a hacer algo",
@@ -1158,7 +1583,12 @@
     {
         "id": "get-d2s34",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get going",
+        "definicion_eng": [
+            [
+                "to get going",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "irse",
@@ -1170,7 +1600,12 @@
     {
         "id": "get-d2s35",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get going",
+        "definicion_eng": [
+            [
+                "to get going",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ponerse a hablar",
@@ -1182,7 +1617,12 @@
     {
         "id": "get-d2s36",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get going on something",
+        "definicion_eng": [
+            [
+                "to get going on something",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ponerse a hacer algo",
@@ -1194,7 +1634,12 @@
     {
         "id": "get-d2s37",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entrar",
@@ -1206,7 +1651,12 @@
     {
         "id": "get-d2s38",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llegar",
@@ -1218,7 +1668,12 @@
     {
         "id": "get-d2s39",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get in",
+        "definicion_eng": [
+            [
+                "to get in",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entrar",
@@ -1234,7 +1689,12 @@
     {
         "id": "get-d2s40",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entrar en/a",
@@ -1246,7 +1706,12 @@
     {
         "id": "get-d2s41",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "meterse en",
@@ -1258,7 +1723,12 @@
     {
         "id": "get-d2s42",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "entusiasmarse con",
@@ -1274,7 +1744,12 @@
     {
         "id": "get-d2s43",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "afectar a ",
@@ -1286,7 +1761,12 @@
     {
         "id": "get-d2s44",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llegar a",
@@ -1298,7 +1778,12 @@
     {
         "id": "get-d2s45",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get into",
+        "definicion_eng": [
+            [
+                "to get into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ponerse",
@@ -1310,7 +1795,12 @@
     {
         "id": "get-d2s46",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get in/into",
+        "definicion_eng": [
+            [
+                "to get in/into",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "subir",
@@ -1322,7 +1812,12 @@
     {
         "id": "get-d2s48",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "quedar impune ",
@@ -1334,7 +1829,12 @@
     {
         "id": "get-d2s49",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "salir",
@@ -1346,7 +1846,12 @@
     {
         "id": "get-d2s50",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get off",
+        "definicion_eng": [
+            [
+                "to get off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "salirse de",
@@ -1358,7 +1863,12 @@
     {
         "id": "get-d2s51",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get off (of)",
+        "definicion_eng": [
+            [
+                "to get off (of)",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "bajarse",
@@ -1370,7 +1880,12 @@
     {
         "id": "get-d2s52",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on",
+        "definicion_eng": [
+            [
+                "to get on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevarse bien",
@@ -1382,7 +1897,12 @@
     {
         "id": "get-d2s54",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on",
+        "definicion_eng": [
+            [
+                "to get on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tener \u00e9xito",
@@ -1394,7 +1914,12 @@
     {
         "id": "get-d2s55",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on",
+        "definicion_eng": [
+            [
+                "to get on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ocuparse de",
@@ -1406,7 +1931,12 @@
     {
         "id": "get-d2s56",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on/onto",
+        "definicion_eng": [
+            [
+                "to get on/onto",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "montarse",
@@ -1418,7 +1948,12 @@
     {
         "id": "get-d2s57",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on/onto",
+        "definicion_eng": [
+            [
+                "to get on/onto",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "subirse",
@@ -1430,7 +1965,12 @@
     {
         "id": "get-d2s58",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get onto",
+        "definicion_eng": [
+            [
+                "to get onto",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "empezar a hablar de",
@@ -1442,7 +1982,12 @@
     {
         "id": "get-d2s59",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get on with",
+        "definicion_eng": [
+            [
+                "to get on with",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "seguir con",
@@ -1454,7 +1999,12 @@
     {
         "id": "get-d2s60",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get out",
+        "definicion_eng": [
+            [
+                "to get out",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "salir",
@@ -1466,7 +2016,12 @@
     {
         "id": "get-d2s61",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get out",
+        "definicion_eng": [
+            [
+                "to get out",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "difundirse",
@@ -1482,7 +2037,12 @@
     {
         "id": "get-d2s62",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get out (of)",
+        "definicion_eng": [
+            [
+                "to get out (of)",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "bajarse",
@@ -1494,7 +2054,12 @@
     {
         "id": "get-d2s63",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get out of",
+        "definicion_eng": [
+            [
+                "to get out of",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "escapar de",
@@ -1506,7 +2071,12 @@
     {
         "id": "get-d2s64",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get out of",
+        "definicion_eng": [
+            [
+                "to get out of",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "salvarse de",
@@ -1518,7 +2088,12 @@
     {
         "id": "get-d2s65",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get over",
+        "definicion_eng": [
+            [
+                "to get over",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "recuperarse de",
@@ -1550,7 +2125,12 @@
     {
         "id": "get-d2s66",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "sobrevivir",
@@ -1566,7 +2146,12 @@
     {
         "id": "get-d2s67",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "aprobar",
@@ -1578,7 +2163,12 @@
     {
         "id": "get-d2s68",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "comunicar",
@@ -1590,7 +2180,12 @@
     {
         "id": "get-d2s69",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get through",
+        "definicion_eng": [
+            [
+                "to get through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer entender ",
@@ -1602,7 +2197,12 @@
     {
         "id": "get-d2s70",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get through (with)",
+        "definicion_eng": [
+            [
+                "to get through (with)",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "terminar",
@@ -1618,7 +2218,12 @@
     {
         "id": "get-d2s71",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get to",
+        "definicion_eng": [
+            [
+                "to get to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "molestar",
@@ -1634,7 +2239,12 @@
     {
         "id": "get-d2s72",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get to be",
+        "definicion_eng": [
+            [
+                "to get to be",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llegar a ser",
@@ -1646,7 +2256,12 @@
     {
         "id": "get-d2s73",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get together",
+        "definicion_eng": [
+            [
+                "to get together",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "reunirse",
@@ -1658,7 +2273,12 @@
     {
         "id": "get-d2s74",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get together",
+        "definicion_eng": [
+            [
+                "to get together",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "unirse",
@@ -1674,7 +2294,12 @@
     {
         "id": "get-d2s75",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get up",
+        "definicion_eng": [
+            [
+                "to get up",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "levantarse",
@@ -1686,7 +2311,12 @@
     {
         "id": "get-d2s76",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get up on",
+        "definicion_eng": [
+            [
+                "to get up on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "subirse a",
@@ -1698,7 +2328,12 @@
     {
         "id": "get-d2s77",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get up to",
+        "definicion_eng": [
+            [
+                "to get up to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "hacer",
@@ -1710,7 +2345,12 @@
     {
         "id": "get-d2s78",
         "tipo": "intransitive verb",
-        "definicion_eng": "to get up to",
+        "definicion_eng": [
+            [
+                "to get up to",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "alcanzar",
@@ -1726,7 +2366,12 @@
     {
         "id": "get-go-d1s",
         "tipo": "noun",
-        "definicion_eng": "from the get-go",
+        "definicion_eng": [
+            [
+                "from the get-go",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "desde el primer momento",
@@ -1738,7 +2383,12 @@
     {
         "id": "get-together-d1s",
         "tipo": "noun",
-        "definicion_eng": "get-together",
+        "definicion_eng": [
+            [
+                "get-together",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "reuni\u00f3n",
@@ -1750,7 +2400,12 @@
     {
         "id": "ahead-d1s1",
         "tipo": "adverb",
-        "definicion_eng": "ahead",
+        "definicion_eng": [
+            [
+                "ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "al frente",
@@ -1770,7 +2425,12 @@
     {
         "id": "ahead-d1s2",
         "tipo": "adverb",
-        "definicion_eng": "ahead",
+        "definicion_eng": [
+            [
+                "ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "por adelantado",
@@ -1786,7 +2446,12 @@
     {
         "id": "ahead-d1s3",
         "tipo": "adverb",
-        "definicion_eng": "ahead",
+        "definicion_eng": [
+            [
+                "ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "a la delantera",
@@ -1798,7 +2463,12 @@
     {
         "id": "ahead-d1s4",
         "tipo": "adverb",
-        "definicion_eng": "to get ahead",
+        "definicion_eng": [
+            [
+                "to get ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "adelantar",
@@ -1814,7 +2484,12 @@
     {
         "id": "ahead-d1s5",
         "tipo": "adverb",
-        "definicion_eng": "to look/think ahead",
+        "definicion_eng": [
+            [
+                "to look/think ahead",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "mirar hacia el futuro",
@@ -1826,7 +2501,12 @@
     {
         "id": "ahead of-d1s1",
         "tipo": "preposition",
-        "definicion_eng": "ahead of",
+        "definicion_eng": [
+            [
+                "ahead of",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "al frente de",
@@ -1846,7 +2526,12 @@
     {
         "id": "ahead of-d1s2",
         "tipo": "preposition",
-        "definicion_eng": "to get ahead of",
+        "definicion_eng": [
+            [
+                "to get ahead of",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "adelantarse a",
@@ -1858,7 +2543,12 @@
     {
         "id": "ball:2-d1s1",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "pelota",
@@ -1882,7 +2572,12 @@
     {
         "id": "ball:2-d1s2",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "baile",
@@ -1894,7 +2589,12 @@
     {
         "id": "ball:2-d1s3",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "bola",
@@ -1910,7 +2610,12 @@
     {
         "id": "ball:2-d1s4",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "parte",
@@ -1922,7 +2627,12 @@
     {
         "id": "ball:2-d1s5",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cojones",
@@ -1934,7 +2644,12 @@
     {
         "id": "ball:2-d1s6",
         "tipo": "noun",
-        "definicion_eng": "ball",
+        "definicion_eng": [
+            [
+                "ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cojones",
@@ -1946,7 +2661,12 @@
     {
         "id": "ball:2-d1s7",
         "tipo": "noun",
-        "definicion_eng": "on the ball",
+        "definicion_eng": [
+            [
+                "on the ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "espabilado",
@@ -1962,7 +2682,12 @@
     {
         "id": "ball:2-d1s9",
         "tipo": "noun",
-        "definicion_eng": "to drop the ball",
+        "definicion_eng": [
+            [
+                "to drop the ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cometer un gran error",
@@ -1974,7 +2699,12 @@
     {
         "id": "ball:2-d1s10",
         "tipo": "noun",
-        "definicion_eng": "to get/set/start the ball rolling",
+        "definicion_eng": [
+            [
+                "to get/set/start the ball rolling",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "poner las cosas en marcha",
@@ -1986,7 +2716,12 @@
     {
         "id": "ball:2-d1s11",
         "tipo": "noun",
-        "definicion_eng": "to keep the ball rolling",
+        "definicion_eng": [
+            [
+                "to keep the ball rolling",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "mantener el impulso",
@@ -1998,7 +2733,12 @@
     {
         "id": "ball:2-d1s12",
         "tipo": "noun",
-        "definicion_eng": "to play ball",
+        "definicion_eng": [
+            [
+                "to play ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "jugar al b\u00e9isbol/baloncesto",
@@ -2010,7 +2750,12 @@
     {
         "id": "ball:2-d1s13",
         "tipo": "noun",
-        "definicion_eng": "to play ball",
+        "definicion_eng": [
+            [
+                "to play ball",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cooperar",
@@ -2022,7 +2767,12 @@
     {
         "id": "better:4-d1s1",
         "tipo": "noun",
-        "definicion_eng": "better",
+        "definicion_eng": [
+            [
+                "better",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "el mejor",
@@ -2038,7 +2788,12 @@
     {
         "id": "better:4-d1s2",
         "tipo": "noun",
-        "definicion_eng": "to get the better of",
+        "definicion_eng": [
+            [
+                "to get the better of",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "vencer a",
@@ -2058,7 +2813,12 @@
     {
         "id": "carry-d1s1",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar",
@@ -2078,7 +2838,12 @@
     {
         "id": "carry-d1s2",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar",
@@ -2090,7 +2855,12 @@
     {
         "id": "carry-d1s3",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "tener",
@@ -2106,7 +2876,12 @@
     {
         "id": "carry-d1s4",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "soportar",
@@ -2126,7 +2901,12 @@
     {
         "id": "carry-d1s5",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "vender",
@@ -2142,7 +2922,12 @@
     {
         "id": "carry-d1s6",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar",
@@ -2162,7 +2947,12 @@
     {
         "id": "carry-d1s7",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "ganar",
@@ -2178,7 +2968,12 @@
     {
         "id": "carry-d1s8",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "estar embarazada de",
@@ -2190,7 +2985,12 @@
     {
         "id": "carry-d1s9",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "portar",
@@ -2206,7 +3006,12 @@
     {
         "id": "carry-d1s10",
         "tipo": "transitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar",
@@ -2218,7 +3023,12 @@
     {
         "id": "carry-d1s11",
         "tipo": "transitive verb",
-        "definicion_eng": "to be/get carried away",
+        "definicion_eng": [
+            [
+                "to be/get carried away",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "pasarse",
@@ -2234,7 +3044,12 @@
     {
         "id": "carry-d1s12",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry a tune",
+        "definicion_eng": [
+            [
+                "to carry a tune",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cantar bien",
@@ -2246,7 +3061,12 @@
     {
         "id": "carry-d1s13",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry off",
+        "definicion_eng": [
+            [
+                "to carry off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "conseguir",
@@ -2262,7 +3082,12 @@
     {
         "id": "carry-d1s14",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry off",
+        "definicion_eng": [
+            [
+                "to carry off",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevarse",
@@ -2274,7 +3099,12 @@
     {
         "id": "carry-d1s15",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry on",
+        "definicion_eng": [
+            [
+                "to carry on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "seguir con",
@@ -2290,7 +3120,12 @@
     {
         "id": "carry-d1s16",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry on",
+        "definicion_eng": [
+            [
+                "to carry on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "realizar",
@@ -2310,7 +3145,12 @@
     {
         "id": "carry-d1s17",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry oneself",
+        "definicion_eng": [
+            [
+                "to carry oneself",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "portarse",
@@ -2326,7 +3166,12 @@
     {
         "id": "carry-d1s18",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry out",
+        "definicion_eng": [
+            [
+                "to carry out",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "llevar a cabo",
@@ -2346,7 +3191,12 @@
     {
         "id": "carry-d1s19",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry out",
+        "definicion_eng": [
+            [
+                "to carry out",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "cumplir",
@@ -2358,7 +3208,12 @@
     {
         "id": "carry-d1s20",
         "tipo": "transitive verb",
-        "definicion_eng": "to carry through",
+        "definicion_eng": [
+            [
+                "to carry through",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "sustentar",
@@ -2374,7 +3229,12 @@
     {
         "id": "carry-d2s1",
         "tipo": "intransitive verb",
-        "definicion_eng": "carry",
+        "definicion_eng": [
+            [
+                "carry",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "o\u00edrse",
@@ -2390,7 +3250,12 @@
     {
         "id": "carry-d2s2",
         "tipo": "intransitive verb",
-        "definicion_eng": "to carry on",
+        "definicion_eng": [
+            [
+                "to carry on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "seguir",
@@ -2406,7 +3271,12 @@
     {
         "id": "carry-d2s3",
         "tipo": "intransitive verb",
-        "definicion_eng": "to carry on",
+        "definicion_eng": [
+            [
+                "to carry on",
+                ""
+            ]
+        ],
         "definicion_esp": [
             [
                 "portarse de manera escandalosa o inapropiada ",

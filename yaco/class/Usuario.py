@@ -30,3 +30,8 @@ class Usuario:
         self.fecha_registro = fecha_registro
     def set_ultimo_logeo(self,ultimo_logeo):
         self.ultimo_logeo = ultimo_logeo
+
+    #input: elemento de un desglose
+    #output: palabra agregada
+    def agregar_palabra(palabra_info):
+        

@@ -25,7 +25,7 @@ def desglose(J):
                         palabra = {}
                         palabra["id"] = word["meta"]["id"]+"-d{}".format(definicion_c)+"s{}".format(sense_descrip["sn"] if "sn" in sense_descrip else "")
                         palabra["tipo"] = tipo
-                        palabra["definicion_eng"] = sense_descrip["vrs"][0]["va"] if "vrs" in sense_descrip else word["meta"]["stems"][0]
+                        palabra["definicion_eng"] = [[sense_descrip["vrs"][0]["va"] if "vrs" in sense_descrip else word["meta"]["stems"][0],""]]
                         def_esp = functools.reduce(lambda x,y: x+y,map(lambda x: x[1],filter(lambda x: x[0]=="text",sense_descrip["dt"])),"")
                         if def_esp is not "":
                             palabra["definicion_esp"] = def_parser(def_esp)

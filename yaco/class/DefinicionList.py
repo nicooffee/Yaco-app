@@ -21,6 +21,13 @@ class DefinicionList:
 
 
     #GETTER###################################
+    def get_iter(self):
+        for x in self.definicion_list:
+            yield x
+
+    def get_key_iter(self):
+        for x in self.definicion_list:
+            yield x.get_key()
     #SETTER###################################
 
 

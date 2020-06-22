@@ -22,5 +22,5 @@ class Revision:
         self.equivocacion_previa = equivocacion_previa
 
 
-if if __name__ == "__main__":
+if __name__ == "__main__":
     Revision()

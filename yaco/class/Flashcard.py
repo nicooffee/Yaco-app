@@ -16,6 +16,11 @@ class Flashcard:
         self.nivel_srs_prod = nivel_srs_prod
         self.revision_list_reco = revision_list_reco
         self.revision_list_prod = revision_list_prod
+    #
+    #
+    #
+    #
+    #
 
     #GETTER###################################
     def get_fecha_creacion(self):
@@ -24,6 +29,10 @@ class Flashcard:
         return self.nivel_srs_reco
     def get_nivel_srs_prod(self):
         return self.nivel_srs_prod
+    def get_min_fecha_rev(self):
+        d_reco = self.revision_list_reco.get_fecha_rev_sig()
+        d_prod = self.revision_list_prod.get_fecha_rev_sig()
+        return d_reco if d_reco<d_prod else d_prod
     #SETTER###################################
     def set_fecha_creacion(self,fecha_creacion):
         self.fecha_creacion = fecha_creacion

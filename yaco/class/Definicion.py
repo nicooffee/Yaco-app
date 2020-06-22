@@ -12,6 +12,9 @@ class Definicion:
         return self.info_adicional
     def get_es_principal(self):
         return self.es_principal
+
+    def get_key(self):
+        return self.definicion[0:2]
     #SETTER###################################
     def set_definicion(self,definicion):
         self.definicion = definicion

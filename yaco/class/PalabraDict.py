@@ -24,6 +24,27 @@ class PalabraDict:
     #
     #
     #
+    def existe_palabra(self,palabra):
+        def search_in_dict(idioma,dict):
+            palabra_keys = palabra.get_definicion_key_iter(idioma)
+            for key in palabra_keys:
+                if key in dict:
+                    if PalabraDict.__palabra_en_celda(palabra,dict,key):
+                        return True
+            return False
+        p = search_in_dict('en',self.dict_eng)
+        return p if p == True else search_in_dict('es',self.dict_esp)
+
+    @staticmethod
+    def __palabra_en_celda(palabra,dict,key):
+        try:
+            for p in dict[key]:
+                if palabra.es_igual(p):
+                    return True
+        except KeyError as err:
+            print("Error al entrar a la celda ",err)
+        return False
+
     #GETTER###################################
     #SETTER###################################
 
@@ -51,6 +72,8 @@ if __name__ == "__main__":
         ],
         "es_ofensiva": False
     }
-    pd.agregar_palabra(dic)
+    p = pd.agregar_palabra(dic)
     print(pd.dict_esp)
     print(pd.dict_eng)
+    print("Existe una palabra")
+    print(pd.existe_palabra(p))

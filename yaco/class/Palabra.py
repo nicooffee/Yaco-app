@@ -19,7 +19,13 @@ class Palabra:
         except KeyError  as err:
             print('Error de key al crear palabra',err)
             return None
-        
+    #
+    #
+    #
+    #
+    #
+    def es_igual(self,palabra):
+        return True if self.get_id() == palabra.get_id() else False
 
     #GETTER###################################
     def get_id(self):

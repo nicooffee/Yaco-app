@@ -26,7 +26,18 @@ class Palabra:
     #
     def es_igual(self,palabra):
         return True if self.get_id() == palabra.get_id() else False
-
+    #
+    #
+    #
+    #
+    #
+    def contiene_definicion(self,definicion,idioma):
+        if idioma == 'en':
+            return self.definicion_eng.contiene_definicion(definicion)
+        elif idioma == 'es':
+            return self.definicion_esp.contiene_definicion(definicion)
+        else:
+            raise Exception("No se encuentra el idioma entregado.")
     #GETTER###################################
     def get_id(self):
         return self.id
@@ -78,4 +89,7 @@ if __name__ == "__main__":
         ],
         "es_ofensiva": False
     }
-    Palabra.from_dict(dic)
+    p = Palabra.from_dict(dic)
+    print(p.contiene_definicion('get','en'))
+    print(p.contiene_definicion('capturar','es'))
+    #print(p.contiene_definicion('get','ru'))

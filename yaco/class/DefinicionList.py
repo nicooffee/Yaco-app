@@ -18,6 +18,18 @@ class DefinicionList:
             d = Definicion(s[0],s[1],True if i==0 else False)
             L.append(d)
         return cls(definicion_list=L)
+    #
+    #
+    #
+    #
+    #
+    def contiene_definicion(self,definicion):
+        for d in self.definicion_list:
+            if d.es_igual(definicion):
+                return True
+        return False
+
+    
 
 
     #GETTER###################################

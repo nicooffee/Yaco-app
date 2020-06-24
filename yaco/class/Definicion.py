@@ -3,7 +3,13 @@ class Definicion:
         self.definicion = definicion
         self.info_adicional = info_adicional
         self.es_principal = es_principal
-
+    #
+    #
+    #
+    #
+    #
+    def es_igual(self,definicion):
+        return True if self.definicion == definicion else False
 
     #GETTER###################################
     def get_definicion(self):
@@ -14,7 +20,7 @@ class Definicion:
         return self.es_principal
 
     def get_key(self):
-        return self.definicion[0:2]
+        return self.definicion[0:2].tolower()
     #SETTER###################################
     def set_definicion(self,definicion):
         self.definicion = definicion

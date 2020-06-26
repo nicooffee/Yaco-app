@@ -1,4 +1,5 @@
 from Flashcard import Flashcard
+from datetime import datetime
 class FlashcardList:
     def __init__(self,flashcard_list = []):
         self.flashcard_list = flashcard_list
@@ -21,5 +22,22 @@ class FlashcardList:
                 if i == len(L) - 1:
                     L.append(flashcard)
         return flashcard
+    #
+    #
+    #
+    #
+    #
+    def fcard_review_disponible(self,fecha = datetime.now()):
+        L_disponible = FlashcardList()
+        for F in self.flashcard_list:
+            if F.get_min_fecha_rev() < fecha:
+                L_disponible.agregar_flashcard(F)
+    #
+    #
+    #
+    #
+    #
     #GETTER###################################
+    def get_cant_fcard(self):
+        return len(self.flashcard_list)
     #SETTER###################################

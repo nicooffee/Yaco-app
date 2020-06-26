@@ -10,13 +10,6 @@ class Revision:
     #
     #
     #
-    def fallar(self):
-        self.equivocacion_previa = True
-    #
-    #
-    #
-    #
-    #
     
     #GETTER###################################
     def get_fecha(self):

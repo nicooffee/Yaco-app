@@ -1,8 +1,10 @@
 class Definicion:
-    def __init__(self,definicion,info_adicional = "",es_principal = False):
+    def __init__(self,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
         self.definicion = definicion
+        self.idioma = idioma
         self.info_adicional = info_adicional
         self.es_principal = es_principal
+        self.es_extra = es_extra
     #
     #
     #
@@ -18,9 +20,11 @@ class Definicion:
         return self.info_adicional
     def get_es_principal(self):
         return self.es_principal
+    def get_es_extra(self):
+        return self.es_extra
 
     def get_key(self):
-        return self.definicion[0:2].tolower()
+        return self.definicion[0:2].lower()
     #SETTER###################################
     def set_definicion(self,definicion):
         self.definicion = definicion

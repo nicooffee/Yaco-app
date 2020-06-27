@@ -39,8 +39,10 @@ CREATE TABLE IF NOT EXISTS "DEFINICION"
     "pal_id"             varchar(20) NOT NULL,
     "usu_id"             varchar(30) NOT NULL,
     "def_definicion"     varchar(50) NOT NULL,
-    "def_info_adicional" text NOT NULL,
     "def_idioma"         varchar(10) NOT NULL,
+    "def_info_adicional" text NOT NULL,
+    "def_principal"      boolean NOT NULL,
+    "def_extra"          boolean NOT NULL,
     CONSTRAINT "PK_DEFINICION" PRIMARY KEY ( "def_id", "pal_id", "usu_id" ),
     CONSTRAINT "FK_PALUSU" FOREIGN KEY ( "pal_id", "usu_id" ) REFERENCES "PALABRA" ( "pal_id", "usu_id" )
 );

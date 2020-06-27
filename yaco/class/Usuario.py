@@ -25,9 +25,20 @@ class Usuario:
     def agregar_palabra(self,palabra_info):
         P = self.palabra_dict.agregar_palabra(palabra_info)
         if P is not None:
-            F = Flashcard(P)
-            P.set_flashcard(F)
-            self.flashcard_list.agregar_flashcard(F)
+            self.flashcard_list.agregar_flashcard(P.get_flashcard())
+        return P
+    #
+    #
+    #
+    #
+    #
+    #input: id de una palabra (de los del desglose)
+    #output: palabra eliminada
+    def eliminar_palabra(self,id):
+        P = self.palabra_dict.eliminar_palabra(id)
+        if P is not None:
+            self.flashcard_list.eliminar_flashcard(P.get_flashcard().get_id())
+        return P
             
 
     #GETTER###################################
@@ -60,6 +71,10 @@ if __name__ == "__main__":
     }
     U = Usuario("nico")
     U.agregar_palabra(dic)
+    print(U.palabra_dict.dict_eng)
+    print(U.palabra_dict.dict_esp)
+    print(U.flashcard_list.flashcard_list)
+    U.eliminar_palabra(dic['id'])
     print(U.palabra_dict.dict_eng)
     print(U.palabra_dict.dict_esp)
     print(U.flashcard_list.flashcard_list)

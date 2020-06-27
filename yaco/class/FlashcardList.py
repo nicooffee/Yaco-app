@@ -27,6 +27,17 @@ class FlashcardList:
     #
     #
     #
+    def eliminar_flashcard(self,id):
+        for i in range(len(self.flashcard_list)):
+            f = self.flashcard_list[i]
+            if f.get_id() == id:
+                return self.flashcard_list.pop(i)
+        return None
+    #
+    #
+    #
+    #
+    #
     def fcard_review_disponible(self,fecha = datetime.now()):
         L_disponible = FlashcardList()
         for F in self.flashcard_list:
@@ -41,3 +52,6 @@ class FlashcardList:
     def get_cant_fcard(self):
         return len(self.flashcard_list)
     #SETTER###################################
+
+if __name__ == "__main__":
+    pass

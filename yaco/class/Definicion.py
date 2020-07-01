@@ -1,5 +1,6 @@
 class Definicion:
-    def __init__(self,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
+    def __init__(self,id,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
+        self.id = id
         self.definicion = definicion
         self.idioma = idioma
         self.info_adicional = info_adicional
@@ -12,7 +13,9 @@ class Definicion:
     #
     def es_igual(self,definicion):
         return True if self.definicion == definicion else False
-
+    @staticmethod
+    def to_key(d):
+        return d[0:2].lower()
     #GETTER###################################
     def get_definicion(self):
         return self.definicion
@@ -24,7 +27,7 @@ class Definicion:
         return self.es_extra
 
     def get_key(self):
-        return self.definicion[0:2].lower()
+        return Definicion.to_key(self.definicion)
     #SETTER###################################
     def set_definicion(self,definicion):
         self.definicion = definicion
@@ -32,3 +35,10 @@ class Definicion:
         self.info_adicional = info_adicional
     def set_es_principal(self,es_principal):
         self.es_principal = es_principal
+
+    #DB#######################################
+    def db_add(self,usu_id,pal_id):
+        pass
+
+    def db_del(self,usu_id,pal_id):
+        pass

@@ -8,6 +8,7 @@ class Palabra:
         self.flashcard = flashcard
         self.definicion_eng = definicion_eng
         self.definicion_esp = definicion_esp
+    
     @classmethod
     def from_dict(cls,palabra_info):
         try:
@@ -18,7 +19,7 @@ class Palabra:
                 definicion_eng=DefinicionList.from_string_list(palabra_info["definicion_eng"]),
                 definicion_esp=DefinicionList.from_string_list(palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.flashcard = Flashcard(palabra_info["id"]+'f',p)
+            p.flashcard = Flashcard(p)
             return p
         except KeyError  as err:
             print('Error de key al crear palabra',err)
@@ -40,6 +41,18 @@ class Palabra:
             return self.definicion_eng.contiene_definicion(definicion)
         elif idioma == 'es':
             return self.definicion_esp.contiene_definicion(definicion)
+        else:
+            raise Exception("No se encuentra el idioma entregado.")
+    #
+    #
+    #
+    #
+    #
+    def agregar_definicion(self,definicion,info_adicional,idioma):
+        if idioma == 'es':
+            self.definicion_esp.agregar_definicion(definicion,info_adicional,idioma)
+        elif idioma == 'en':
+            self.definicion_eng.agregar_definicion(definicion,info_adicional,idioma)
         else:
             raise Exception("No se encuentra el idioma entregado.")
     #

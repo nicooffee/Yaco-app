@@ -1,6 +1,7 @@
 import datetime
 class Revision:
-    def __init__(self,fecha= datetime.datetime.now(),nivel_srs=1,es_completa=False,equivocacion_previa=False):
+    def __init__(self,id,fecha= datetime.datetime.now(),nivel_srs=1,es_completa=False,equivocacion_previa=False):
+        self.id = id
         self.fecha = fecha
         self.nivel_srs = nivel_srs
         self.es_completa = es_completa

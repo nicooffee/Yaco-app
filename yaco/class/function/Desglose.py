@@ -1,11 +1,12 @@
-import urllib.request
 import json
 import functools
 import pprint
 import os.path
 import re
-from parser import def_parser
-
+try:
+    from . import Parser
+except ImportError:
+    import Parser
 
 
 
@@ -28,7 +29,7 @@ def desglose(J):
                         palabra["definicion_eng"] = [[sense_descrip["vrs"][0]["va"] if "vrs" in sense_descrip else word["meta"]["stems"][0],""]]
                         def_esp = functools.reduce(lambda x,y: x+y,map(lambda x: x[1],filter(lambda x: x[0]=="text",sense_descrip["dt"])),"")
                         if def_esp is not "":
-                            palabra["definicion_esp"] = def_parser(def_esp)
+                            palabra["definicion_esp"] = Parser.def_parser(def_esp)
                             palabra["es_ofensiva"] = word["meta"]["offensive"]
                             resultado.append(palabra)
                 definicion_c += 1
@@ -40,10 +41,9 @@ def desglose(J):
 
 
 if __name__ == "__main__":
-    APIKEY = 'f9885f23-b685-4818-af4d-2f213fff9a91'
+    import GetWord
     palabra = "get"
-    resp = urllib.request.urlopen("https://www.dictionaryapi.com/api/v3/references/spanish/json/"+palabra+"?key="+APIKEY).read()
-    parsed = json.loads(resp)
+    parsed = GetWord.get_word(palabra)
     with open('resp.json','w') as file:
         file.write(desglose(parsed))
 

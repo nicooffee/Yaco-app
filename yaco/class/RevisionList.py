@@ -4,6 +4,9 @@ class RevisionList:
     def __init__(self,revision_list=[]):
         self.revision_list = revision_list
         self.actual_incorrecto = False
+    @classmethod
+    def from_db(cls,usu_id,pal_id):
+        pass
     #
     #
     #

@@ -1,17 +1,15 @@
 from RevisionList import RevisionList
 from datetime import datetime,timedelta
-import config.config
+from config import config
 class Flashcard:
     def __init__(
             self,
-            id,
             palabra,
             fecha_creacion = datetime.now(),
             nivel_srs_reco = 1,
             nivel_srs_prod = 1,
             revision_list_reco = RevisionList(),
             revision_list_prod = RevisionList()):
-        self.id = id
         self.palabra = palabra
         self.fecha_creacion = fecha_creacion
         self.nivel_srs_reco = nivel_srs_reco
@@ -57,8 +55,6 @@ class Flashcard:
             return F + timedelta(seconds=config.get_srs_time(nivl_srs))#
 
     #GETTER###################################
-    def get_id(self):
-        return self.id
     def get_fecha_creacion(self):
         return self.fecha_creacion
     def get_nivel_srs_reco(self):

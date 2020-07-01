@@ -15,9 +15,13 @@ class DefinicionList:
         L = []
         for i in range(len(string_list)):
             s = string_list[i]
-            d = Definicion(s[0],s[1],True if i==0 else False)
+            d = Definicion(i,s[0],s[1],True if i==0 else False)
             L.append(d)
         return cls(definicion_list=L)
+    
+    @classmethod
+    def from_db(cls,usu_id,pal_id):
+        pass
     #
     #
     #
@@ -28,7 +32,14 @@ class DefinicionList:
             if d.es_igual(definicion):
                 return True
         return False
-
+    #
+    #
+    #
+    #
+    #
+    def agregar_definicion(self,definicion,info_adicional,idioma):
+        d = Definicion(definicion,idioma,info_adicional=info_adicioanl,es_principal=False,es_extra=True)
+        self.definicion_list.append(d)
     
 
 
@@ -68,5 +79,7 @@ if __name__ == "__main__":
         ],
         "es_ofensiva": False
     }
-    DefinicionList.from_string_list(dic["definicion_esp"])
-    DefinicionList.from_string_list(dic["definicion_eng"])
+    des = DefinicionList.from_string_list(dic["definicion_esp"])
+    den = DefinicionList.from_string_list(dic["definicion_eng"])
+    for key in des.get_key_iter():
+        print(key)

@@ -1,6 +1,4 @@
-import json
-from datetime import datetime,timedelta
-
+API_KEY = 'f9885f23-b685-4818-af4d-2f213fff9a91'
 SRS_TIME_L1 = 14400
 SRS_TIME_L2 = 28800
 SRS_TIME_L3 = 82800
@@ -30,6 +28,8 @@ def get_srs_time(srs_lvl):
     else:
         raise Exception("El nivel srs es incorrecto")
 if __name__ == "__main__":
+    import json
+    from datetime import datetime,timedelta
     fecha_leccion = datetime(2020,6,23,8,00,00)
     srs_l = [SRS_TIME_L1,SRS_TIME_L2,SRS_TIME_L3,SRS_TIME_L4,SRS_TIME_L5,SRS_TIME_L6,SRS_TIME_L7,SRS_TIME_L8]
     for i in range(1,9):

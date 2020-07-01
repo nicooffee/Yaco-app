@@ -14,7 +14,11 @@ class Usuario:
         self.flashcard_list = flashcard_list
         self.palabra_dict   = palabra_dict 
         self.fecha_registro = fecha_registro
-        self.ultimo_logeo   = ultimo_logeo 
+        self.ultimo_logeo   = ultimo_logeo
+    
+    @classmethod
+    def from_db(cls,usu_id):
+        pass
     #
     #
     #
@@ -55,7 +59,13 @@ class Usuario:
         self.fecha_registro = fecha_registro
     def set_ultimo_logeo(self,ultimo_logeo):
         self.ultimo_logeo = ultimo_logeo
-        
+    
+    #DB#######################################
+    def db_add(self):
+        pass
+
+    def db_del(self,usu_id,pal_id):
+        pass
 
 if __name__ == "__main__":
     dic =     {

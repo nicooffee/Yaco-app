@@ -3,6 +3,9 @@ from datetime import datetime
 class FlashcardList:
     def __init__(self,flashcard_list = []):
         self.flashcard_list = flashcard_list
+    @classmethod
+    def from_db(cls,usu_id,pal_id):
+        pass
     #
     #
     #

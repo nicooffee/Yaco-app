@@ -12,8 +12,8 @@ class RevisionList:
     #
     #
     #
-    def completar_revision(self,fecha,nivel_srs,eq_previa):
-        R = Revision(fecha=fecha,nivel_srs=nivel_srs,es_completa=True,equivocacion_previa=eq_previa)
+    def completar_revision(self,fla_id,fecha,nivel_srs,eq_previa):
+        R = Revision(id=fla_id+'-r'+str(len(self.revision_list)),fecha=fecha,nivel_srs=nivel_srs,es_completa=True,equivocacion_previa=eq_previa)
         self.revision_list.insert(0,R)
         return R
     #GETTER###################################
@@ -28,5 +28,5 @@ class RevisionList:
 if __name__ == "__main__":
     R_l = RevisionList()
     print(R_l.get_fecha_ult_rev())
-    R_l.completar_revision(datetime.now(),1,False)
+    R_l.completar_revision("fla",datetime.now(),1,False)
     print(R_l.get_fecha_ult_rev())

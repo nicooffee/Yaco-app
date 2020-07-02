@@ -44,7 +44,7 @@ class FlashcardList:
     def fcard_review_disponible(self,fecha = datetime.now()):
         L_disponible = FlashcardList()
         for F in self.flashcard_list:
-            if F.get_min_fecha_rev() < fecha:
+            if F.get_fecha_sig() < fecha:
                 L_disponible.agregar_flashcard(F)
     #
     #

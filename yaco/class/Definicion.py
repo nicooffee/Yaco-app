@@ -1,6 +1,6 @@
 class Definicion:
     def __init__(self,id,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
-        self.id = id
+        self.id = id #{id palabra}-d{numero def}
         self.definicion = definicion
         self.idioma = idioma
         self.info_adicional = info_adicional
@@ -40,8 +40,3 @@ class Definicion:
         self.es_principal = es_principal
 
     #DB#######################################
-    def db_add(self,usu_id,pal_id):
-        pass
-
-    def db_del(self,usu_id,pal_id):
-        pass

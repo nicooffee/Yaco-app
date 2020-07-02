@@ -11,11 +11,11 @@ class DefinicionList:
         return cls(definicion_list=L)
 
     @classmethod
-    def from_string_list(cls,string_list):
+    def from_string_list(cls,pal_id,string_list):
         L = []
         for i in range(len(string_list)):
             s = string_list[i]
-            d = Definicion(i,s[0],s[1],True if i==0 else False)
+            d = Definicion(pal_id+"-d"+str(i),s[0],s[1],True if i==0 else False)
             L.append(d)
         return cls(definicion_list=L)
     

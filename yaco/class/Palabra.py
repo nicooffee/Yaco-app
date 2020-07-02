@@ -3,7 +3,7 @@ from Flashcard import Flashcard
 class Palabra:
     lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
-        self.id = id
+        self.id = id #{palabra}-s{n}d{n}
         self.tipo = tipo
         self.es_ofensiva = es_ofensiva
         self.flashcard = flashcard
@@ -15,11 +15,12 @@ class Palabra:
             p = cls(
                 id=palabra_info["id"],
                 tipo=palabra_info["tipo"],
-                flashcard = None,
-                definicion_eng=DefinicionList.from_string_list(palabra_info["definicion_eng"]),
-                definicion_esp=DefinicionList.from_string_list(palabra_info["definicion_esp"]),
+                flashcard = [],
+                definicion_eng=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_eng"]),
+                definicion_esp=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.flashcard = Flashcard(p)
+            p.flashcard.append(Flashcard(p.id + "-fr" ,p,'reco'))
+            p.flashcard.append(Flashcard(p.id + "-fp" ,p,'prod'))
             return p
         except KeyError  as err:
             print('Error de key al crear palabra',err)
@@ -137,6 +138,6 @@ if __name__ == "__main__":
         "es_ofensiva": False
     }
     p = Palabra.from_dict(dic)
-    print(p.contiene_definicion('get','en'))
-    print(p.contiene_definicion('capturar','es'))
+    print(p.contiene_def_str('get','en'))
+    print(p.contiene_def_str('capturar','es'))
     #print(p.contiene_definicion('get','ru'))

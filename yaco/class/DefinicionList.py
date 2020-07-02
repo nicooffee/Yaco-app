@@ -27,9 +27,18 @@ class DefinicionList:
     #
     #
     #
-    def contiene_definicion(self,definicion):
+    def agregar_definicion(self,definicion,info_adicional,idioma):
+        d = Definicion(definicion,idioma,info_adicional=info_adicioanl,es_principal=False,es_extra=True)
+        self.definicion_list.append(d)
+        return d
+    #
+    #
+    #
+    #
+    #
+    def contiene_def(self,definicion):
         for d in self.definicion_list:
-            if d.es_igual(definicion):
+            if d == definicion:
                 return True
         return False
     #
@@ -37,11 +46,26 @@ class DefinicionList:
     #
     #
     #
-    def agregar_definicion(self,definicion,info_adicional,idioma):
-        d = Definicion(definicion,idioma,info_adicional=info_adicioanl,es_principal=False,es_extra=True)
-        self.definicion_list.append(d)
-    
-
+    def contiene_def_list(self,def_list):
+        for d_l in def_list.get_iter():
+            if self.contiene_def(d_l):
+                return True
+        return False
+    #
+    #
+    #
+    #
+    #
+    def contiene_def_str(self,definicion):
+        for d in self.definicion_list:
+            if d.is_equal(definicion):
+                return True
+        return False
+    #
+    #
+    #
+    #
+    #
 
     #GETTER###################################
     def get_iter(self):

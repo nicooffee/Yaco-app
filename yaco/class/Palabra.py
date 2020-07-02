@@ -1,13 +1,13 @@
 from DefinicionList import DefinicionList
 from Flashcard import Flashcard
 class Palabra:
+    lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
         self.id = id
         self.tipo = tipo
         self.es_ofensiva = es_ofensiva
         self.flashcard = flashcard
-        self.definicion_eng = definicion_eng
-        self.definicion_esp = definicion_esp
+        self.def_lang = {Palabra.lang[0]: definicion_eng,Palabra.lang[1]: definicion_esp}
     
     @classmethod
     def from_dict(cls,palabra_info):
@@ -36,25 +36,34 @@ class Palabra:
     #
     #
     #
-    def contiene_definicion(self,definicion,idioma):
-        if idioma == 'en':
-            return self.definicion_eng.contiene_definicion(definicion)
-        elif idioma == 'es':
-            return self.definicion_esp.contiene_definicion(definicion)
-        else:
-            raise Exception("No se encuentra el idioma entregado.")
+    def contiene_def_comun(self,palabra,idioma):
+        try:
+            return self.def_lang[idioma].contiene_def_list(palabra.def_lang[idioma])
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
+            return False
+    #
+    #
+    #
+    #
+    #
+    def contiene_def_str(self,definicion,idioma):
+        try:
+            return self.def_lang[idioma].contiene_def_str(definicion)
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
+            return False
     #
     #
     #
     #
     #
     def agregar_definicion(self,definicion,info_adicional,idioma):
-        if idioma == 'es':
-            self.definicion_esp.agregar_definicion(definicion,info_adicional,idioma)
-        elif idioma == 'en':
-            self.definicion_eng.agregar_definicion(definicion,info_adicional,idioma)
-        else:
-            raise Exception("No se encuentra el idioma entregado.")
+        try:
+            return self.def_lang[idioma].agregar_definicion(definicion,info_adicional,idioma)
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
+            return None
     #
     #
     #
@@ -66,7 +75,14 @@ class Palabra:
     @staticmethod
     def to_key(id):
         return id.split('-')[0] if Palabra.es_id_valido(id) else None
-
+    @staticmethod
+    def idioma_contrario(idioma):
+        if idioma == Palabra.lang[0]:
+            return Palabra.lang[1]
+        elif idioma == Palabra.lang[1]:
+            return Palabra.lang[0]
+        else:
+            raise Exception("Idioma no encontrado")
     #GETTER###################################
     def get_id(self):
         return self.id
@@ -84,19 +100,17 @@ class Palabra:
         return Palabra.to_key(self.id)
 
     def get_definicion_iter(self,idioma):
-        if idioma == 'en':
-            return self.definicion_eng.get_iter()
-        elif idioma =='es':
-            return self.definicion_esp.get_iter()
-        else:
+        try:
+            return self.def_lang[idioma].get_iter()
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
             return empty_iter()
 
     def get_definicion_key_iter(self,idioma):
-        if idioma == 'en':
-            return self.definicion_eng.get_key_iter()
-        elif idioma =='es':
-            return self.definicion_esp.get_key_iter()
-        else:
+        try:
+            return self.def_lang[idioma].get_key_iter()
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
             return empty_iter()
     #SETTER###################################
     def set_id(self,id):

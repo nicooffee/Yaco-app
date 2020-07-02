@@ -6,12 +6,15 @@ class Definicion:
         self.info_adicional = info_adicional
         self.es_principal = es_principal
         self.es_extra = es_extra
+
+    def __eq__(self,other):
+        return self.definicion == other.definicion
     #
     #
     #
     #
     #
-    def es_igual(self,definicion):
+    def is_equal(self,definicion):
         return True if self.definicion == definicion else False
     @staticmethod
     def to_key(d):

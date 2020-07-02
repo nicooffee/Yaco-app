@@ -15,7 +15,7 @@ class PalabraDict:
     #
     #
     #
-    def agregar_palabra(self,palabra_info):
+    def agregar_palabra(self,palabra_info: dict):
         P = Palabra.from_dict(palabra_info)
         p_id = P.get_id_key()
         if p_id in self.dict_id:
@@ -36,7 +36,7 @@ class PalabraDict:
     #
     #
     #
-    def eliminar_palabra(self,id):
+    def eliminar_palabra(self,id: str):
         def pop_in_list(L,id):
             index = None
             for i in range(len(L)):
@@ -63,7 +63,7 @@ class PalabraDict:
     #
     #
     #
-    def existe_palabra(self,palabra):
+    def existe_palabra(self,palabra: Palabra):
         key = palabra.get_id_key()
         if key in self.dict_id:
             for w in self.dict_id[key]:
@@ -75,12 +75,12 @@ class PalabraDict:
     #
     #
     #
-    def palabras_con_definicion(self,definicion,idioma):
+    def palabras_con_def_str(self,def_str: str,idioma: str):
         try:
             L = []
-            key = Definicion.to_key(definicion)
+            key = Definicion.to_key(def_str)
             for w in self.dict_lang[idioma][key]:
-                if w.contiene_definicion(definicion,idioma):
+                if w.contiene_def_str(def_str,idioma):
                     L.append(w)
             return L
         except KeyError as err:
@@ -91,8 +91,20 @@ class PalabraDict:
     #
     #
     #
+    def palabras_cruz_paldef(self,palabra: Palabra,def_str: str,idioma: str):
+        pal_list = self.palabras_con_def_str(def_str,idioma)
+        L = []
+        for w in pal_list:
+            if palabra.contiene_def_comun.contiene_def_comun(w,Palabra.idioma_contrario(idioma)):
+                L.append(w)
+        return L
+    #
+    #
+    #
+    #
+    #
     @staticmethod
-    def __palabra_en_celda(palabra,dict,key):
+    def __palabra_en_celda(palabra,dict: dict,key: str):
         try:
             for p in dict[key]:
                 if palabra.es_igual(p):

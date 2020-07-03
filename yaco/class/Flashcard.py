@@ -1,7 +1,8 @@
 from RevisionList import RevisionList
 from datetime import datetime,timedelta
 from config import config
-class Flashcard:
+from interface.DBWriter import DBWriter
+class Flashcard(DBWriter):
     def __init__(
             self,
             id, #{id palabra}-{fr | fp}
@@ -54,3 +55,8 @@ class Flashcard:
         self.nivel_srs = nivel_srs
     def set_palabra(self,palabra):
         self.palabra = palabra
+    #DB#######################################
+    def add_data(self):
+        pass
+    def del_data(self):
+        pass

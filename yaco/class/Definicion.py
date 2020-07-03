@@ -1,4 +1,6 @@
-class Definicion:
+from interface.DBWriter import DBWriter
+from database.Database import PSConnection
+class Definicion(DBWriter):
     def __init__(self,id,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
         self.id = id #{id palabra}-d{numero def}
         self.definicion = definicion
@@ -40,3 +42,20 @@ class Definicion:
         self.es_principal = es_principal
 
     #DB#######################################
+    def add_data(self):
+        psc = PSConnection()
+        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra) VALUES (%s,%s,%s,%s,%s,%s)"""
+        data = (self.id,self.definicion,self.idioma,self.info_adicional,self.es_principal,self.es_extra)
+        return psc.query(psql_query,data)
+
+    def del_data(self):
+        psc = PSConnection()
+        psql_query = """DELETE from PUBLIC."DEFINICION" WHERE def_id = %s;"""
+        data = (self.id,)
+        return psc.query(psql_query,data)
+
+
+if __name__ == "__main__":
+    d = Definicion('get-d1s5:Nicoffee-d1','tomar','es','(un tren, etc.)')
+    print("Exito al agregar def. Filas afectadas: ",d.add_data())
+    print("Exito al eliminar def. Filas afectadas: ",d.del_data())

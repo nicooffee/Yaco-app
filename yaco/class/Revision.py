@@ -1,5 +1,6 @@
 import datetime
-class Revision:
+from interface.DBWriter import DBWriter
+class Revision(DBWriter):
     def __init__(self,id,fecha= datetime.datetime.now(),nivel_srs=1,es_completa=False,equivocacion_previa=False):
         self.id = id #{id flashcard}-r{numero rev}
         self.fecha = fecha
@@ -28,7 +29,11 @@ class Revision:
         self.es_completa = es_completa
     def set_equivocacion_previa(self,equivocacion_previa):
         self.equivocacion_previa = equivocacion_previa
-
+    #DB#######################################
+    def add_data(self):
+        pass
+    def del_data(self):
+        pass
 
 if __name__ == "__main__":
     Revision()

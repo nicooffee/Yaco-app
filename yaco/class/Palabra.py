@@ -1,6 +1,7 @@
 from DefinicionList import DefinicionList
 from Flashcard import Flashcard
-class Palabra:
+from interface.DBWriter import DBWriter
+class Palabra(DBWriter):
     lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
         self.id = id #{palabra}-s{n}d{n}
@@ -124,6 +125,11 @@ class Palabra:
     def empty_iter():
         return
         yield
+    #DB#######################################
+    def add_data(self):
+        pass
+    def del_data(self):
+        pass
 
 if __name__ == "__main__":
     dic =     {

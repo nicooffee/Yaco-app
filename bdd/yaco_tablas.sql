@@ -31,13 +31,13 @@ CREATE TABLE IF NOT EXISTS "PALABRA"
     CONSTRAINT "PK_PALABRA" PRIMARY KEY ( "pal_id")
 );
 
-CREATE TABLE IF NOT EXISTS "ESTUDIANTE_PALABRA"
+CREATE TABLE IF NOT EXISTS "USUARIO_PALABRA"
 (
     "usu_id"             varchar(30) NOT NULL,
     "pal_id"           varchar(20) NOT NULL,
-    CONSTRAINT "PK_ESTUDIANTE_PALABRA" PRIMARY KEY ( "usu_id", "pal_id" ),
-    CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id", ) REFERENCES "ESTUDIANTE" ( "usu_id" ),
-    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id", ) REFERENCES "PALABRA" ( "usu_id" ) 
+    CONSTRAINT "PK_USUARIO_PALABRA" PRIMARY KEY ( "usu_id", "pal_id" ),
+    CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id" ) REFERENCES "ESTUDIANTE" ( "usu_id" ),
+    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ) 
 );
 
 CREATE TABLE IF NOT EXISTS "DEFINICION"
@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS "PALABRA_DEFINICION"
     "pal_id"             varchar(30) NOT NULL,
     "def_id"             varchar(20) NOT NULL,
     CONSTRAINT "PK_PALABRA_DEFINICION" PRIMARY KEY ( "pal_id", "def_id" ),
-    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id", ) REFERENCES "PALABRA" ( "def_id" ),
-    CONSTRAINT "FK_DEF" FOREIGN KEY ( "def_id", ) REFERENCES "DEFINICION" ( "def_id" )
+    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ),
+    CONSTRAINT "FK_DEF" FOREIGN KEY ( "def_id" ) REFERENCES "DEFINICION" ( "def_id" )
 );
 
 CREATE TABLE IF NOT EXISTS "FLASHCARD"
@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS "USU_PAL_FLASHCARD"
     "fla_id"             varchar(30) NOT NULL,
     "fla_fecha_creacion" date NOT NULL,
     CONSTRAINT "PK_USU_PAL_FLASHCARD" PRIMARY KEY ( "usu_id", "pal_id", "fla_id" ),
-    CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id", ) REFERENCES "ESTUDIANTE" ( "usu_id" ),
-    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id", ) REFERENCES "PALABRA" ( "usu_id" ),
-    CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id", ) REFERENCES "FLASHCARD" ( "fla_id" ) 
+    CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id" ) REFERENCES "ESTUDIANTE" ( "usu_id" ),
+    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ),
+    CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id" ) REFERENCES "FLASHCARD" ( "fla_id" ) 
 );
 
 CREATE TABLE IF NOT EXISTS "REVISION"
@@ -95,6 +95,6 @@ CREATE TABLE IF NOT EXISTS "FLASHCARD_REVISION"
     "fla_id"           varchar(20) NOT NULL,
     "fla_fecha"          date NOT NULL,
     CONSTRAINT "PK_FLA_REV" PRIMARY KEY ( "rev_id", "fla_id" ),
-    CONSTRAINT "FK_REV" FOREIGN KEY ( "rev_id", ) REFERENCES "REVISION" ( "rev_id" ),
-    CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id", ) REFERENCES "FLASHCARD" ( "fla_id" )
+    CONSTRAINT "FK_REV" FOREIGN KEY ( "rev_id" ) REFERENCES "REVISION" ( "rev_id" ),
+    CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id" ) REFERENCES "FLASHCARD" ( "fla_id" )
 );

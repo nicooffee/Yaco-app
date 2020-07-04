@@ -82,10 +82,10 @@ CREATE TABLE IF NOT EXISTS "USU_PAL_FLASHCARD"
 
 CREATE TABLE IF NOT EXISTS "REVISION"
 (
-    "rev_id"             varchar(20) NOT NULL,
-    "fla_es_completa"    boolean  NOT NULL,
-    "fla_equivocacion_previa" boolean NOT  NULL,
-    "nivel_srs"          int NOT NULL,
+    "rev_id"             varchar(50) NOT NULL,
+    "rev_es_completa"    boolean  NOT NULL,
+    "rev_equivocacion_previa" boolean NOT  NULL,
+    "rev_nivel_srs"          int NOT NULL,
     CONSTRAINT "PK_REVISION" PRIMARY KEY ( "rev_id")
 );
 

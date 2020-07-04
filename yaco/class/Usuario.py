@@ -27,7 +27,7 @@ class Usuario:
     #input: elemento de un desglose
     #output: palabra agregada
     def agregar_palabra(self,palabra_info):
-        P = self.palabra_dict.agregar_palabra(palabra_info)
+        P = self.palabra_dict.agregar_palabra(palabra_info,self.nombre_usuario)
         if P is not None:
             self.flashcard_list.agregar_flashcard(P.get_flashcard())
         return P

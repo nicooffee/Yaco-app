@@ -13,7 +13,7 @@ class RevisionList:
     #
     #
     def completar_revision(self,fla_id,fecha,nivel_srs,eq_previa):
-        R = Revision(id=fla_id+'-r'+str(len(self.revision_list)),fecha=fecha,nivel_srs=nivel_srs,es_completa=True,equivocacion_previa=eq_previa)
+        R = Revision(id=fla_id+str(len(self.revision_list)),fecha=fecha,nivel_srs=nivel_srs,es_completa=True,equivocacion_previa=eq_previa)
         self.revision_list.insert(0,R)
         return R
     #GETTER###################################

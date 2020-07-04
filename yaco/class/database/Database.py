@@ -10,8 +10,7 @@ class PSConnection:
             self.connection.commit()
             return self.cursor.rowcount
         except (Exception, psycopg2.Error) as error :
-            if(self.connection):
-                print("Error al insertar definicion ", error)
+            print("Error al insertar definicion -- ", error)
             return -1
 
     def __del__(self):

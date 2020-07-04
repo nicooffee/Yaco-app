@@ -5,7 +5,7 @@ from interface.DBWriter import DBWriter
 class Flashcard(DBWriter):
     def __init__(
             self,
-            id, #{id palabra}-{fr | fp}
+            id, #{id palabra}{FR | FP}
             palabra,
             tipo, #reco, prod
             fecha_creacion = datetime.now(),

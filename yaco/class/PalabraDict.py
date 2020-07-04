@@ -15,7 +15,7 @@ class PalabraDict:
     #
     #
     #
-    def agregar_palabra(self,palabra_info: dict):
+    def agregar_palabra(self,palabra_info: dict,uq_id: str):
         P = Palabra.from_dict(palabra_info)
         p_id = P.get_id_key()
         if p_id in self.dict_id:

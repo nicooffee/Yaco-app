@@ -4,24 +4,24 @@ from interface.DBWriter import DBWriter
 class Palabra(DBWriter):
     lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
-        self.id = id #{palabra}-s{n}d{n}
+        self.id = id #{palabra}-s{n}d{n}:{uq_id}
         self.tipo = tipo
         self.es_ofensiva = es_ofensiva
         self.flashcard = flashcard
         self.def_lang = {Palabra.lang[0]: definicion_eng,Palabra.lang[1]: definicion_esp}
     
     @classmethod
-    def from_dict(cls,palabra_info):
+    def from_dict(cls,palabra_info,uq_id):
         try:
             p = cls(
-                id=palabra_info["id"],
+                id=palabra_info["id"]+':'+uq_id,
                 tipo=palabra_info["tipo"],
                 flashcard = [],
                 definicion_eng=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_eng"]),
                 definicion_esp=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.flashcard.append(Flashcard(p.id + "-fr" ,p,'reco'))
-            p.flashcard.append(Flashcard(p.id + "-fp" ,p,'prod'))
+            p.flashcard.append(Flashcard(p.id + "FR" ,p,'reco'))
+            p.flashcard.append(Flashcard(p.id + "FP" ,p,'prod'))
             return p
         except KeyError  as err:
             print('Error de key al crear palabra',err)

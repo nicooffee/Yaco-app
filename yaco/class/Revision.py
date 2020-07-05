@@ -15,6 +15,8 @@ class Revision(DBWriter):
     #
     
     #GETTER###################################
+    def get_id(self):
+        return self.id
     def get_fecha(self):
         return self.fecha
     def get_nivel_srs(self):
@@ -23,6 +25,8 @@ class Revision(DBWriter):
         return self.es_completa
     def get_equivocacion_previa(self):
         return self.equivocacion_previa
+    def get_bd_info(self):
+        return (self.id,self.es_completa,self.equivocacion_previa,self.nivel_srs)
     #SETTER###################################
     def set_fecha(self,fecha):
         self.fecha = fecha

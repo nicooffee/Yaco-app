@@ -12,7 +12,14 @@ class PSConnection:
         except (Exception, psycopg2.Error) as error :
             print("Error al insertar definicion -- ", error)
             return -1
-
+    def query_many(self,query,p_list):
+        try:
+            res = self.cursor.executemany(query,p_list)
+            self.connection.commit()
+            return self.cursor.rowcount
+        except (Exception, psycopg2.Error) as error :
+            print("Error al insertar definicion -- ", error)
+            return -1
     def __del__(self):
         if(self.connection):
             self.cursor.close()

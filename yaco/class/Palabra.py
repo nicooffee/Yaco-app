@@ -1,6 +1,7 @@
 from DefinicionList import DefinicionList
 from Flashcard import Flashcard
 from interface.DBWriter import DBWriter
+from database.Database import PSConnection
 class Palabra(DBWriter):
     lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
@@ -13,12 +14,13 @@ class Palabra(DBWriter):
     @classmethod
     def from_dict(cls,palabra_info,uq_id):
         try:
+            pal_id = palabra_info["id"]+':'+uq_id
             p = cls(
-                id=palabra_info["id"]+':'+uq_id,
+                id=pal_id,
                 tipo=palabra_info["tipo"],
                 flashcard = [],
-                definicion_eng=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_eng"]),
-                definicion_esp=DefinicionList.from_string_list(palabra_info["id"],palabra_info["definicion_esp"]),
+                definicion_eng=DefinicionList.from_string_list(pal_id+Palabra.lang[0],'en',palabra_info["definicion_eng"]),
+                definicion_esp=DefinicionList.from_string_list(pal_id+Palabra.lang[1],'es',palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
             p.flashcard.append(Flashcard(p.id + "FR" ,p,'reco'))
             p.flashcard.append(Flashcard(p.id + "FP" ,p,'prod'))
@@ -127,10 +129,25 @@ class Palabra(DBWriter):
         yield
     #DB#######################################
     def add_data(self):
-        pass
-    def del_data(self):
-        pass
+        psc = PSConnection()
+        psql_query_p = """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) VALUES (%s,%s,%s);"""
+        data = (self.id,self.tipo,self.es_ofensiva)
+        p_d = psc.query(psql_query_p,data)
+        for lang in Palabra.lang:
+            self.def_lang[lang].add_data()
+            data_list = map(lambda x: (self.id,x),self.def_lang[lang].get_id_iter())
+            psql_query_pd = """INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id) VALUES (%s,%s)"""
+            psc.query_many(psql_query_pd,data_list)
+        return p_d
 
+    def del_data(self):
+        psc = PSConnection()
+        psql_query_p = """DELETE from PUBLIC."PALABRA" WHERE pal_id = %s;"""
+        data = (self.id,)
+        p_d = psc.query(psql_query_p,data)
+        for lang in Palabra.lang:
+            self.def_lang[lang].del_data()
+        return p_d
 if __name__ == "__main__":
     dic =     {
         "id": "get-d1s7",
@@ -143,7 +160,9 @@ if __name__ == "__main__":
         ],
         "es_ofensiva": False
     }
-    p = Palabra.from_dict(dic)
+    p = Palabra.from_dict(dic,'Nicooffee')
     print(p.contiene_def_str('get','en'))
     print(p.contiene_def_str('capturar','es'))
+    print("Exito al agregar def. Filas afectadas: ",p.add_data())
+    print("Exito al eliminar def. Filas afectadas: ",p.del_data())
     #print(p.contiene_definicion('get','ru'))

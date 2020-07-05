@@ -1,6 +1,8 @@
 from datetime import datetime,timedelta
 from Revision import Revision
-class RevisionList:
+from interface.DBWriter import DBWriter
+from database.Database import PSConnection
+class RevisionList(DBWriter):
     def __init__(self,revision_list=[]):
         self.revision_list = revision_list
         self.actual_incorrecto = False
@@ -24,6 +26,17 @@ class RevisionList:
         else:
             return None
     #SETTER###################################
+
+    #DB#######################################
+    def add_data(self):
+        psc = PSConnection()
+        psql_query = """INSERT INTO PUBLIC."REVISION" (rev_id,rev_es_completa,rev_equivocacion_previa,rev_nivel_srs) VALUES (%s,%s,%s,%s)"""
+        data_list = map(lambda x: x.get_bd_info(),self.revision_list)
+        return psc.query_many(psql_query,data_list)
+    def del_data(self):
+        psql_query = """DELETE from PUBLIC."REVISION" WHERE rev_id = %s;"""
+        data_list = map(lambda x: (x.get_id(),),self.revision_list)
+        return psc.query_many(psql_query,data_list)
 
 if __name__ == "__main__":
     R_l = RevisionList()

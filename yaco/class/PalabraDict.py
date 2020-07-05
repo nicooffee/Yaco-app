@@ -16,7 +16,7 @@ class PalabraDict:
     #
     #
     def agregar_palabra(self,palabra_info: dict,uq_id: str):
-        P = Palabra.from_dict(palabra_info)
+        P = Palabra.from_dict(palabra_info,uq_id)
         p_id = P.get_id_key()
         if p_id in self.dict_id:
             self.dict_id[p_id].append(P)
@@ -132,16 +132,19 @@ if __name__ == "__main__":
         print(pd.dict_lang[l])
     ##########################
     print("Agregar una palabra")
-    resp = GetWord.get_word('get')
+    resp = GetWord.get_word('to%20go%20out')
     w_json = Desglose.desglose(resp)
     w_dic = json.loads(w_json)
     for w in w_dic:
-        pd.agregar_palabra(w)
+        pd.agregar_palabra(w,'Nicooffee')
     print(pd.dict_id)
     for l in PalabraDict.lang:
         print(pd.dict_lang[l])
     print("Existe una palabra")
     #print(pd.existe_palabra(p))
     print("Eliminar una palabra")
-    print("PE") if pd.eliminar_palabra("get-d1s2") is not None else print("PNE")
+    #print("PE") if pd.eliminar_palabra("get-d1s2") is not None else print("PNE")
     print("PE") if pd.eliminar_palabra("estaPalabra-noExiste") is not None else print("PNE")
+    for key in pd.dict_id.keys():
+        for w in pd.dict_id[key]:
+            w.add_data()

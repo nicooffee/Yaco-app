@@ -2,7 +2,7 @@ from interface.DBWriter import DBWriter
 from database.Database import PSConnection
 class Definicion(DBWriter):
     def __init__(self,id,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
-        self.id = id #{id palabra}{numero def}
+        self.id = id #{id palabra}{idioma}{numero def}
         self.definicion = definicion
         self.idioma = idioma
         self.info_adicional = info_adicional
@@ -22,6 +22,8 @@ class Definicion(DBWriter):
     def to_key(d):
         return d[0:2].lower()
     #GETTER###################################
+    def get_id(self):
+        return self.id
     def get_definicion(self):
         return self.definicion
     def get_info_adicional(self):
@@ -30,9 +32,10 @@ class Definicion(DBWriter):
         return self.es_principal
     def get_es_extra(self):
         return self.es_extra
-
     def get_key(self):
         return Definicion.to_key(self.definicion)
+    def get_bd_info(self):
+        return (self.id,self.definicion,self.idioma,self.info_adicional,self.es_principal,self.es_extra)
     #SETTER###################################
     def set_definicion(self,definicion):
         self.definicion = definicion

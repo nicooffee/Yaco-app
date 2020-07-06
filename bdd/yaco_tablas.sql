@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS "ESTUDIANTE"
 (
     "usu_id"             varchar(30) NOT NULL,
     "est_tipo"           varchar(20) NOT NULL,
+    "est_exp_total"      integer,	
     CONSTRAINT "PK_ESTUDIANTE" PRIMARY KEY ( "usu_id" ),
     CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id" ) REFERENCES "USUARIO" ( "usu_id" ) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -49,8 +50,6 @@ CREATE TABLE IF NOT EXISTS "DEFINICION"
     "def_definicion"     varchar(50) NOT NULL,
     "def_idioma"         varchar(10) NOT NULL,
     "def_info_adicional" text NOT NULL,
-    "def_principal"      boolean NOT NULL,
-    "def_extra"          boolean NOT NULL,
     CONSTRAINT "PK_DEFINICION" PRIMARY KEY ( "def_id" )
 );
 
@@ -59,6 +58,19 @@ CREATE TABLE IF NOT EXISTS "PALABRA_DEFINICION"
     "pal_id"             varchar(50) NOT NULL,
     "def_id"             varchar(60) NOT NULL,
     CONSTRAINT "PK_PALABRA_DEFINICION" PRIMARY KEY ( "pal_id", "def_id" ),
+    CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "FK_DEF" FOREIGN KEY ( "def_id" ) REFERENCES "DEFINICION" ( "def_id" ) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "USU_PAL_DEFINICION"
+(
+    "usu_id"             varchar(30) NOT NULL,
+    "pal_id"             varchar(50) NOT NULL,
+    "def_id"             varchar(60) NOT NULL,
+    "def_principal"      boolean NOT NULL,
+    "def_extra"          boolean NOT NULL,
+    CONSTRAINT "PK_USU_PAK_DEFINICION" PRIMARY KEY ( "usu_id", "pal_id", "def_id"),
+    CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id" ) REFERENCES "ESTUDIANTE" ( "usu_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FK_DEF" FOREIGN KEY ( "def_id" ) REFERENCES "DEFINICION" ( "def_id" ) ON DELETE CASCADE ON UPDATE CASCADE
 );

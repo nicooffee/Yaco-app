@@ -1,16 +1,19 @@
 from FlashcardList import FlashcardList
 from PalabraDict import PalabraDict
 from Flashcard import Flashcard
+from Palabra import Palabra
+from database.Database import PSConnection
+from interface.DBWriter import DBWriter
 import datetime
-class Usuario:
+class Usuario(DBWriter):
     def __init__(
             self,
-            nombre_usuario,
+            id,
             flashcard_list = FlashcardList(),
             palabra_dict = PalabraDict(),
             fecha_registro = datetime.datetime.now(),
             ultimo_logeo = datetime.datetime.now()):
-        self.nombre_usuario = nombre_usuario
+        self.id = id
         self.flashcard_list = flashcard_list
         self.palabra_dict   = palabra_dict 
         self.fecha_registro = fecha_registro
@@ -27,9 +30,24 @@ class Usuario:
     #input: elemento de un desglose
     #output: palabra agregada
     def agregar_palabra(self,palabra_info):
-        P = self.palabra_dict.agregar_palabra(palabra_info,self.nombre_usuario)
+        P = self.palabra_dict.agregar_palabra(palabra_info,self.id)
         if P is not None:
-            self.flashcard_list.agregar_flashcard(P.get_flashcard())
+            P.add_data()
+            for f in P.get_flashcard():
+                self.flashcard_list.agregar_flashcard(f)
+                f.add_data()
+            psql_query_f = """INSERT INTO PUBLIC."USU_PAL_FLASHCARD" (usu_id,pal_id,fla_id,fla_fecha_creacion) VALUES (%s,%s,%s,%s);"""
+            f_data = map(lambda x: (self.id,P.get_id(),x.get_id(),x.get_fecha_creacion()),P.get_flashcard())
+            psql_query_d = """INSERT INTO PUBLIC."USU_PAL_DEFINICION" (usu_id,pal_id,def_id,def_principal,def_extra) VALUES (%s,%s,%s,%s,%s)"""
+            def_0 = P.get_definicion_iter(Palabra.lang[0])
+            def_1 = P.get_definicion_iter(Palabra.lang[1])
+            d_id_0 = map(lambda x: (self.id,P.get_id(),x.get_id(),x.get_es_principal(),x.get_es_extra()),def_0)
+            d_id_1 = map(lambda x: (self.id,P.get_id(),x.get_id(),x.get_es_principal(),x.get_es_extra()),def_1)
+            psc = PSConnection()
+            psc.query_many(psql_query_f,f_data)
+            psc.query_many(psql_query_d,d_id_0)
+            psc.query_many(psql_query_d,d_id_1)
+
         return P
     #
     #
@@ -46,45 +64,25 @@ class Usuario:
             
 
     #GETTER###################################
-    def get_nombre_usuario(self):
-        return self.nombre_usuario
+    def get_id(self):
+        return self.id
     def get_fecha_registro(self):
         return fecha_registro
     def get_ultimo_logeo(self):
         return ultimo_logeo
     #SETTER###################################
-    def set_nombre_usuario(self,nombre_usuario):
-        self.nombre_usuario = nombre_usuario
+    def set_id(self,id):
+        self.id = id
     def set_fecha_registro(self,fecha_registro):
         self.fecha_registro = fecha_registro
     def set_ultimo_logeo(self,ultimo_logeo):
         self.ultimo_logeo = ultimo_logeo
-    
     #DB#######################################
-    def db_add(self):
-        pass
-
-    def db_del(self,usu_id,pal_id):
-        pass
+    def del_data(self,*arg):
+        psql_query = 'DELETE from PUBLIC."USUARIO" WHERE usu_id = %s;'
+        psc = PSConnection()
+        data = (self.id,)
+        return psc.query(psql_query,data)
 
 if __name__ == "__main__":
-    dic =     {
-        "id": "get-d1s7",
-        "tipo": "transitive verb",
-        "definicion_eng": [
-            ["get",""]
-        ],
-        "definicion_esp": [
-            ["agarrar",""],["capturar",""]
-        ],
-        "es_ofensiva": False
-    }
-    U = Usuario("nico")
-    U.agregar_palabra(dic)
-    print(U.palabra_dict.dict_eng)
-    print(U.palabra_dict.dict_esp)
-    print(U.flashcard_list.flashcard_list)
-    U.eliminar_palabra(dic['id'])
-    print(U.palabra_dict.dict_eng)
-    print(U.palabra_dict.dict_esp)
-    print(U.flashcard_list.flashcard_list)
+    pass

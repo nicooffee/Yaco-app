@@ -17,19 +17,20 @@ class PalabraDict:
     #
     def agregar_palabra(self,palabra_info: dict,uq_id: str):
         P = Palabra.from_dict(palabra_info,uq_id)
-        p_id = P.get_id_key()
-        if p_id in self.dict_id:
-            self.dict_id[p_id].append(P)
-        else:
-            self.dict_id[p_id] = [P]
-        def add_in_dict(idioma,dict):
-            for key in P.get_definicion_key_iter(idioma):
-                if key in dict:
-                    dict[key].append(P)
-                else:
-                    dict[key] = [P]
-        for l in PalabraDict.lang:
-            add_in_dict(l,self.dict_lang[l])
+        if P is not None:
+            p_id = P.get_id_key()
+            if p_id in self.dict_id:
+                self.dict_id[p_id].append(P)
+            else:
+                self.dict_id[p_id] = [P]
+            def add_in_dict(idioma,dict):
+                for key in P.get_definicion_key_iter(idioma):
+                    if key in dict:
+                        dict[key].append(P)
+                    else:
+                        dict[key] = [P]
+            for l in PalabraDict.lang:
+                add_in_dict(l,self.dict_lang[l])
         return P
     #
     #
@@ -136,7 +137,7 @@ if __name__ == "__main__":
     w_json = Desglose.desglose(resp)
     w_dic = json.loads(w_json)
     for w in w_dic:
-        pd.agregar_palabra(w,'Nicooffee')
+        pd.agregar_palabra(w,'Nicoffee')
     print(pd.dict_id)
     for l in PalabraDict.lang:
         print(pd.dict_lang[l])

@@ -42,7 +42,7 @@ def desglose(J):
 
 if __name__ == "__main__":
     import GetWord
-    palabra = "get"
+    palabra = "to%20go%20out"
     parsed = GetWord.get_word(palabra)
     with open('resp.json','w') as file:
         file.write(desglose(parsed))

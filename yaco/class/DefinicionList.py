@@ -83,12 +83,12 @@ class DefinicionList(DBWriter):
         for x in self.definicion_list:
             yield x.get_id()
     #SETTER###################################
-    def add_data(self):
+    def add_data(self,*arg):
         psc = PSConnection()
-        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra) VALUES (%s,%s,%s,%s,%s,%s)"""
+        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) VALUES (%s,%s,%s,%s)"""
         data_list = map(lambda x: x.get_bd_info(),self.definicion_list)
         return psc.query_many(psql_query,data_list)
-    def del_data(self):
+    def del_data(self,*arg):
         psc = PSConnection()
         psql_query = """DELETE from PUBLIC."DEFINICION" WHERE def_id = %s;"""
         data_list = map(lambda x: (x.get_id(),),self.definicion_list)

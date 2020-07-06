@@ -5,7 +5,7 @@ from database.Database import PSConnection
 class Palabra(DBWriter):
     lang = ('en','es')
     def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
-        self.id = id #{palabra}-s{n}d{n}:{uq_id}
+        self.id = id #{palabra}-s{n}d{n}
         self.tipo = tipo
         self.es_ofensiva = es_ofensiva
         self.flashcard = flashcard
@@ -14,16 +14,16 @@ class Palabra(DBWriter):
     @classmethod
     def from_dict(cls,palabra_info,uq_id):
         try:
-            pal_id = palabra_info["id"]+':'+uq_id
+            pal_id = palabra_info["id"]
             p = cls(
                 id=pal_id,
                 tipo=palabra_info["tipo"],
                 flashcard = [],
-                definicion_eng=DefinicionList.from_string_list(pal_id+Palabra.lang[0],'en',palabra_info["definicion_eng"]),
-                definicion_esp=DefinicionList.from_string_list(pal_id+Palabra.lang[1],'es',palabra_info["definicion_esp"]),
+                definicion_eng=DefinicionList.from_string_list(pal_id+':'+Palabra.lang[0],'en',palabra_info["definicion_eng"]),
+                definicion_esp=DefinicionList.from_string_list(pal_id+':'+Palabra.lang[1],'es',palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.flashcard.append(Flashcard(p.id + "FR" ,p,'reco'))
-            p.flashcard.append(Flashcard(p.id + "FP" ,p,'prod'))
+            p.flashcard.append(Flashcard(p.id + uq_id + "FR" ,p,'reco'))
+            p.flashcard.append(Flashcard(p.id + uq_id + "FP" ,p,'prod'))
             return p
         except KeyError  as err:
             print('Error de key al crear palabra',err)
@@ -116,6 +116,13 @@ class Palabra(DBWriter):
         except KeyError as err:
             print("Error: idioma no encontrado",err)
             return empty_iter()
+
+    def get_definicion_id_iter(self,idioma):
+        try:
+            return self.def_lang[idioma].get_id_iter()
+        except KeyError as err:
+            print("Error: idioma no encontrado ",err)
+            return empty_iter()
     #SETTER###################################
     def set_id(self,id):
         self.id = id
@@ -128,7 +135,7 @@ class Palabra(DBWriter):
         return
         yield
     #DB#######################################
-    def add_data(self):
+    def add_data(self,*arg):
         psc = PSConnection()
         psql_query_p = """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) VALUES (%s,%s,%s);"""
         data = (self.id,self.tipo,self.es_ofensiva)
@@ -140,7 +147,7 @@ class Palabra(DBWriter):
             psc.query_many(psql_query_pd,data_list)
         return p_d
 
-    def del_data(self):
+    def del_data(self,*arg):
         psc = PSConnection()
         psql_query_p = """DELETE from PUBLIC."PALABRA" WHERE pal_id = %s;"""
         data = (self.id,)

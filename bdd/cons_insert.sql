@@ -3,11 +3,11 @@ INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
 VALUES ('Nicoffee','1234',NOW());
 
 --Creacion ESTUDIANTE
-INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo)
-VALUES ('Nicoffee','free');
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('Nicoffee','free',9999);
 
 --Creacion DEFINICION
-INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra)
+INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional)
 VALUES ('get-d1s7:Nicooffeees0','agarrar','es','',FALSE,FALSE);
 
 --Creacion REVISION
@@ -24,4 +24,12 @@ VALUES ('get-d1s7:Nicooffee','get-d1s7:Nicooffeees0');
 
 --Creación FLASHCARD
 INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs)
-VALUES ('get-d1s7:NicooffeeFR','reco','1');
+VALUES ('get-d1s7:NicoffeeFR','reco','1');
+
+--Creación USU_PAL_FLASHCARD
+INSERT INTO PUBLIC."USU_PAL_FLASHCARD" (usu_id,pal_id,fla_id,fla_fecha_creacion)
+VALUES ('Nicoffee','go:1-d1s1','go:1-d1s1NicoffeeFR',NOW());
+
+--Creación USU_PAL_DEFINICION
+INSERT INTO PUBLIC."USU_PAL_DEFINICION" (usu_id,pal_id,def_id,def_principal,def_extra)
+VALUES ('Nicoffee','go:1-d1s1:Nicooffee','go:1-d1s1:Nicooffeeen0',TRUE,FALSE);

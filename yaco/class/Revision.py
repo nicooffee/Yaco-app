@@ -35,12 +35,12 @@ class Revision(DBWriter):
     def set_equivocacion_previa(self,equivocacion_previa):
         self.equivocacion_previa = equivocacion_previa
     #DB#######################################
-    def add_data(self):
+    def add_data(self,*arg):
         psc = PSConnection()
         psql_query = """INSERT INTO PUBLIC."REVISION" (rev_id,rev_es_completa,rev_equivocacion_previa,rev_nivel_srs) VALUES (%s,%s,%s,%s)"""
         data = (self.id,self.es_completa,self.equivocacion_previa,self.nivel_srs)
         return psc.query(psql_query,data)
-    def del_data(self):
+    def del_data(self,*arg):
         psc = PSConnection()
         psql_query = """DELETE from PUBLIC."REVISION" WHERE rev_id = %s;"""
         data = (self.id,)
@@ -48,5 +48,5 @@ class Revision(DBWriter):
 
 if __name__ == "__main__":
     r = Revision('get-d1s5:NicoffeeFR0')
-    print("Exito al agregar def. Filas afectadas: ",r.add_data())
-    print("Exito al eliminar def. Filas afectadas: ",r.del_data())
+    print("Exito al agregar rev. Filas afectadas: ",r.add_data())
+    print("Exito al eliminar rev. Filas afectadas: ",r.del_data())

@@ -2,10 +2,11 @@ from RevisionList import RevisionList
 from datetime import datetime,timedelta
 from config import config
 from interface.DBWriter import DBWriter
+from database.Database import PSConnection
 class Flashcard(DBWriter):
     def __init__(
             self,
-            id, #{id palabra}{FR | FP}
+            id, #{id palabra}:{id usuario}{FR | FP}
             palabra,
             tipo, #reco, prod
             fecha_creacion = datetime.now(),
@@ -43,9 +44,9 @@ class Flashcard(DBWriter):
     def get_fecha_sig(self):
         rev_list = self.revision_list
         nivl_srs = self.nivel_srs
-        F = self.rev_list.get_fecha_ult_rev()
+        F = rev_list.get_fecha_ult_rev()
         if F is None:
-            return self.get_fecha_creacion + timedelta(seconds=config.get_srs_time(1))
+            return self.get_fecha_creacion() + timedelta(seconds=config.get_srs_time(1))
         else:
             return F + timedelta(seconds=config.get_srs_time(nivl_srs))
     #SETTER###################################
@@ -56,7 +57,20 @@ class Flashcard(DBWriter):
     def set_palabra(self,palabra):
         self.palabra = palabra
     #DB#######################################
-    def add_data(self):
-        pass
-    def del_data(self):
-        pass
+    def add_data(self,*arg):
+        psc = PSConnection()
+        psql_query = """INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs) VALUES (%s,%s,%s)"""
+        data = (self.id,self.tipo,self.nivel_srs)
+        return psc.query(psql_query,data)
+        
+    def del_data(self,*arg):
+        psc = PSConnection()
+        psql_query = """DELETE from PUBLIC."FLASHCARD" WHERE fla_id = %s;"""
+        data = (self.id,)
+        return psc.query(psql_query,data)
+
+
+if __name__ == "__main__":
+    f = Flashcard('get-d1s7:NicoffeeFR',None,'reco')
+    print("Exito al agregar fal. Filas afectadas: ",f.add_data())
+    print("Exito al eliminar fal. Filas afectadas: ",f.del_data())

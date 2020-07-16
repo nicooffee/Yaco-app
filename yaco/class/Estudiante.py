@@ -44,6 +44,7 @@ class Estudiante(Usuario):
             r_e = psc.query(psql_query_e,data_e)
             return -1 if r_u == -1 or r_e == -1 else r_u+r_e
         return -1
+
 if __name__ == "__main__":
     E = Estudiante("Nicoffee","free")
     print("Agregar estudiante a bdd: ",E.add_data("1234"))

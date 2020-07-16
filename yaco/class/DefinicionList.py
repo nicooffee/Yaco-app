@@ -17,7 +17,7 @@ class DefinicionList(DBWriter):
         L = []
         for i in range(len(string_list)):
             s = string_list[i]
-            d = Definicion(pal_id+str(i),s[0],idioma,s[1],True if i==0 else False,False)
+            d = Definicion(pal_id+':'+idioma+"{:02}".format(i),s[0],idioma,s[1],True if i==0 else False,False)
             L.append(d)
         return cls(definicion_list=L)
     
@@ -29,10 +29,20 @@ class DefinicionList(DBWriter):
     #
     #
     #
-    def agregar_definicion(self,definicion,info_adicional,idioma):
-        d = Definicion(definicion,idioma,info_adicional=info_adicioanl,es_principal=False,es_extra=True)
+    def agregar_definicion(self,id,definicion,info_adicional,idioma):
+        d = Definicion(id,definicion,idioma,info_adicional=info_adicioanl,es_principal=False,es_extra=True)
         self.definicion_list.append(d)
         return d
+    #
+    #
+    #
+    #
+    #
+    def eliminar_definicion(self,def_id):
+        for i in len(self.definicion_list):
+            if self.definicion_list[i].get_id() == def_id:
+                return self.definicion_list.pop(i)
+        return None
     #
     #
     #
@@ -68,7 +78,6 @@ class DefinicionList(DBWriter):
     #
     #
     #
-
     #GETTER###################################
     def get_iter(self):
         for x in self.definicion_list:
@@ -82,6 +91,19 @@ class DefinicionList(DBWriter):
     def get_id_iter(self):
         for x in self.definicion_list:
             yield x.get_id()
+    def get_new_id_index(self):
+        id_index = []
+        for d in self.definicion_list:
+            if d.get_es_extra():
+                id_index.append(int(d.get_id()[-2:]))
+        if len(id_index) == 0:
+            return '00'
+        elif len(id_index)>=100:
+            raise IndexError("Excede la cantidad máxima de definiciones")
+        else:
+            for n_id in range(100):
+                if n_id not in id_index:
+                    return n_id
     #SETTER###################################
     def add_data(self,*arg):
         psc = PSConnection()

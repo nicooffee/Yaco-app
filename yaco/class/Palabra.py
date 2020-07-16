@@ -19,8 +19,8 @@ class Palabra(DBWriter):
                 id=pal_id,
                 tipo=palabra_info["tipo"],
                 flashcard = [],
-                definicion_eng=DefinicionList.from_string_list(pal_id+':'+Palabra.lang[0],'en',palabra_info["definicion_eng"]),
-                definicion_esp=DefinicionList.from_string_list(pal_id+':'+Palabra.lang[1],'es',palabra_info["definicion_esp"]),
+                definicion_eng=DefinicionList.from_string_list(pal_id,Palabra.lang[0],palabra_info["definicion_eng"]),
+                definicion_esp=DefinicionList.from_string_list(pal_id,Palabra.lang[1],palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
             p.flashcard.append(Flashcard(p.id + uq_id + "FR" ,p,'reco'))
             p.flashcard.append(Flashcard(p.id + uq_id + "FP" ,p,'prod'))
@@ -62,9 +62,11 @@ class Palabra(DBWriter):
     #
     #
     #
-    def agregar_definicion(self,definicion,info_adicional,idioma):
+    def agregar_definicion(self,id_usuario,definicion,info_adicional,idioma):
         try:
-            return self.def_lang[idioma].agregar_definicion(definicion,info_adicional,idioma)
+            new_id_index = self.def_lang[idioma].get_new_id_index()
+            def_id = "{}:{}-{}{}".format(self.id,idioma,id_usuario,new_id_index)
+            return self.def_lang[idioma].agregar_definicion(def_id,definicion,info_adicional,idioma)
         except KeyError as err:
             print("Error: idioma no encontrado",err)
             return None

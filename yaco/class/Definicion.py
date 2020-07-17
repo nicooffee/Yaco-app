@@ -2,7 +2,7 @@ from interface.DBWriter import DBWriter
 from database.Database import PSConnection
 class Definicion(DBWriter):
     def __init__(self,id,definicion,idioma,info_adicional = "",es_principal = False,es_extra = False):
-        self.id = id #{id palabra}:{idioma}{n. def 00} || {id palabra}:{idioma}-{id usuario}{n. def 00}
+        self.id = id 
         self.definicion = definicion
         self.idioma = idioma
         self.info_adicional = info_adicional

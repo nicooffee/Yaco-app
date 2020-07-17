@@ -4,12 +4,13 @@ from interface.DBWriter import DBWriter
 from database.Database import PSConnection
 class Palabra(DBWriter):
     lang = ('en','es')
-    def __init__(self,id,tipo,es_ofensiva,flashcard = None,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
-        self.id = id #{palabra}-s{n}d{n}
+    flsh = ('reco','prod')
+    def __init__(self,id,tipo,es_ofensiva,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
+        self.id = id 
         self.tipo = tipo
-        self.es_ofensiva = es_ofensiva
-        self.flashcard = flashcard
+        self.fla_dic = {Palabra.flsh[0]: None,Palabra.flsh[1]: None}
         self.def_lang = {Palabra.lang[0]: definicion_eng,Palabra.lang[1]: definicion_esp}
+        self.es_ofensiva = es_ofensiva
     
     @classmethod
     def from_dict(cls,palabra_info,uq_id):
@@ -18,12 +19,11 @@ class Palabra(DBWriter):
             p = cls(
                 id=pal_id,
                 tipo=palabra_info["tipo"],
-                flashcard = [],
                 definicion_eng=DefinicionList.from_string_list(pal_id,Palabra.lang[0],palabra_info["definicion_eng"]),
                 definicion_esp=DefinicionList.from_string_list(pal_id,Palabra.lang[1],palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.flashcard.append(Flashcard(p.id + uq_id + "FR" ,p,'reco'))
-            p.flashcard.append(Flashcard(p.id + uq_id + "FP" ,p,'prod'))
+            p.fla_dic[Palabra.flsh[0]] = Flashcard(p.id + uq_id + "FR" ,p,Palabra.flsh[0])
+            p.fla_dic[Palabra.flsh[1]] = Flashcard(p.id + uq_id + "FP" ,p,Palabra.flsh[1])
             return p
         except KeyError  as err:
             print('Error de key al crear palabra',err)
@@ -100,7 +100,10 @@ class Palabra(DBWriter):
         return self.es_ofensiva
         
     def get_flashcard_list(self):
-        return self.flashcard
+        fla_list = []
+        for key,value in self.fla_dic.items():
+            fla_list.append(value)
+        return fla_list
 
     def get_id_key(self):
         return Palabra.to_key(self.id)

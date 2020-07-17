@@ -1,0 +1,15 @@
+IDIOMA:             en | es
+NUM_DEF:            [0-9][0-9]
+NUM_REV:            [0-9]+
+TIPO_FLA:           FR | FP
+
+ID_USUARIO:         [0-9a-zA-Z]+
+
+ID_PALABRA:         {palabra}-s[0-9]+d[0-9]+
+
+ID_DEFINICION:        {ID_PALABRA}:{IDIOMA}{NUM_DEF} 
+                    | {ID_PALABRA}:{IDIOMA}-{ID_USUARIO}{NUM_DEF}
+        
+ID_FLASHCARD:       {ID_PALABRA}:{ID_USUARIO}{TIPO_FLA}
+
+ID_REVISION:        {ID_FLASHCARD}{NUM_REV}

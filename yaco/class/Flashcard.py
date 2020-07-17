@@ -6,7 +6,7 @@ from database.Database import PSConnection
 class Flashcard(DBWriter):
     def __init__(
             self,
-            id, #{id palabra}:{id usuario}{FR | FP}
+            id, 
             palabra,
             tipo, #reco, prod
             fecha_creacion = datetime.now(),

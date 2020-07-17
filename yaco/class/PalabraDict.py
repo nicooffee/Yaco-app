@@ -41,10 +41,9 @@ class PalabraDict:
         def pop_in_list(L,id):
             index = None
             for i in range(len(L)):
-                p = L[i]
-                if p.get_id() == id:
-                    index = i
-            return None if index is None else L.pop(i)
+                if L[i].get_id() == id:
+                    return L.pop(i)
+            return None 
         if Palabra.es_id_valido(id):
             try:
                 p = pop_in_list(self.dict_id[Palabra.to_key(id)],id)

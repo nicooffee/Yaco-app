@@ -57,4 +57,9 @@ if __name__ == "__main__":
     w_dic = json.loads(w_json)
     for w in w_dic:
         E.agregar_palabra(w)
-    #print("Eliminar estudiante de bdd: ",E.del_data())
+    print("Eliminar una palabra")
+    E.eliminar_palabra('go:1-d1s26')
+    for key,value in E.palabra_dict.dict_id.items():
+        print('\n',key,'|',end=' ')
+        for w in value:
+            print(w.get_id(),end=' ')

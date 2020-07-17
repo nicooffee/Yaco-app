@@ -34,6 +34,7 @@ class RevisionList(DBWriter):
         data_list = map(lambda x: x.get_bd_info(),self.revision_list)
         return psc.query_many(psql_query,data_list)
     def del_data(self,*arg):
+        psc = PSConnection()
         psql_query = """DELETE from PUBLIC."REVISION" WHERE rev_id = %s;"""
         data_list = map(lambda x: (x.get_id(),),self.revision_list)
         return psc.query_many(psql_query,data_list)

@@ -8,3 +8,5 @@ DELETE from PUBLIC."REVISION" WHERE rev_id = 'get-d1s5:NicoffeeFR0';
 DELETE from PUBLIC."PALABRA" WHERE pal_id = 'get-d1s7:Nicooffee';
 --eliminar FLASHCARD
 DELETE from PUBLIC."FLASHCARD" WHERE fla_id = 'get-d1s7:NicoffeeFR';
+
+DELETE FROM PUBLIC."USUARIO_PALABRA" WHERE usu_id = 'Nicoffee' AND pal_id = 'get-d1s7:Nicooffee';

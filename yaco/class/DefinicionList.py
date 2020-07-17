@@ -5,6 +5,9 @@ class DefinicionList(DBWriter):
     def __init__(self,definicion_list = []):
         self.definicion_list = definicion_list
 
+    def __add__(self,other):
+        return DefinicionList(definicion_list=self.definicion_list + other.definicion_list)
+
     @classmethod
     def from_def_list(cls,definicion_list):
         L = []
@@ -104,6 +107,10 @@ class DefinicionList(DBWriter):
             for n_id in range(100):
                 if n_id not in id_index:
                     return n_id
+    
+    def get_def_extra(self):
+        L = filter(lambda d: d.get_es_extra(),self.definicion_list)
+        return DefinicionList(definicion_list=list(L))
     #SETTER###################################
     def add_data(self,*arg):
         psc = PSConnection()

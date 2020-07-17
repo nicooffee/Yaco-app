@@ -99,7 +99,7 @@ class Palabra(DBWriter):
     def get_es_ofensiva(self):
         return self.es_ofensiva
         
-    def get_flashcard(self):
+    def get_flashcard_list(self):
         return self.flashcard
 
     def get_id_key(self):
@@ -125,6 +125,8 @@ class Palabra(DBWriter):
         except KeyError as err:
             print("Error: idioma no encontrado ",err)
             return empty_iter()
+    def get_def_extra(self):
+        return self.def_lang[Palabra.lang[0]].get_def_extra() + self.def_lang[Palabra.lang[1]].get_def_extra()
     #SETTER###################################
     def set_id(self,id):
         self.id = id

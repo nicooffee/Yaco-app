@@ -26,6 +26,10 @@ VALUES ('get-d1s7:Nicooffee','get-d1s7:Nicooffeees0');
 INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs)
 VALUES ('get-d1s7:NicoffeeFR','reco','1');
 
+--Creación USUARIO_PALABRA
+INSERT INTO PUBLIC."USUARIO_PALABRA" (usu_id,pal_id)
+VALUES ('Nicoffee','get-d1s7:Nicooffee');
+
 --Creación USU_PAL_FLASHCARD
 INSERT INTO PUBLIC."USU_PAL_FLASHCARD" (usu_id,pal_id,fla_id,fla_fecha_creacion)
 VALUES ('Nicoffee','go:1-d1s1','go:1-d1s1NicoffeeFR',NOW());

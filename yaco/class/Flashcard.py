@@ -67,7 +67,8 @@ class Flashcard(DBWriter):
         psc = PSConnection()
         psql_query = """DELETE from PUBLIC."FLASHCARD" WHERE fla_id = %s;"""
         data = (self.id,)
-        return psc.query(psql_query,data)
+        d = psc.query(psql_query,data)
+        return self.revision_list.del_data() + d
 
 
 if __name__ == "__main__":

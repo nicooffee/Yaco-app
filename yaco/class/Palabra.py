@@ -132,6 +132,11 @@ class Palabra(DBWriter):
         self.tipo = tipo
     def set_es_ofensiva(self,es_ofensiva):
         self.es_ofensiva = es_ofensiva
+    def set_flashcard(self,flashcard):
+        try:
+            self.fla_dic[flashcard.get_tipo()] = flashcard
+        except:
+            raise KeyError("No se encuentra tipo de flashcard") 
     #########################################
     def empty_iter():
         return

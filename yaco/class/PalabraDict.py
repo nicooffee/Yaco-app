@@ -1,5 +1,9 @@
 from Palabra import Palabra
 from Definicion import Definicion
+from DefinicionList import DefinicionList
+from RevisionList import RevisionList
+from database.Database import PSConnection
+from Flashcard import Flashcard
 class PalabraDict:
     lang = ['en','es']
     def __init__(self):
@@ -9,7 +13,55 @@ class PalabraDict:
             self.dict_lang[l] = {}
     @classmethod
     def from_db(cls,usu_id):
-        pass
+        psc = PSConnection()
+        psql_query = """SELECT PUBLIC."PALABRA".pal_id,pal_tipo,pal_es_ofensiva,PUBLIC."FLASHCARD".fla_id,fla_fecha_creacion,fla_nivel_srs,fla_tipo
+                        FROM PUBLIC."PALABRA"
+                        INNER JOIN PUBLIC."USU_PAL_FLASHCARD" ON PUBLIC."PALABRA".pal_id = PUBLIC."USU_PAL_FLASHCARD".pal_id
+                        INNER JOIN PUBLIC."FLASHCARD" ON PUBLIC."USU_PAL_FLASHCARD".fla_id = PUBLIC."FLASHCARD".fla_id
+                        WHERE PUBLIC."USU_PAL_FLASHCARD".usu_id = %s
+                        ORDER BY PUBLIC."PALABRA".pal_id ASC;"""
+        data = (usu_id,)
+        res = psc.fetch_all(psql_query,data)
+        dic = cls()
+        p_aux = None
+        for r in res:
+            if p_aux is None or p_aux.get_id() != r[0]:
+                #   p_id | p_tipo | p_ofensiva | f_id | f_fcreacion | f_nsrs | f_tipo
+                if p_aux is not None:
+                    dic.__add_in_dict(p_aux)
+                    p_aux = None
+                p_aux = Palabra(r[0],r[1],r[2],
+                                definicion_eng=DefinicionList.from_db(usu_id,r[0],Palabra.lang[0]),
+                                definicion_esp=DefinicionList.from_db(usu_id,r[0],Palabra.lang[1]))
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],nivel_srs=r[5],revision_list=RevisionList.from_db(r[3]))
+                p_aux.set_flashcard(f)
+            else:
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],nivel_srs=r[5])
+                p_aux.set_flashcard(f)
+                dic.__add_in_dict(p_aux)
+                p_aux = None
+        return dic
+    #
+    #
+    #
+    #
+    #
+    def __add_in_dict(self,palabra):
+        if palabra is not None:
+            def add_in_dict(idioma,dict):
+                for key in palabra.get_definicion_key_iter(idioma):
+                    if key in dict:
+                        dict[key].append(palabra)
+                    else:
+                        dict[key] = [palabra]
+            p_id = palabra.get_id_key()
+            if p_id in self.dict_id:
+                self.dict_id[p_id].append(palabra)
+            else:
+                self.dict_id[p_id] = [palabra]
+            for l in PalabraDict.lang:
+                add_in_dict(l,self.dict_lang[l])
+        return palabra
     #
     #
     #
@@ -17,20 +69,7 @@ class PalabraDict:
     #
     def agregar_palabra(self,palabra_info: dict,uq_id: str):
         P = Palabra.from_dict(palabra_info,uq_id)
-        if P is not None:
-            p_id = P.get_id_key()
-            if p_id in self.dict_id:
-                self.dict_id[p_id].append(P)
-            else:
-                self.dict_id[p_id] = [P]
-            def add_in_dict(idioma,dict):
-                for key in P.get_definicion_key_iter(idioma):
-                    if key in dict:
-                        dict[key].append(P)
-                    else:
-                        dict[key] = [P]
-            for l in PalabraDict.lang:
-                add_in_dict(l,self.dict_lang[l])
+        self.__add_in_dict(P)
         return P
     #
     #
@@ -148,3 +187,4 @@ if __name__ == "__main__":
     for key in pd.dict_id.keys():
         for w in pd.dict_id[key]:
             w.add_data()
+    pd = PalabraDict.from_db('Nicoffee')

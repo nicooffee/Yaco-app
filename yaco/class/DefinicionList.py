@@ -25,13 +25,18 @@ class DefinicionList(DBWriter):
         return cls(definicion_list=L)
     
     @classmethod
-    def from_db(cls,usu_id,pal_id):
+    def from_db(cls,usu_id,pal_id,idioma = None):
         psc = PSConnection()
         psql_query = """SELECT PUBLIC."DEFINICION".def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra
                         FROM PUBLIC."DEFINICION"
                         INNER JOIN PUBLIC."USU_PAL_DEFINICION" ON PUBLIC."DEFINICION".def_id = PUBLIC."USU_PAL_DEFINICION".def_id
-                        WHERE usu_id = %s AND pal_id = %s;"""
-        data = (usu_id,pal_id)
+                        WHERE usu_id = %s AND pal_id = %s"""
+        if idioma is not None:
+            psql_query = """SELECT PUBLIC."DEFINICION".def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra
+                            FROM PUBLIC."DEFINICION"
+                            INNER JOIN PUBLIC."USU_PAL_DEFINICION" ON PUBLIC."DEFINICION".def_id = PUBLIC."USU_PAL_DEFINICION".def_id
+                            WHERE usu_id = %s AND pal_id = %s AND def_idioma = %s;"""
+        data = (usu_id,pal_id) if idioma is None else (usu_id,pal_id,idioma)
         res = psc.fetch_all(psql_query,data)
         return cls(definicion_list=list(map(lambda x: Definicion(x[0],x[1],x[2],x[3],x[4],x[5]),res)))
     #
@@ -130,4 +135,4 @@ class DefinicionList(DBWriter):
         data_list = map(lambda x: (x.get_id(),),self.definicion_list)
         return psc.query_many(psql_query,data_list)
 if __name__ == "__main__":
-    dl = DefinicionList.from_db('Nicoffee','go:1-d1s18')
+    dl = DefinicionList.from_db('Nicoffee','go:1-d1s18','en')

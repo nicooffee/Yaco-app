@@ -7,8 +7,16 @@ class RevisionList(DBWriter):
         self.revision_list = revision_list
         self.actual_incorrecto = False
     @classmethod
-    def from_db(cls,usu_id,pal_id):
-        pass
+    def from_db(cls,fla_id):
+        psc = PSConnection()
+        psql_query = """SELECT PUBLIC."REVISION".rev_id,rev_fla_fecha,rev_nivel_srs,rev_es_completa,rev_equivocacion_previa
+                        FROM PUBLIC."REVISION"
+                        INNER JOIN PUBLIC."FLASHCARD_REVISION" ON PUBLIC."REVISION".rev_id = PUBLIC."FLASHCARD_REVISION".rev_id
+                        WHERE fla_id = %s
+                        ORDER BY rev_fla_fecha DESC"""
+        data = (fla_id,)
+        res = psc.fetch_all(psql_query,data)
+        return RevisionList(revision_list=list(map(lambda x: Revision(x[0],x[1],x[2],r[3],r[4]),res)))
     #
     #
     #

@@ -107,7 +107,7 @@ class PalabraDict:
     def __palabra_en_celda(palabra,dict: dict,key: str):
         try:
             for p in dict[key]:
-                if palabra.es_igual(p):
+                if palabra == p:
                     return True
         except KeyError as err:
             print("Error al entrar a la celda ",err)

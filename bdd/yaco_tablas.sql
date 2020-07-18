@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS "FLASHCARD_REVISION"
 (
     "rev_id"             varchar(60) NOT NULL,
     "fla_id"           varchar(60) NOT NULL,
-    "fla_fecha"          date NOT NULL,
+    "rev_fla_fecha"          date NOT NULL,
     CONSTRAINT "PK_FLA_REV" PRIMARY KEY ( "rev_id", "fla_id" ),
     CONSTRAINT "FK_REV" FOREIGN KEY ( "rev_id" ) REFERENCES "REVISION" ( "rev_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id" ) REFERENCES "FLASHCARD" ( "fla_id" ) ON DELETE CASCADE ON UPDATE CASCADE

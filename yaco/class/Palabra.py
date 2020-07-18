@@ -11,6 +11,8 @@ class Palabra(DBWriter):
         self.fla_dic = {Palabra.flsh[0]: None,Palabra.flsh[1]: None}
         self.def_lang = {Palabra.lang[0]: definicion_eng,Palabra.lang[1]: definicion_esp}
         self.es_ofensiva = es_ofensiva
+    def __eq__(self,other):
+        return True if self.get_id() == other.get_id() else False
     
     @classmethod
     def from_dict(cls,palabra_info,uq_id):
@@ -28,13 +30,6 @@ class Palabra(DBWriter):
         except KeyError  as err:
             print('Error de key al crear palabra',err)
             return None
-    #
-    #
-    #
-    #
-    #
-    def es_igual(self,palabra):
-        return True if self.get_id() == palabra.get_id() else False
     #
     #
     #

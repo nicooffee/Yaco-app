@@ -50,7 +50,6 @@ class Usuario(DBWriter):
             psc.query_many(psql_query_f,f_data)
             psc.query_many(psql_query_d,d_id_0)
             psc.query_many(psql_query_d,d_id_1)
-
         return P
     #
     #

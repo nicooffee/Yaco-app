@@ -19,7 +19,18 @@ class Estudiante(Usuario):
         super().__init__(nombre_usuario,flashcard_list,palabra_dict,fecha_registro,ultimo_logeo)
         self.tipo_estudiante = tipo_estudiante
         self.exp_total = exp_total
-
+    @classmethod
+    def from_db(cls,usu_id):
+        psc = PSConnection()
+        psql_query = """SELECT PUBLIC."USUARIO".usu_id,est_tipo,usu_fecha_registro,est_exp_total
+                        FROM PUBLIC."USUARIO"
+                        INNER JOIN PUBLIC."ESTUDIANTE" ON PUBLIC."USUARIO".usu_id = PUBLIC."ESTUDIANTE".usu_id
+                        WHERE PUBLIC."USUARIO".usu_id = %s"""
+        data = (usu_id,)
+        res = psc.fetch_one(psql_query,data)
+        p_dict = PalabraDict.from_db(usu_id)
+        f_list = p_dict.get_flashcard_list()
+        return cls(res[0],res[1],flashcard_list=f_list,palabra_dict=p_dict,fecha_registro=res[2],exp_total=res[3])
     #GETTER###################################
     def get_tipo_estudiante(self):
         return self.tipo_estudiante
@@ -46,20 +57,28 @@ class Estudiante(Usuario):
         return -1
 
 if __name__ == "__main__":
-    E = Estudiante("Nicoffee","free")
-    print("Agregar estudiante a bdd: ",E.add_data("1234"))
-    from function import Desglose
-    from function import GetWord
-    import json
-    print("Agregar una palabra")
-    resp = GetWord.get_word('to%20go%20out')
-    w_json = Desglose.desglose(resp)
-    w_dic = json.loads(w_json)
-    for w in w_dic:
-        E.agregar_palabra(w)
-    print("Eliminar una palabra")
-    E.eliminar_palabra('go:1-d1s26')
-    for key,value in E.palabra_dict.dict_id.items():
-        print('\n',key,'|',end=' ')
-        for w in value:
-            print(w.get_id(),end=' ')
+    def crear_usuario():
+        E = Estudiante("Nicoffee","free")
+        print("Agregar estudiante a bdd: ",E.add_data("1234"))
+        from function import Desglose
+        from function import GetWord
+        import json
+        print("Agregar una palabra")
+        resp = GetWord.get_word('to%20go%20out')
+        w_json = Desglose.desglose(resp)
+        w_dic = json.loads(w_json)
+        for w in w_dic:
+            E.agregar_palabra(w)
+        print("Eliminar una palabra")
+        E.eliminar_palabra('go:1-d1s26')
+        for key,value in E.palabra_dict.dict_id.items():
+            print('\n',key,'|',end=' ')
+            for w in value:
+                print(w.get_id(),end=' ')
+    def cargar_usuario():
+        from datetime import datetime,timedelta
+        est = Estudiante.from_db('Nicoffee')
+        print("Usuario: ",est.get_id())
+        print("C. palabras:",est.palabra_dict.cant_palabra())
+        print("C. fla disp:",len(est.flashcard_list.fcard_review_disponible(datetime.now() + timedelta(hours=5)).flashcard_list))
+    cargar_usuario()

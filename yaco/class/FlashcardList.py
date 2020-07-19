@@ -19,13 +19,13 @@ class FlashcardList(DBWriter):
             L.append(flashcard)
         else:
             d_fcard = flashcard.get_fecha_sig()
-            for i in range(len(L)):
-                d_fcard_aux = L[i].get_fecha_sig()
-                if d_fcard>d_fcard_aux:
-                    L.insert(i,flashcard)
-                    return flashcard
-                if i == len(L) - 1:
-                    L.append(flashcard)
+            i = 0
+            while i<len(L) and d_fcard >= L[i].get_fecha_sig():
+                i+=1
+            if i >= len(L):
+                L.append(flashcard)
+            else:
+                L.insert(i,flashcard)
         return flashcard
     #
     #
@@ -44,10 +44,11 @@ class FlashcardList(DBWriter):
     #
     #
     def fcard_review_disponible(self,fecha = datetime.now()):
-        L_disponible = FlashcardList()
+        L_disponible = FlashcardList(flashcard_list = [])
         for F in self.flashcard_list:
             if F.get_fecha_sig() < fecha:
                 L_disponible.agregar_flashcard(F)
+        return L_disponible
     #
     #
     #

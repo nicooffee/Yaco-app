@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS "USUARIO"
 (
     "usu_id"             varchar(30) NOT NULL,
     "usu_pass"           varchar(20) NOT NULL,
-    "usu_fecha_registro" date NOT NULL,
+    "usu_fecha_registro" timestamp NOT NULL,
     CONSTRAINT "PK_USUARIO" PRIMARY KEY ( "usu_id" )
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "LOGIN"
 (
     "log_id"             varchar(50) NOT NULL,
     "usu_id"             varchar(30) NOT NULL,
-    "log_fecha"          date NOT NULL,
+    "log_fecha"          timestamp NOT NULL,
     CONSTRAINT "PK_LOGIN" PRIMARY KEY ( "log_id" ),
     CONSTRAINT "FK_USU_ID" FOREIGN KEY ( "usu_id" ) REFERENCES "USUARIO" ( "usu_id" ) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS "USU_PAL_FLASHCARD"
     "usu_id"             varchar(30) NOT NULL,
     "pal_id"             varchar(50) NOT NULL,
     "fla_id"             varchar(60) NOT NULL,
-    "fla_fecha_creacion" date NOT NULL,
+    "fla_fecha_creacion" timestamp NOT NULL,
     CONSTRAINT "PK_USU_PAL_FLASHCARD" PRIMARY KEY ( "usu_id", "pal_id", "fla_id" ),
     CONSTRAINT "FK_USU" FOREIGN KEY ( "usu_id" ) REFERENCES "ESTUDIANTE" ( "usu_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FK_PAL" FOREIGN KEY ( "pal_id" ) REFERENCES "PALABRA" ( "pal_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS "FLASHCARD_REVISION"
 (
     "rev_id"             varchar(60) NOT NULL,
     "fla_id"           varchar(60) NOT NULL,
-    "rev_fla_fecha"          date NOT NULL,
+    "rev_fla_fecha"          timestamp NOT NULL,
     CONSTRAINT "PK_FLA_REV" PRIMARY KEY ( "rev_id", "fla_id" ),
     CONSTRAINT "FK_REV" FOREIGN KEY ( "rev_id" ) REFERENCES "REVISION" ( "rev_id" ) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FK_FLA" FOREIGN KEY ( "fla_id" ) REFERENCES "FLASHCARD" ( "fla_id" ) ON DELETE CASCADE ON UPDATE CASCADE

@@ -1,3 +1,8 @@
+SELECT PUBLIC."USUARIO".usu_id,est_tipo,usu_fecha_registro,est_exp_total
+FROM PUBLIC."USUARIO"
+INNER JOIN PUBLIC."ESTUDIANTE" ON PUBLIC."USUARIO".usu_id = PUBLIC."ESTUDIANTE".usu_id
+WHERE PUBLIC."USUARIO".usu_id = 'Nicoffee';
+
 --Existe registro de usuarios en USUARIO_PALABRA x palabra
 SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO_PALABRA" WHERE pal_id = 'go:1-d1s2:es00');
 

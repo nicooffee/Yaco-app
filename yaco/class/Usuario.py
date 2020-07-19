@@ -18,10 +18,6 @@ class Usuario(DBWriter):
         self.palabra_dict   = palabra_dict 
         self.fecha_registro = fecha_registro
         self.ultimo_logeo   = ultimo_logeo
-    
-    @classmethod
-    def from_db(cls,usu_id):
-        pass
     #
     #
     #

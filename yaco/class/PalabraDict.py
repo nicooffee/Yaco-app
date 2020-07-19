@@ -2,6 +2,7 @@ from Palabra import Palabra
 from Definicion import Definicion
 from DefinicionList import DefinicionList
 from RevisionList import RevisionList
+from FlashcardList import FlashcardList
 from database.Database import PSConnection
 from Flashcard import Flashcard
 class PalabraDict:
@@ -26,7 +27,6 @@ class PalabraDict:
         p_aux = None
         for r in res:
             if p_aux is None or p_aux.get_id() != r[0]:
-                #   p_id | p_tipo | p_ofensiva | f_id | f_fcreacion | f_nsrs | f_tipo
                 if p_aux is not None:
                     dic.__add_in_dict(p_aux)
                     p_aux = None
@@ -142,6 +142,16 @@ class PalabraDict:
     #
     #
     #
+    def cant_palabra(self):
+        s = 0
+        for value in self.dict_id.values():
+            s = s + len(value)
+        return s
+    #
+    #
+    #
+    #
+    #
     @staticmethod
     def __palabra_en_celda(palabra,dict: dict,key: str):
         try:
@@ -153,6 +163,13 @@ class PalabraDict:
         return False
 
     #GETTER###################################
+    def get_flashcard_list(self):
+        flist = FlashcardList()
+        for key,value in self.dict_id.items():
+            for w in value:
+                for f in w.get_flashcard_list():
+                    flist.agregar_flashcard(f)
+        return flist
     #SETTER###################################
 
 

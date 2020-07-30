@@ -1,5 +1,8 @@
 
 trigger:
+  paths:
+    include:
+      - yaco/*
   branches:
     include:
       - master

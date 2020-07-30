@@ -5,6 +5,7 @@ principal = Blueprint('principal',__name__,template_folder='templates')
 @principal.route('/')
 def hello_world():
     return render_template(
+        
         'principal/welcome.html',
         date=datetime.datetime.now()
     )

@@ -5,7 +5,8 @@ WHERE PUBLIC."USUARIO".usu_id = 'Nicoffee';
 
 --Existe registro de usuarios en USUARIO_PALABRA x palabra
 SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO_PALABRA" WHERE pal_id = 'go:1-d1s2:es00');
-
+--Existe usuario registrado
+SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO" WHERE usu_id = 'Nicoffee');
 --Todas las palabras de un usuario
 SELECT PUBLIC."PALABRA".pal_id,pal_tipo,pal_es_ofensiva 
 FROM PUBLIC."PALABRA"
@@ -44,3 +45,6 @@ SELECT PUBLIC."DEFINICION".def_id,def_definicion,def_idioma,def_info_adicional,d
 FROM PUBLIC."DEFINICION"
 INNER JOIN PUBLIC."USU_PAL_DEFINICION" ON PUBLIC."DEFINICION".def_id = PUBLIC."USU_PAL_DEFINICION".def_id
 WHERE usu_id = 'Nicoffee' AND pal_id = 'go:1-d1s18' AND def_idioma = 'en';
+
+--Seleccionar contraseña
+SELECT usu_pass FROM PUBLIC."USUARIO" WHERE usu_id = 'Nicoffee';

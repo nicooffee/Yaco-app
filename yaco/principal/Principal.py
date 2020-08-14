@@ -1,9 +1,17 @@
+from flask import (
+    Blueprint,
+    render_template,
+    g,
+    redirect,
+    url_for
+)
 import datetime
-from flask import Blueprint, render_template
-principal = Blueprint('principal',__name__,template_folder='templates')
+principal_blueprint = Blueprint('principal',__name__,template_folder='templates')
 
-@principal.route('/')
-def hello_world():
+@principal_blueprint.route('/')
+def dashboard():
+    if not g.user:
+        return redirect(url_for('login.login'))
     return render_template(
         'principal/welcome.html',
         date=datetime.datetime.now()

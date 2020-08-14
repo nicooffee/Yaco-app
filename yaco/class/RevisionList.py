@@ -5,7 +5,6 @@ from database.Database import PSConnection
 class RevisionList(DBWriter):
     def __init__(self,revision_list=[]):
         self.revision_list = revision_list
-        self.actual_incorrecto = False
     @classmethod
     def from_db(cls,fla_id):
         psc = PSConnection()

@@ -73,15 +73,30 @@ class Usuario(DBWriter):
                 F = self.flashcard_list.eliminar_flashcard(F_p.get_id())
                 F_p.del_data()
         return P
-            
+    
+    @staticmethod
+    def db_exists(usr):
+        psc = PSConnection()
+        psql_query = """SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO" WHERE usu_id = (%s))"""
+        data = (usr,)
+        res = psc.fetch_one(psql_query,data)
+        return res[0]
+
+    @staticmethod
+    def db_check_password(usr,psw):
+        psc = PSConnection()
+        psql_query = """SELECT usu_pass FROM PUBLIC."USUARIO" WHERE usu_id = (%s)"""
+        data = (usr,)
+        res = psc.fetch_one(psql_query,data)
+        return psw == res[0]
 
     #GETTER###################################
     def get_id(self):
         return self.id
     def get_fecha_registro(self):
-        return fecha_registro
+        return self.fecha_registro
     def get_ultimo_logeo(self):
-        return ultimo_logeo
+        return self.ultimo_logeo
     #SETTER###################################
     def set_id(self,id):
         self.id = id

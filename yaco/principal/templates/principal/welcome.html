@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Welcome!</title>
-    </head>
-    <body>
-        <h1>Welcome to my page!</h1>
-        <p>
-            a
-        </p>
-        <p>
-            Today's date is {{date}}
-        </p>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{%block title%}Yaco{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <h1>Bienvenido, {{g.user.get_id()}}</h1>
+            <form action="{{url_for('login.logout')}}">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </div>
+        <div class="container">
+            <p>Tipo usuario: {{g.user.get_tipo_estudiante()}}</p>
+            <p>Fecha registro: {{g.user.get_fecha_registro()}}</p>
+            <p>Fecha: {{date}}</p>
+        </div>
+{% endblock %}

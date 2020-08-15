@@ -1,6 +1,7 @@
 import sys
 sys.path.append('class')
 from Usuario import Usuario
+from Estudiante import Estudiante
 from flask import (
     Blueprint, 
     render_template, 
@@ -18,7 +19,7 @@ def login():
         user_data = {'usr': request.form['usuario'], 'psw': request.form['contrasena']}
         existe = Usuario.db_exists(user_data['usr'])
         if existe and Usuario.db_check_password(user_data['usr'],user_data['psw']):
-            session['usr'] = user_data['usr']
+            session['usr'] = Estudiante.from_db(user_data['usr'])
             return redirect(url_for('principal.dashboard'))
         return render_template('login/login.html') 
     else:

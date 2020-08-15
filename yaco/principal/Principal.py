@@ -3,14 +3,15 @@ from flask import (
     render_template,
     g,
     redirect,
-    url_for
+    url_for,
+    session
 )
 import datetime
 principal_blueprint = Blueprint('principal',__name__,template_folder='templates')
 
 @principal_blueprint.route('/')
 def dashboard():
-    if not g.user:
+    if 'usr' not in session:
         return redirect(url_for('login.login'))
     return render_template(
         'principal/welcome.html',

@@ -5,7 +5,7 @@ from database.Database import PSConnection
 class Palabra(DBWriter):
     lang = ('en','es')
     flsh = ('reco','prod')
-    def __init__(self,id,tipo,es_ofensiva,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
+    def __init__(self,id,tipo,es_ofensiva,definicion_eng = DefinicionList(list()),definicion_esp = DefinicionList(list())):
         self.id = id 
         self.tipo = tipo
         self.fla_dic = {Palabra.flsh[0]: None,Palabra.flsh[1]: None}

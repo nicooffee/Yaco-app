@@ -164,7 +164,7 @@ class PalabraDict:
 
     #GETTER###################################
     def get_flashcard_list(self):
-        flist = FlashcardList()
+        flist = FlashcardList(list())
         for key,value in self.dict_id.items():
             for w in value:
                 for f in w.get_flashcard_list():
@@ -182,7 +182,7 @@ if __name__ == "__main__":
     from function import Desglose
     from function import GetWord
     import json
-    pd = PalabraDict()
+    #pd = PalabraDict()
     print("Crear diccionario")
     for l in PalabraDict.lang:
         print(pd.dict_lang[l])

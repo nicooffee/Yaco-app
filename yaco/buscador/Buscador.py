@@ -23,4 +23,4 @@ def buscar(word):
         busqueda = form.busqueda.data
         return redirect(url_for('buscar.buscar',word=busqueda))
     resultado=json.loads(desglose(get_word(word)))
-    return render_template('buscador/buscador.html',word=word,word_list=resultado)
+    return render_template('buscador/buscador.html',user=session['usr'],word=word,word_list=resultado)

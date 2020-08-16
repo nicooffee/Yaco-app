@@ -11,7 +11,7 @@ class Flashcard(DBWriter):
             tipo, #reco, prod
             fecha_creacion = datetime.now(),
             nivel_srs = 1,
-            revision_list = RevisionList()):
+            revision_list = RevisionList(list())):
         self.id = id
         self.palabra = palabra
         self.tipo = tipo

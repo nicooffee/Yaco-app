@@ -9,7 +9,7 @@ class Usuario(DBWriter):
     def __init__(
             self,
             id,
-            flashcard_list = FlashcardList(),
+            flashcard_list = FlashcardList(list()),
             palabra_dict = PalabraDict(),
             fecha_registro = datetime.now(),
             ultimo_logeo = datetime.now()):

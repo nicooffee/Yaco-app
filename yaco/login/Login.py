@@ -2,6 +2,7 @@ import sys
 sys.path.append('class')
 from Usuario import Usuario
 from Estudiante import Estudiante
+from Forms import UserForm
 from flask import (
     Blueprint, 
     render_template, 
@@ -13,19 +14,16 @@ from flask import (
 login_blueprint = Blueprint('login',__name__,template_folder='templates')
 
 @login_blueprint.route('/login', methods =["GET","POST"])
-def login():
-    if request.method == 'POST':
-        session.pop('usr',None)
-        user_data = {'usr': request.form['usuario'], 'psw': request.form['contrasena']}
-        existe = Usuario.db_exists(user_data['usr'])
-        if existe and Usuario.db_check_password(user_data['usr'],user_data['psw']):
-            session['usr'] = Estudiante.from_db(user_data['usr'])
-            return redirect(url_for('principal.dashboard'))
-        return render_template('login/login.html') 
+def login():    
+    session.pop('usr',None)
+    form = UserForm(request.form)
+    if request.method == 'POST' and form.validate():
+        usr = form.usuario.data
+        session['usr'] = Estudiante.from_db(usr)
+        return redirect(url_for('principal.dashboard'))
     else:
         return render_template('login/login.html')
 
 @login_blueprint.route('/logout')
 def logout():
-    session.pop('usr',None)
-    return redirect(url_for('login.login'))
+    return redirect(url_for('logout_complete'))

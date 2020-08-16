@@ -3,7 +3,7 @@ from datetime import datetime
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
 class FlashcardList(DBWriter):
-    def __init__(self,flashcard_list = []):
+    def __init__(self,flashcard_list):
         self.flashcard_list = flashcard_list
 
     def __len__(self):

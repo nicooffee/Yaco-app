@@ -23,7 +23,7 @@ def dashboard():
         return redirect(url_for('login.login'))
     return render_template(
         'principal/welcome.html',
-        user=session['usr'],
+        user=session.get('usr'),
         date=datetime.datetime.now(),
         form = form
     )

@@ -2,7 +2,7 @@ from Definicion import Definicion
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
 class DefinicionList(DBWriter):
-    def __init__(self,definicion_list = []):
+    def __init__(self,definicion_list):
         self.definicion_list = definicion_list
 
     def __add__(self,other):

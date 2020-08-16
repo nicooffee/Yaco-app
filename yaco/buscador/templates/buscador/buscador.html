@@ -1,0 +1,29 @@
+{%extends "base_logged.html"%}
+
+{%block title%}Yaco - Buscar{%endblock%}
+
+{%block content%}
+    <div class="container">
+        <h1>Resultados para: {{word}}</h1>
+    </div>
+    <div class="container">
+        <div class="list-group">
+            {%for w in word_list%}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-light">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{w['definicion_eng'][0][0]}}</h5>
+                        <small>Ofensiva: {%if w['es_ofensiva']%} Sí {%else%} No {%endif%}</small>
+                    </div>
+                    
+                    <p class="mb-1">
+                        {%for i in range(w['definicion_esp'] |length)%}
+                            {{w['definicion_esp'][i][0]}}{%if i<((w['definicion_esp'] |length)-1)%},&nbsp;{%else%}{%endif%} 
+                        {%endfor%}
+                    </p>
+                    <small>{{w['tipo']}}</small>
+                </a>
+            {%endfor%}
+        </div>
+    </div>
+
+{%endblock%}

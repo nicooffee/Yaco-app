@@ -5,6 +5,9 @@ from interface.DBWriter import DBWriter
 class FlashcardList(DBWriter):
     def __init__(self,flashcard_list = []):
         self.flashcard_list = flashcard_list
+
+    def __len__(self):
+        return len(self.flashcard_list)
     @classmethod
     def from_db(cls,usu_id,pal_id):
         pass
@@ -54,6 +57,15 @@ class FlashcardList(DBWriter):
     #
     #
     #
+    def cant_flashcard(self,nivel=None):
+        if nivel is None:
+            return len(self.flashcard_list)
+        else:
+            c = 0
+            for f in self.flashcard_list:
+                if f.get_nivel_srs() == nivel:
+                    c += 1
+            return c
     #GETTER###################################
     def get_cant_fcard(self):
         return len(self.flashcard_list)

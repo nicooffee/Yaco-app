@@ -4,15 +4,15 @@ from Flashcard import Flashcard
 from Palabra import Palabra
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
-import datetime
+from datetime import datetime
 class Usuario(DBWriter):
     def __init__(
             self,
             id,
             flashcard_list = FlashcardList(),
             palabra_dict = PalabraDict(),
-            fecha_registro = datetime.datetime.now(),
-            ultimo_logeo = datetime.datetime.now()):
+            fecha_registro = datetime.now(),
+            ultimo_logeo = datetime.now()):
         self.id = id
         self.flashcard_list = flashcard_list
         self.palabra_dict   = palabra_dict 
@@ -73,7 +73,21 @@ class Usuario(DBWriter):
                 F = self.flashcard_list.eliminar_flashcard(F_p.get_id())
                 F_p.del_data()
         return P
-    
+    #
+    #
+    #
+    #
+    #
+    def cant_flashcard(self,nivel=None):
+        return self.flashcard_list.cant_flashcard(nivel)
+    #
+    #
+    #
+    #
+    #
+    def fcard_review_disponible(self,fecha = datetime.now()):
+        return self.flashcard_list.fcard_review_disponible(fecha=fecha)
+
     @staticmethod
     def db_exists(usr):
         psc = PSConnection()

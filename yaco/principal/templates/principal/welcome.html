@@ -1,60 +1,56 @@
 {% extends "base_logged.html" %}
 
 {%block title%}Yaco{% endblock %}
-{%block header%}
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light shadow bg-light">
-            <a class="navbar-brand" href="{{url_for('principal.dashboard')}}"><img src="/static/yaco-300x300.png" width="100%" alt="Yaco logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Revisiones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Palabra" aria-label="Palabra">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-            </div>
-        </nav>
-    </header>
-{% endblock %}
+
 {% block content %}
     <div class="container">
-        <div class="container">
-            <h1>Bienvenido, {{session['usr'].get_id()}}</h1>
+        <h1>Bienvenido, {{user.get_id()}}</h1>
+    </div>
+    <div class="container">
+        <p>Tipo usuario: {{user.get_tipo_estudiante()}}</p>
+        <p>Fecha registro: {{user.get_fecha_registro().strftime('%Y-%m-%d %H:%M')}}</p>
+        <p>Fecha: {{date.strftime('%Y-%m-%d %H:%M')}}</p>
+    </div>
+    <div class="review-count container">
+        <div class="card-deck text-light">
+            <div class="card bg-secondary">
+                <div class="card-body text-center">
+                    <p class="h3 card-text">{{user.cant_flashcard(1)+user.cant_flashcard(2)+user.cant_flashcard(3)+user.cant_flashcard(4)+user.cant_flashcard(5)}}</p>
+                    <p class="card-text">Pichón 1-5</p>
+                </div>
+            </div>
+            <div class="card bg-info">
+                <div class="card-body text-center">
+                    <p class="h3 card-text">{{user.cant_flashcard(6)}}</p>
+                    <p class="card-text">Cotorra</p>
+                </div>
+            </div>
+            <div class="card bg-primary">
+                <div class="card-body text-center">
+                    <p class="h3 card-text">{{user.cant_flashcard(7)}}</p>
+                    <p class="card-text">Loro</p>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body text-center">
+                    <p class="h3 card-text">{{user.cant_flashcard(8)}}</p>
+                    <p class="card-text">Yaco</p>
+                </div>
+            </div>
         </div>
-        <div class="container">
-            <p>Tipo usuario: {{session['usr'].get_tipo_estudiante()}}</p>
-            <p>Fecha registro: {{session['usr'].get_fecha_registro()}}</p>
-            <p>Fecha: {{date}}</p>
+        <div class="progress mt-4">
+            <div class="progress-bar bg-secondary" style="width:40%">
+                Pichón 1-5
+            </div>
+            <div class="progress-bar bg-info" style="width:10%">
+                Cotorra
+            </div>
+            <div class="progress-bar bg-primary" style="width:20%">
+                Loro
+            </div>
+            <div class="progress-bar bg-dark" style="width:30%">
+                Yaco
+            </div>
         </div>
     </div>
-{%endblock%}
-
-{%block footer%}
-    <footer class="container-fluid navbar navbar-default navbar-bottom">
-        <h3>Yaco</h3>
-        <ul class="nav">
-        
-            <li class="nav-item">
-                <a class="nav-link" href="#!">Sobre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#!">Ayuda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#!">Contacto</a>
-            </li>
-        </ul>
-    </footer>
 {%endblock%}

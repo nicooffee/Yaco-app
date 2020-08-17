@@ -1,5 +1,6 @@
 import sys
 import json
+from datetime import datetime
 from flask import (
     Blueprint, 
     render_template, 
@@ -21,6 +22,11 @@ def buscar(word):
     form = SearchForm(request.form)
     if request.method == "POST" and form.validate():
         busqueda = form.busqueda.data
-        return redirect(url_for('buscar.buscar',word=busqueda))
+        return redirect(url_for('.buscar',word=busqueda))
     resultado=json.loads(desglose(get_word(word)))
-    return render_template('buscador/buscador.html',user=session['usr'],word=word,word_list=resultado)
+    return render_template('buscador/buscador.html',
+        date=datetime.now(),
+        user=session['usr'],
+        word=word,
+        word_list=resultado
+    )

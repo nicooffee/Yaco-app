@@ -11,21 +11,22 @@
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Revisiones <span class="badge badge-primary">{{user.fcard_review_disponible()|length}}</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0" method="POST">
-                        <input name="busqueda" class="form-control mr-sm-2" type="text" placeholder="Palabra (en inglés)" aria-label="Palabra (en inglés)">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Revisiones <span class="badge badge-primary">{{user.fcard_review_disponible()|length}}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
+                            </li>
+                        </ul>
+                        <h2 class="nav-link text-secondary">{{date.strftime('%H:%M')}}</h2>
+                        <form class="form-inline my-2 my-lg-0" method="POST">
+                            <input name="busqueda" class="form-control mr-sm-2" type="text" placeholder="Palabra (en inglés)" aria-label="Palabra (en inglés)">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
                     </div>
                 </nav>
             </header>

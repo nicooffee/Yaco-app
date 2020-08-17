@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from flask import (
     Blueprint,
     render_template,
@@ -21,10 +21,13 @@ def dashboard():
         return redirect(url_for('buscar.buscar',word=busqueda))
     if 'usr' not in session:
         return redirect(url_for('login.login'))
+    user = session.get('usr')
+    srslvl = [user.cant_flashcard(1)+user.cant_flashcard(2)+user.cant_flashcard(3)+user.cant_flashcard(4)+user.cant_flashcard(5),user.cant_flashcard(6),user.cant_flashcard(7),user.cant_flashcard(8)]
     return render_template(
         'principal/welcome.html',
-        user=session.get('usr'),
-        date=datetime.datetime.now(),
+        user=user,
+        date=datetime.now(),
+        srslvl=srslvl,
         form = form
     )
 

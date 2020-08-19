@@ -8,12 +8,12 @@ class SearchForm(Form):
 
 
 class UserForm(Form):
-    usuario = StringField('Usuario', [validators.Length(min=5,max=20,message='Nombre de usuario debe ser entre 5 y 20 caracteres')])
-    contrasena = StringField('Contraseña',[validators.Length(min=4,max=32,message='Contraseña debe ser entre 8 y 32 caracteres')])
+    usuario = StringField('Usuario', [validators.Length(min=5,max=20,message='Nombre de usuario debe ser entre 5 y 20 caracteres.')])
+    contrasena = StringField('Contraseña',[validators.Length(min=4,max=32,message='Contraseña debe ser entre 8 y 32 caracteres.')])
 
     def validate_usuario(self,field):
         if not Usuario.db_exists(field.data):
-            raise validators.ValidationError("Usuario no encontrado")
+            raise validators.ValidationError("Usuario no encontrado.")
     
     def validate(self):
         if not Form.validate(self):

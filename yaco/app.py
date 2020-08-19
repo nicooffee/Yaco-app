@@ -1,9 +1,10 @@
 from flask import Flask,session,redirect,url_for,request
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session,SqlAlchemySessionInterface
-from principal.Principal import principal_blueprint
-from login.Login import login_blueprint
-from buscador.Buscador import buscador_blueprint
+from blueprint.principal.Principal import principal_blueprint
+from blueprint.login.Login import login_blueprint
+from blueprint.buscador.Buscador import buscador_blueprint
+from blueprint.palabra_info.PalabraInfo import palabra_info_blueprint
 import sys
 sys.path.append('class')
 from Estudiante import Estudiante
@@ -21,6 +22,7 @@ app.config['DEBUG'] = True
 app.register_blueprint(principal_blueprint)
 app.register_blueprint(login_blueprint)
 app.register_blueprint(buscador_blueprint)
+app.register_blueprint(palabra_info_blueprint)
 ###############################################
 db = SQLAlchemy(app)
 

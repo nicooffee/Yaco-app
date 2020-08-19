@@ -113,6 +113,8 @@ class Usuario(DBWriter):
         return self.ultimo_logeo
     def get_cant_palabra(self):
         return self.palabra_dict.cant_palabra()
+    def get_palabra(self,id):
+        return self.palabra_dict.get_palabra(id)
     #SETTER###################################
     def set_id(self,id):
         self.id = id

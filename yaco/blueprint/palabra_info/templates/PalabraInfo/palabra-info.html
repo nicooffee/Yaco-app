@@ -1,0 +1,140 @@
+{%extends "base_logged.html"%}
+
+{%block title%}Yaco - Palabra{%endblock%}
+
+{%block content%}
+    {%if g.word is none %}
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                <strong>Error al mostrar palabra!</strong> Busque la palabra previamente.
+            </div>
+        </div>
+    {%else%}
+        <div class="container word-info">
+            <p><a href="{{url_for('buscar.buscar',word=g.busqueda)}}">Volver</a></p>
+            <div class="d-flex flex-column justify-content-center">
+                <div class="p-2" style="overflow: auto;">
+                    <span class="badge badge-info"><h1 class="display-3"">{{g.word.get_definicion_principal('en').get_definicion()}}</h1></span>
+                </div>
+                <div class="p-2 d-flex flex-row justify-content-around">
+                    <div class="p-2 d-flex flex-column">
+                        <div class="p-2">
+                            <table class="table-sm borderless">
+                                <tbody>
+                                    <tr>
+                                        <th class="align-baseline text-right" scope="row">Definiciones en inglés:</th>
+                                        <td>
+                                            <ul class="ul no-bullets" style="list-style-type:none;">
+                                                {%for def in g.word.get_definicion_iter('en')%}
+                                                    <li class="li"><p class="inline">{{def.get_definicion()}} {{def.get_info_adicional()}}</p></li>
+                                                {%endfor%}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="align-baseline text-right" scope="row">Definiciones en español:</th>
+                                        <td>
+                                            <ul class="ul no-bullets" style="list-style-type:none;">
+                                                {%for def in g.word.get_definicion_iter('es')%}
+                                                    <li class="li"><p class="inline">{{def.get_definicion()}} {{def.get_info_adicional()}}</p></li>
+                                                {%endfor%}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="align-baseline  text-right" scope="row">Tipo:</th>
+                                        <td><p class="inline">{{g.word.get_tipo()}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="align-baseline  text-right" scope="row">¿Ofensiva?:</th>
+                                        <td>
+                                            {%if g.word.get_es_ofensiva() %}
+                                                <p class="text-danger">Sí</p>
+                                            {%else%}
+                                                <p class="text-primary">No</p>
+                                            {%endif%}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="p-2">
+                            {%if g.added%}
+                                <a href="#"><button type="button" class="btn btn-danger">Eliminar palabra</button></a>
+                            {%else%}
+                                <a href="{{url_for('palabrainfo.agregar_actual')}}"><button type="button" class="btn btn-primary">Agregar palabra</button></a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%if g.added%}
+                        <div class="p-2">
+                            <div class="d-flex flex-column">
+                                <div class="p-2">
+                                    <h1>Producción</h1>
+                                    <p>
+                                        La habilidad de producción es la capacidad de entregar una definción en inglés
+                                        en respuesta a la lectura de una palabra en español. 
+                                        Practicando la producción mejorarás la capacidad de entregar una palabra en inglés
+                                        cuando la necesites.
+                                    </p>
+                                    {% with srslvl = g.word.get_flashcard('prod').get_nivel_srs()%}
+                                        <label for="progressProd">Nivel actual</label>
+                                        <div id="progressProd" class="progress">
+                                            <div class="progress-bar {{srs_color(srslvl)}}" role="progressbar" style="width:{{(srslvl/8*100)|int}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{srs_name(srslvl)}}</div>
+                                        </div>
+                                    {%endwith%}
+                                    <table class="table-sm borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-baseline text-left" scope="row">Registrada el: </th>
+                                                <td>
+                                                    {{g.word.get_flashcard('prod').get_fecha_creacion().strftime('%Y-%m-%d')}} (hace {{time_str(g.word.get_flashcard('prod').get_fecha_creacion(),false)}})
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-baseline text-right" scope="row">Próxima revisión en:  </th>
+                                                <td>
+                                                    {{time_str(g.word.get_flashcard('prod').get_fecha_sig(),true)}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-2">
+                                    <h1>Reconocimiento</h1>
+                                    <p>
+                                        La habilidad de reconocimiento es la capacidad de asociar una palabra en español
+                                        cuando lees o escuchas una palabra en inglés. Practicando el reconocimiento podrás mejorar tu habilidad
+                                        para leer o escuchar en inglés.
+                                    </p>
+                                    {% with srslvl = g.word.get_flashcard('reco').get_nivel_srs()%}
+                                        <label for="progressReco">Nivel actual</label>
+                                        <div id="progressReco" class="progress">
+                                            <div class="progress-bar {{srs_color(srslvl)}}" role="progressbar" style="width:{{(srslvl/8*100)|int}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{srs_name(srslvl)}}</div>
+                                        </div>
+                                    {%endwith%}
+                                    <table class="table-sm borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-baseline text-left" scope="row">Registrada el: </th>
+                                                <td>
+                                                    {{g.word.get_flashcard('reco').get_fecha_creacion().strftime('%Y-%m-%d')}} (hace {{time_str(g.word.get_flashcard('reco').get_fecha_creacion(),false)}})
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-baseline text-right" scope="row">Próxima revisión en:</th>
+                                                <td>
+                                                    {{time_str(g.word.get_flashcard('reco').get_fecha_sig(),true)}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    {%endif%}
+{%endblock%}

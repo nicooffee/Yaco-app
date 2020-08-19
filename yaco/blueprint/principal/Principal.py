@@ -2,7 +2,6 @@ from datetime import datetime
 from flask import (
     Blueprint,
     render_template,
-    g,
     redirect,
     request,
     url_for,
@@ -12,6 +11,10 @@ from Forms import SearchForm
 
 
 principal_blueprint = Blueprint('principal',__name__,template_folder='templates')
+@principal_blueprint.before_request
+def before_request():
+    if 'usr' not in session:
+        return redirect(url_for('login.login'))
 
 @principal_blueprint.route('/',methods =["GET","POST"])
 def dashboard():
@@ -19,8 +22,6 @@ def dashboard():
     if request.method == "POST" and form.validate():
         busqueda = form.busqueda.data
         return redirect(url_for('buscar.buscar',word=busqueda))
-    if 'usr' not in session:
-        return redirect(url_for('login.login'))
     user = session.get('usr')
     srslvl = [user.cant_flashcard(1)+user.cant_flashcard(2)+user.cant_flashcard(3)+user.cant_flashcard(4)+user.cant_flashcard(5),user.cant_flashcard(6),user.cant_flashcard(7),user.cant_flashcard(8)]
     return render_template(

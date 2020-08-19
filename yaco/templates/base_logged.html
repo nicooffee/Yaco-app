@@ -30,11 +30,18 @@
                     </div>
                 </nav>
             </header>
-            {%endblock%}
-            <div class="border border-light main-block container">
-                {%block content%}
-                {%endblock%}    
-            </div>        
+        {%endblock%}
+        <div class="border border-light main-block container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        {{ show_message(message,category)}}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {%block content%}
+            {%endblock%}    
+        </div>        
     </div>
     {%block footer%}
         <footer id="footer" class="container-fluid navbar navbar-default navbar-bottom">

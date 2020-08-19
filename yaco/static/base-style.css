@@ -52,3 +52,13 @@
 .row{
     padding-top: 30px;
 }
+
+.inline {
+    display: inline;
+}
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }

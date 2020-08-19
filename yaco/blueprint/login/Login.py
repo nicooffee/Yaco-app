@@ -9,7 +9,8 @@ from flask import (
     request,
     redirect,
     url_for,
-    session
+    session,
+    flash
 )
 login_blueprint = Blueprint('login',__name__,template_folder='templates')
 
@@ -20,8 +21,15 @@ def login():
     if request.method == 'POST' and form.validate():
         usr = form.usuario.data
         session['usr'] = Estudiante.from_db(usr)
+        flash('Ha entrado a la plataforma exitósamente',category='success')
         return redirect(url_for('principal.dashboard'))
     else:
+        if request.method == 'POST':
+            s=''
+            for field,error in form.errors.items():
+                for e in error:
+                    s = s+' '+e
+            flash(s,category='danger')
         return render_template('login/login.html')
 
 @login_blueprint.route('/logout')

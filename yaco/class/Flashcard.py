@@ -9,9 +9,9 @@ class Flashcard(DBWriter):
             id, 
             palabra,
             tipo, #reco, prod
-            fecha_creacion = datetime.now(),
-            nivel_srs = 1,
-            revision_list = RevisionList(list())):
+            fecha_creacion,
+            revision_list,
+            nivel_srs = 1):
         self.id = id
         self.palabra = palabra
         self.tipo = tipo
@@ -72,6 +72,6 @@ class Flashcard(DBWriter):
 
 
 if __name__ == "__main__":
-    f = Flashcard('get-d1s7:NicoffeeFR',None,'reco')
+    f = Flashcard('get-d1s7:NicoffeeFR',None,'reco',datetime.now(),RevisionList(list()))
     print("Exito al agregar fal. Filas afectadas: ",f.add_data())
     print("Exito al eliminar fal. Filas afectadas: ",f.del_data())

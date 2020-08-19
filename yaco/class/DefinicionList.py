@@ -119,7 +119,13 @@ class DefinicionList(DBWriter):
             for n_id in range(100):
                 if n_id not in id_index:
                     return n_id
-    
+
+    def get_definicion_principal(self):
+        for d in self.definicion_list:
+            if d.get_es_principal():
+                return d
+        return self.definicion_list[0]
+
     def get_def_extra(self):
         L = filter(lambda d: d.get_es_extra(),self.definicion_list)
         return DefinicionList(definicion_list=list(L))

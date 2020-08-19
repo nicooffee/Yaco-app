@@ -32,7 +32,7 @@
                             <td>{{user.get_exp_total()/((date-session.get('usr').get_fecha_registro()).days)}}</td>
                         </tr>
                     </tbody>
-                    </table>
+                </table>
             </div>
             <div class="col">
                 
@@ -71,16 +71,16 @@
         <div class="row">
             <div class="col">
                 <div class="progress">
-                    <div class="progress-bar bg-secondary" style=width:{{(srslvl[0]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%>
+                    <div class="progress-bar {{srs_color(1)}}" style="width:{{(srslvl[0]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
                         Pichón 1-5
                     </div>
-                    <div class="progress-bar bg-info"  style=width:{{(srslvl[1]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%>
+                    <div class="progress-bar {{srs_color(srslvl[1])}}"  style="width:{{(srslvl[1]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
                         Cotorra
                     </div>
-                    <div class="progress-bar bg-primary"  style=width:{{(srslvl[2]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%>
+                    <div class="progress-bar {{srs_color(srslvl[2])}}"  style="width:{{(srslvl[2]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
                         Loro
                     </div>
-                    <div class="progress-bar bg-dark" style=width:{{(srslvl[3]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%>
+                    <div class="progress-bar {{srs_color(srslvl[3])}}" style="width:{{(srslvl[3]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
                         Yaco
                     </div>
                 </div>

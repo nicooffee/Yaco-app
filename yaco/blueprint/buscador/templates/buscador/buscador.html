@@ -9,7 +9,7 @@
     <div class="container">
         <div class="list-group">
             {%for w in word_list%}
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-light">
+                <a href="{{url_for('palabrainfo.palabra_info',id=w['id'])}}" class="list-group-item list-group-item-action flex-column align-items-start bg-light">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{w['definicion_eng'][0][0]}}</h5>
                         <small>Ofensiva: {%if w['es_ofensiva']%} Sí {%else%} No {%endif%}</small>
@@ -20,7 +20,16 @@
                             {{w['definicion_esp'][i][0]}}{%if i<((w['definicion_esp'] |length)-1)%},&nbsp;{%else%}{%endif%} 
                         {%endfor%}
                     </p>
-                    <small>{{w['tipo']}}</small>
+                    <div class="d-flex w-100 justify-content-between">
+                        <small>{{w['tipo']}}</small>
+                        <small>
+                            {%if user.get_palabra(w['id']) is none%}
+                                <p class="inline text-danger">No añadida</p>
+                            {%else%}
+                                <p class="inline text-primary">Añadida</p>
+                            {%endif%}
+                        </small>
+                    </div>
                 </a>
             {%endfor%}
         </div>

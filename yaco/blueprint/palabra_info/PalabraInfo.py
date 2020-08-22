@@ -37,7 +37,6 @@ def palabra_info(id):
         g.word = user.get_palabra(id)
         g.added = True
         if g.word is None:
-            print("palabra no encontrada")
             g.added = False
             word_dict = get_word(g.last_search,id)
             g.word = Palabra.from_dict(word_dict,user.get_id())
@@ -51,11 +50,25 @@ def palabra_info(id):
 @palabra_info_blueprint.route('/agregar_actual')
 def agregar_actual():
     if 'w_actual' in session:
-        w_dict = session['w_actual']
+        w_dict = session.pop('w_actual')
         user = session['usr']
         w = user.agregar_palabra(w_dict)
         flash('Palabra agregada exitósamente','primary')
         return redirect(url_for('.palabra_info',id=w.get_id()))
+    else:
+        return redirect(url_for('principal.dashboard'))
+
+@palabra_info_blueprint.route('/eliminar/<id>')
+def eliminar_actual(id):
+    if id != '':
+        user = session['usr']
+        w = user.eliminar_palabra(id)
+        if w is None:
+            flash('La palabra no se ha eliminado puesto que no se ha encontrado en las palabras aprendidas')
+        else:
+            flash('Palabra eliminada exitósamente.',category='warning')
+    if 'search' in session:
+        return redirect(url_for('buscar.buscar',word=session['search']))
     else:
         return redirect(url_for('principal.dashboard'))
 

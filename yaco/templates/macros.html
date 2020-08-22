@@ -39,13 +39,13 @@
     {%set minutes = ((t_sec - (days*86400) - (hours*3600))/60)|int%}
     {%set seconds = ((t_sec - (days*86400) - (hours*3600) - (minutes*60)))|int%}
     {%if days>0%}
-        {{days}} días
+        {{days}} {% if days == 1%} día {%else%} días {%endif%}
     {%elif days == 0%}
         {%if hours>0%}
             {{hours}} {% if hours == 1%} hora {%else%} horas {%endif%}
         {%elif hours == 0%}
             {%if minutes>0%}
-                {{minutes}} minutos
+                {{minutes}} {% if minutes == 1%} minuto {%else%} minutos {%endif%}
             {%elif minutes == 0%}
                 {%if seconds>=0%}
                     menos de un minuto

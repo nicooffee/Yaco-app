@@ -60,7 +60,7 @@
                         </div>
                         <div class="p-2">
                             {%if g.added%}
-                                <a href="#"><button type="button" class="btn btn-danger">Eliminar palabra</button></a>
+                                <a href="{{url_for('palabrainfo.eliminar_actual',id=g.word.get_id())}}"><button type="button" class="btn btn-danger" onclick="return confirm('Se eliminará todo el progreso obtenido en las revisiones. ¿Estás seguro de eliminar la palabra?')">Eliminar palabra</button></a>
                             {%else%}
                                 <a href="{{url_for('palabrainfo.agregar_actual')}}"><button type="button" class="btn btn-primary">Agregar palabra</button></a>
                             {%endif%}
@@ -74,7 +74,7 @@
                                     <p>
                                         La habilidad de producción es la capacidad de entregar una definción en inglés
                                         en respuesta a la lectura de una palabra en español. 
-                                        Practicando la producción mejorarás la capacidad de entregar una palabra en inglés
+                                        Practicando la producción mejorarás la capacidad de pensar en una palabra en inglés
                                         cuando la necesites.
                                     </p>
                                     {% with srslvl = g.word.get_flashcard('prod').get_nivel_srs()%}

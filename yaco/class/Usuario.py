@@ -64,7 +64,7 @@ class Usuario(DBWriter):
             psc.query(psql_query_up,data_up)
             data_up2 = (P.get_id(),)
             res = psc.fetch_one(psql_query_up2,data_up2)
-            if res[0]:
+            if res[0]: #Si existe un registro luego de eliminar la relación, significa que existe otro usuario con la palabra.
                 def_extra = P.get_def_extra()
                 def_extra.del_data()
             else:
@@ -87,6 +87,13 @@ class Usuario(DBWriter):
     #
     def fcard_review_disponible(self,fecha = datetime.now()):
         return self.flashcard_list.fcard_review_disponible(fecha=fecha)
+    #
+    #
+    #
+    #
+    #
+    def cant_rev_per_hour(self,desde=datetime.now(),horas=24):
+        return self.flashcard_list.cant_rev_per_hour(desde,horas)
 
     @staticmethod
     def db_exists(usr):

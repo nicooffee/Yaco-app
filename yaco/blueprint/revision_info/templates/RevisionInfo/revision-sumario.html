@@ -1,0 +1,39 @@
+{%extends "base_logged.html"%}
+
+{%block title%}Yaco - sumario {%endblock%}
+
+{%block header%}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light shadow bg-light justify-content-between">
+            <a class="navbar-brand" href="{{url_for('principal.dashboard')}}"><img src="/static/yaco-300x300.png" width="100%" alt="Yaco logo"></a>
+            {%if user.list_review_disponible()|length%}
+            <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0">Comenzar revisiones</button></a>
+            {%else%}
+            <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0 disabled" aria-disabled="true" disabled>Comenzar revisiones</button></a>
+            {%endif%}
+        </nav>
+    </header>
+{%endblock%}
+{%block content%}
+    <h1>Sumario</h1>
+    <p>A continuación se muestran las palabras revisadas en la última sesión.</p>
+    {%if rev_list|length%}
+        <h2>Correctas</h2>
+        {%for rev in rev_list%}
+            {%if rev['correcta'] is sameas true%}
+                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-info">{{rev['palabra']}}</button></a>
+            {%endif%}
+        {%endfor%}
+        <h2>Incorrectas</h2>
+        {%for rev in rev_list%}
+            {%if rev['correcta'] is sameas false%}
+                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-danger">{{rev['palabra']}}</button></a>
+            {%endif%}
+        {%endfor%}
+    {%else%}
+        <div class="alert alert-info" role="alert">
+            <strong>¡No se ha encontrado registro!</strong> 
+            Realiza revisiones para luego ver el sumario en esta página.
+        </div>
+    {%endif%}
+{%endblock%}

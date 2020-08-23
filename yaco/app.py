@@ -5,6 +5,7 @@ from blueprint.principal.Principal import principal_blueprint
 from blueprint.login.Login import login_blueprint
 from blueprint.buscador.Buscador import buscador_blueprint
 from blueprint.palabra_info.PalabraInfo import palabra_info_blueprint
+from blueprint.revision_info.RevisionInfo import revision_info_blueprint
 import sys
 sys.path.append('class')
 from Estudiante import Estudiante
@@ -23,6 +24,7 @@ app.register_blueprint(principal_blueprint)
 app.register_blueprint(login_blueprint)
 app.register_blueprint(buscador_blueprint)
 app.register_blueprint(palabra_info_blueprint)
+app.register_blueprint(revision_info_blueprint)
 ###############################################
 db = SQLAlchemy(app)
 

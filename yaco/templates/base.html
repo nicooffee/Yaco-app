@@ -25,10 +25,12 @@
         <link rel="stylesheet" href="/static/base-style.css">
     </head>
     <body>
-        <div id="page-container">
-            {% block body %}
-            {% endblock %}
-        </div>
+        {%block raw_body%}
+            <div id="page-container">
+                {% block body %}
+                {% endblock %}
+            </div>
+        {%endblock%}
         {%block script%}
             <!-- JQuery -->
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

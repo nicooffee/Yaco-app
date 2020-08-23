@@ -81,5 +81,5 @@ def cargar_usuario():
     print("Usuario: ",est.get_id())
     print("C. palabras:",est.palabra_dict.cant_palabra())
     print("C. flashcards:",len(est.flashcard_list))
-    print("C. fla disp:",len(est.flashcard_list.fcard_review_disponible(datetime.now() + timedelta(hours=5)).flashcard_list))
+    print("C. fla disp:",len(est.flashcard_list.list_review_disponible(datetime.now() + timedelta(hours=5)).flashcard_list))
     

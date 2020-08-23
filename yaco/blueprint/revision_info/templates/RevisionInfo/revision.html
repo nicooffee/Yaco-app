@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+
+{%block title%}Yaco - Revisión {%endblock%}
+
+{%block raw_body%}
+    <div id="page-container" class="bg-primary text-white">
+        <p>{{flashcard.get_id()}}</p>
+        {%if next is none%}
+            
+        {%else%}
+            <a href="{{url_for('revisioninfo.sesion_revision',fid=next)}}"><button type="button" class="btn btn-secondary">Siguiente</button></a>  
+        {%endif%}
+    </div>
+{%endblock%}

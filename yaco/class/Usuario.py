@@ -85,8 +85,15 @@ class Usuario(DBWriter):
     #
     #
     #
-    def fcard_review_disponible(self,fecha = datetime.now()):
-        return self.flashcard_list.fcard_review_disponible(fecha=fecha)
+    def list_review_disponible(self,fecha = datetime.now()):
+        return self.flashcard_list.list_review_disponible(fecha=fecha)
+    #
+    #
+    #
+    #
+    #
+    def dict_review_disponible(self,fecha = datetime.now()):
+        return self.flashcard_list.dict_review_disponible(fecha=fecha)
     #
     #
     #

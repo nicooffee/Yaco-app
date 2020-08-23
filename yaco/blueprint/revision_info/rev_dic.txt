@@ -1,0 +1,4 @@
+rev
+    id:         id de la palabra (para el botón)
+    correcta:  correcta/incorrecta
+    palabra:    principal (ingles), para mostrarla

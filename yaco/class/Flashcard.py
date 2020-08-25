@@ -37,6 +37,8 @@ class Flashcard(DBWriter):
         return self.id
     def get_tipo(self):
         return self.tipo
+    def get_palabra(self):
+        return self.palabra
     def get_fecha_creacion(self):
         return self.fecha_creacion
     def get_nivel_srs(self):

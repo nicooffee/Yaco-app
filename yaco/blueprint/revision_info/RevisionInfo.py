@@ -1,5 +1,6 @@
 import sys
 from datetime import datetime
+from Forms import RevisionForm
 from flask import (
     Blueprint,
     render_template,
@@ -25,23 +26,34 @@ def revisioninfo_before_request():
 
 @revision_info_blueprint.route('/revision-sumario')
 def revision_sumario():
+    session['review_disponible'] = session['usr'].dict_review_disponible()
     return render_template('revisioninfo/revision-sumario.html',user = session['usr'], date = datetime.now(), rev_list = session['lastrev'])
 
 
 @revision_info_blueprint.route('/revisiones')
 def get_dict_revision():
-    user = session['usr']
-    session['review_disponible'] = user.dict_review_disponible()
     try:
-        first = next(iter(session['review_disponible']))
+        current = next(iter(session['review_disponible']))
     except StopIteration:
         return redirect(url_for('.revision_sumario'))
-    return redirect(url_for('.sesion_revision',fid=first))
+    return redirect(url_for('.sesion_revision',fid=current))
 
-@revision_info_blueprint.route('/revisiones/<fid>')
+@revision_info_blueprint.route('/revisiones/<fid>', methods =["GET","POST"])
 def sesion_revision(fid):
     try:
         f_dict = session['review_disponible']
-        return render_template('revisioninfo/revision.html',flashcard = f_dict[fid]['flashcard'],next = f_dict[fid]['next'])
+        if request.method == 'POST':
+            form = RevisionForm(request.form)
+            form.flashcard = f_dict[fid]['flashcard']
+            if form.validate():
+                pass
+            else:
+                pass
+            if f_dict[fid]['next'] is None:
+                return redirect(url_for('.revision_sumario'))
+            else:
+                return redirect(url_for('.sesion_revision',fid=f_dict[fid]['next']))
+        else:
+            return render_template('revisioninfo/revision.html',flashcard = f_dict[fid]['flashcard'],next = f_dict[fid]['next'])
     except KeyError:
         return redirect(url_for('.revision_sumario'))

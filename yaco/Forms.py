@@ -24,3 +24,17 @@ class UserForm(Form):
             return True
         self.contrasena.errors.append('Contraseña incorrecta. Intente otra vez.')
         return False
+
+class RevisionForm(Form):
+    respuesta = StringField('Respuesta')
+    flashcard = None
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        if self.flashcard is not None:
+            palabra = self.flashcard.get_palabra()
+            if not palabra.contiene_def_str(self.respuesta.data,'es' if self.flashcard.get_tipo() == 'reco' else 'en'):
+                self.respuesta.errors.append('Respuesta incorrecta')
+                return False
+            return True
+        return False

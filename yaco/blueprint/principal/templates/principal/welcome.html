@@ -69,20 +69,22 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="progress">
-                    <div class="progress-bar {{srs_color(1)}}" style="width:{{(srslvl[0]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
-                        Pichón 1-5
+                {%if srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3] != 0%}
+                    <div class="progress">
+                        <div class="progress-bar {{srs_color(1)}}" style="width:{{(srslvl[0]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Pichón 1-5
+                        </div>
+                        <div class="progress-bar {{srs_color(6)}}"  style="width:{{(srslvl[1]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Cotorra
+                        </div>
+                        <div class="progress-bar {{srs_color(7)}}"  style="width:{{(srslvl[2]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Loro
+                        </div>
+                        <div class="progress-bar {{srs_color(8)}}" style="width:{{(srslvl[3]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Yaco
+                        </div>
                     </div>
-                    <div class="progress-bar {{srs_color(srslvl[1])}}"  style="width:{{(srslvl[1]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
-                        Cotorra
-                    </div>
-                    <div class="progress-bar {{srs_color(srslvl[2])}}"  style="width:{{(srslvl[2]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
-                        Loro
-                    </div>
-                    <div class="progress-bar {{srs_color(srslvl[3])}}" style="width:{{(srslvl[3]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
-                        Yaco
-                    </div>
-                </div>
+                {%endif%}
             </div>
         </div>
     </div>

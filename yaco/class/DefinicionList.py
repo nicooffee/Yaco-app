@@ -132,7 +132,12 @@ class DefinicionList(DBWriter):
     #SETTER###################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) VALUES (%s,%s,%s,%s)"""
+        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) 
+                        VALUES (%s,%s,%s,%s)
+                        ON CONFLICT (def_id) DO UPDATE
+                        SET def_definicion = excluded.def_definicion,
+                            def_idioma = excluded.def_idioma,
+                            def_info_adicional = excluded.def_info_adicional;"""
         data_list = map(lambda x: x.get_bd_info(),self.definicion_list)
         return psc.query_many(psql_query,data_list)
     def del_data(self,*arg):

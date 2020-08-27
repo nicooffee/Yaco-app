@@ -159,13 +159,19 @@ class Palabra(DBWriter):
     #DB#######################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query_p = """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) VALUES (%s,%s,%s);"""
+        psql_query_p =   """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) 
+                            VALUES (%s,%s,%s)
+                            ON CONFLICT (pal_id) DO UPDATE
+                            SET pal_tipo = excluded.pal_tipo,
+                                pal_es_ofensiva = excluded.pal_es_ofensiva"""
         data = (self.id,self.tipo,self.es_ofensiva)
         p_d = psc.query(psql_query_p,data)
         for lang in Palabra.lang:
             self.def_lang[lang].add_data()
             data_list = map(lambda x: (self.id,x),self.def_lang[lang].get_id_iter())
-            psql_query_pd = """INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id) VALUES (%s,%s)"""
+            psql_query_pd = """INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id) 
+                                VALUES (%s,%s)
+                                ON CONFLICT ON CONSTRAINT "PK_PALABRA_DEFINICION" DO NOTHING"""
             psc.query_many(psql_query_pd,data_list)
         return p_d
 

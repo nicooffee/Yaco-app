@@ -8,7 +8,11 @@ VALUES ('Nicoffee','free',9999);
 
 --Creacion DEFINICION
 INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional)
-VALUES ('get-d1s7:Nicooffeees0','agarrar','es','',FALSE,FALSE);
+VALUES ('get-d1s7:Nicooffeees0','agarrar','es','',FALSE,FALSE)
+ON CONFLICT (def_id) DO UPDATE
+SET def_definicion = excluded.def_definicion,
+    def_idioma = excluded.def_idioma,
+    def_info_adicional = excluded.def_info_adicional;
 
 --Creacion REVISION
 INSERT INTO PUBLIC."REVISION" (rev_id,rev_es_correcta,rev_nivel_srs)
@@ -16,11 +20,15 @@ VALUES ('get-d1s5:NicooffeeFR0',TRUE,1);
 
 --Creación PALABRA
 INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva)
-VALUES ('get-d1s7:Nicooffee','transitive verb',FALSE);
+VALUES ('get-d1s7:Nicooffee','transitive verb',FALSE)
+ON CONFLICT (pal_id) DO UPDATE
+SET pal_tipo = excluded.pal_tipo,
+    pal_es_ofensiva = excluded.pal_es_ofensiva;
 
 --Creación PALABRA_DEFINICION
 INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id)
-VALUES ('get-d1s7:Nicooffee','get-d1s7:Nicooffeees0');
+VALUES ('get-d1s7:Nicooffee','get-d1s7:Nicooffeees0')
+ON CONFLICT ON CONSTRAINT "PK_PALABRA_DEFINICION" DO NOTHING;
 
 --Creación FLASHCARD
 INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs)

@@ -1,6 +1,7 @@
 import sys
 from datetime import datetime
 from Forms import RevisionForm
+from blueprint.revision_info.FlashcardDict import FlashcardDict
 from flask import (
     Blueprint,
     render_template,
@@ -12,6 +13,7 @@ from flask import (
     flash
 )
 sys.path.append('class')
+from database.Database import PSConnection
 
 revision_info_blueprint = Blueprint('revisioninfo',__name__,template_folder='templates')
 
@@ -26,14 +28,14 @@ def revisioninfo_before_request():
 
 @revision_info_blueprint.route('/revision-sumario')
 def revision_sumario():
-    session['review_disponible'] = session['usr'].dict_review_disponible()
+    session['review_disponible'] = FlashcardDict(session['usr'].list_review_disponible())
     return render_template('revisioninfo/revision-sumario.html',user = session['usr'], date = datetime.now(), rev_list = session['lastrev'])
 
 
 @revision_info_blueprint.route('/revisiones')
 def get_dict_revision():
     try:
-        current = next(iter(session['review_disponible']))
+        current = session['review_disponible'].current()
     except StopIteration:
         return redirect(url_for('.revision_sumario'))
     return redirect(url_for('.sesion_revision',fid=current))
@@ -44,16 +46,30 @@ def sesion_revision(fid):
         f_dict = session['review_disponible']
         if request.method == 'POST':
             form = RevisionForm(request.form)
-            form.flashcard = f_dict[fid]['flashcard']
+            form.flashcard = f_dict.get_flashcard(fid)
+            fid_next = f_dict.get_next(fid)
             if form.validate():
-                pass
+                data_aux = f_dict.pop(fid)
+                f_aux = data_aux['flashcard']
+                r_aux = f_aux.completar_revision(not data_aux['eq_prev'])
+                f_aux.add_data()
+                r_aux.add_data()
+                psc = PSConnection()
+                psql_query = """INSERT INTO PUBLIC."FLASHCARD_REVISION" (rev_id,fla_id,rev_fla_fecha) 
+                                VALUES (%s,%s,%s) 
+                                ON CONFLICT ON CONSTRAINT "PK_FLA_REV" DO NOTHING"""
+                data = (r_aux.get_id(),f_aux.get_id(),r_aux.get_fecha())
+                psc.query(psql_query,data)
             else:
-                pass
-            if f_dict[fid]['next'] is None:
+                f_dict.set_eq_prev(fid,True)
+                f_dict.repos()
+            if fid_next is None:
+                flash('¡Sesión de revisiones terminada!',category='success')
                 return redirect(url_for('.revision_sumario'))
             else:
-                return redirect(url_for('.sesion_revision',fid=f_dict[fid]['next']))
+                return redirect(url_for('.sesion_revision',fid=fid_next))
         else:
-            return render_template('revisioninfo/revision.html',flashcard = f_dict[fid]['flashcard'],next = f_dict[fid]['next'])
-    except KeyError:
+            return render_template('revisioninfo/revision.html',flashcard = f_dict.get_flashcard(fid),next = f_dict.get_next(fid),rev_cant=len(f_dict))
+    except KeyError as e :
+        print('error', e)
         return redirect(url_for('.revision_sumario'))

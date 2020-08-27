@@ -8,6 +8,11 @@ class FlashcardList(DBWriter):
 
     def __len__(self):
         return len(self.flashcard_list)
+
+    def __iter__(self):
+        for f in self.flashcard_list:
+            yield f
+
     @classmethod
     def from_db(cls,usu_id,pal_id):
         pass
@@ -52,21 +57,6 @@ class FlashcardList(DBWriter):
             if F.get_fecha_sig() < fecha:
                 L_disponible.agregar_flashcard(F)
         return L_disponible
-    #
-    #
-    #
-    #
-    #
-    def dict_review_disponible(self,fecha = datetime.now()):
-        D_disponible = {}
-        prev = ''
-        for F in self.flashcard_list:
-            if F.get_fecha_sig() < fecha:
-                D_disponible[F.get_id()] = {'flashcard': F,'next': None}
-                if prev is not '':
-                    D_disponible[prev]['next'] = F.get_id()
-                prev = F.get_id()
-        return D_disponible
     #
     #
     #

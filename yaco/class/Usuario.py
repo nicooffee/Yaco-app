@@ -92,13 +92,6 @@ class Usuario(DBWriter):
     #
     #
     #
-    def dict_review_disponible(self,fecha = datetime.now()):
-        return self.flashcard_list.dict_review_disponible(fecha=fecha)
-    #
-    #
-    #
-    #
-    #
     def cant_rev_per_hour(self,desde=datetime.now(),horas=24):
         return self.flashcard_list.cant_rev_per_hour(desde,horas)
 

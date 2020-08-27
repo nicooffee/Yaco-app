@@ -24,8 +24,9 @@ class Flashcard(DBWriter):
     #
     #
     def completar_revision(self,es_correcta,fecha = datetime.now()):
-        self.revision_list.completar_revision(self.id,fecha,self.nivel_srs,(False if es_correcta else True))
-        self.nivel_srs = self.nivel_srs + (1 if es_correcta else -1)
+        R = self.revision_list.completar_revision(self.id,fecha,es_correcta,self.nivel_srs)
+        self.nivel_srs = self.nivel_srs + (1 if es_correcta else (-1 if self.nivel_srs>1 else 0))
+        return R
     #
     #
     #
@@ -61,7 +62,7 @@ class Flashcard(DBWriter):
     #DB#######################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query = """INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs) VALUES (%s,%s,%s)"""
+        psql_query = """INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs) VALUES (%s,%s,%s) ON CONFLICT (fla_id) DO UPDATE SET fla_nivel_srs = excluded.fla_nivel_srs"""
         data = (self.id,self.tipo,self.nivel_srs)
         return psc.query(psql_query,data)
         

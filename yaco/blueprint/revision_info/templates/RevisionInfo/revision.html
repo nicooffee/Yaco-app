@@ -6,6 +6,16 @@
     <div id="page-container" class="bg-primary text-white">
         <div class="container-fluid no-horizontal-border">
             <div class="revision-box d-flex flex-column flex-vertical-center">
+                <div class="revision-item p-2">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="p-2">
+                            <a href="{{url_for('revisioninfo.revision_sumario')}}"><button type="button" class="btn btn-outline-light">Volver</button></a>
+                        </div> 
+                        <div class="p-2">
+                            {{rev_cant}}
+                        </div> 
+                    </div>
+                </div>
                 {%with palabra = flashcard.get_palabra()%}
                     {%if flashcard.get_tipo() == 'reco'%} {%set idioma = 'en'%} {%else%} {%set idioma = 'es'%} {%endif%}
                     {%set defprincipal = palabra.get_definicion_principal(idioma) %}

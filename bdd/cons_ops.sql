@@ -28,7 +28,7 @@ INNER JOIN PUBLIC."USU_PAL_FLASHCARD" ON PUBLIC."FLASHCARD".fla_id = PUBLIC."USU
 WHERE usu_id = 'Nicoffee' AND pal_id = 'go:1-d1s18';
 
 --Revisiones para una flashcard
-SELECT PUBLIC."REVISION".rev_id,rev_fla_fecha,rev_nivel_srs,rev_es_completa,rev_equivocacion_previa
+SELECT PUBLIC."REVISION".rev_id,rev_fla_fecha,rev_nivel_srs,rev_es_correcta
 FROM PUBLIC."REVISION"
 INNER JOIN PUBLIC."FLASHCARD_REVISION" ON PUBLIC."REVISION".rev_id = PUBLIC."FLASHCARD_REVISION".rev_id
 WHERE fla_id = 'go:1-d1s18NicoffeeFR'

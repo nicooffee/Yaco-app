@@ -54,7 +54,7 @@ class FlashcardList(DBWriter):
     def list_review_disponible(self,fecha = datetime.now()):
         L_disponible = FlashcardList(flashcard_list = [])
         for F in self.flashcard_list:
-            if F.get_fecha_sig() < fecha:
+            if F.get_fecha_sig() <= fecha:
                 L_disponible.agregar_flashcard(F)
         return L_disponible
     #

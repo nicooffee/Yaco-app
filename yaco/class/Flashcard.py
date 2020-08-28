@@ -49,9 +49,9 @@ class Flashcard(DBWriter):
         nivl_srs = self.nivel_srs
         F = rev_list.get_fecha_ult_rev()
         if F is None:
-            return self.get_fecha_creacion() + timedelta(seconds=config.get_srs_time(1))
+            return (self.get_fecha_creacion() + timedelta(seconds=config.get_srs_time(1))).replace(minute=0,second=0,microsecond=0)
         else:
-            return F + timedelta(seconds=config.get_srs_time(nivl_srs))
+            return (F + timedelta(seconds=config.get_srs_time(nivl_srs))).replace(minute=0,second=0,microsecond=0)
     #SETTER###################################
     def set_fecha_creacion(self,fecha_creacion):
         self.fecha_creacion = fecha_creacion

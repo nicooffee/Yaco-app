@@ -19,7 +19,7 @@ class FlashcardDict:
                 self.first = f.get_id()
             if i == len(f_list)-1:
                 self.last = f.get_id()
-            dic[f.get_id()] = {'flashcard': f,'eq_prev': False,'next': None}
+            dic[f.get_id()] = {'flashcard': f,'eq_prev': False, 'last_res': '','next': None}
             if prev != '':
                 dic[prev]['next'] = f.get_id()
             prev = f.get_id()
@@ -31,6 +31,8 @@ class FlashcardDict:
     def current(self):
         return self.first
 
+    def get_first(self):
+        return self.first
 
     def get_flashcard(self,fid):
         return self.flashcard_dict[fid]['flashcard']
@@ -41,9 +43,14 @@ class FlashcardDict:
     def get_eq_prev(self,fid):
         return self.flashcard_dict[fid]['eq_prev']
 
+    def get_last_res(self,fid):
+        return self.flashcard_dict[fid]['last_res']
+
     def set_eq_prev(self,fid,eq_prev):
         self.flashcard_dict[fid]['eq_prev'] = eq_prev
 
+    def set_last_res(self,fid,last_res):
+        self.flashcard_dict[fid]['last_res'] = last_res
 
     def pop(self,fid):
         try:

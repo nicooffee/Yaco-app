@@ -12,7 +12,7 @@
                             <a href="{{url_for('revisioninfo.revision_sumario')}}"><button type="button" class="btn btn-outline-light">Volver</button></a>
                         </div> 
                         <div class="p-2">
-                            {{rev_cant}}
+                            Restantes: {{rev_cant}}
                         </div> 
                     </div>
                 </div>
@@ -32,14 +32,16 @@
                                 {%endfor%}
                             {%endwith%}
                         </p>
-                    </div> 
+                    </div>
+                {%endwith%}
+                {%block bottom_content%}
                     <div class="revision-item p-2 no-border">
                         <form action="" method="POST" style="display: flex; flex-direction: column;">
                             <input name="respuesta" type="text" class="form-control-plaintext text-center white-input bg-dark" autocomplete="off" placeholder="¿Qué significa esta palabra?" required autofocus>
-                            <button class="btn btn-success" style="margin-left: auto;" type="submit">Responder</button>
+                            <button class="btn btn-success" style="margin-left: auto;" type="submit">Siguiente</button>
                         </form>
                     </div>
-                {%endwith%}
+                {%endblock%}
             </div>
         </div>
     </div>

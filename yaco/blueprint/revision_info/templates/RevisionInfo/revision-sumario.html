@@ -6,7 +6,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light shadow bg-light justify-content-between">
             <a class="navbar-brand" href="{{url_for('principal.dashboard')}}"><img src="/static/yaco-300x300.png" width="100%" alt="Yaco logo"></a>
-            {%if user.list_review_disponible()|length%}
+            {%if user.list_review_disponible(date)|length%}
             <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0">Comenzar revisiones</button></a>
             {%else%}
             <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0 disabled" aria-disabled="true" disabled>Comenzar revisiones</button></a>
@@ -21,13 +21,13 @@
         <h2>Correctas</h2>
         {%for rev in rev_list%}
             {%if rev['correcta'] is sameas true%}
-                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-info">{{rev['palabra']}}</button></a>
+                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-info">{{rev['palabra']}}({{rev['tipo']}})</button></a>
             {%endif%}
         {%endfor%}
         <h2>Incorrectas</h2>
         {%for rev in rev_list%}
             {%if rev['correcta'] is sameas false%}
-                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-danger">{{rev['palabra']}}</button></a>
+                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-danger">{{rev['palabra']}}({{rev['tipo']}})</button></a>
             {%endif%}
         {%endfor%}
     {%else%}

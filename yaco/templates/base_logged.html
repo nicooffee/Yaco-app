@@ -16,13 +16,13 @@
                                 <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{url_for('revisioninfo.revision_sumario')}}">Revisiones <span class="badge badge-primary">{{user.list_review_disponible()|length}}</span></a>
+                                <a class="nav-link" href="{{url_for('revisioninfo.revision_sumario')}}">Revisiones <span class="badge badge-primary">{{user.list_review_disponible(date)|length}}</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
                             </li>
                         </ul>
-                        <h2 class="nav-link text-secondary">{{date.strftime('%H:%M')}}</h2>
+                        <h2 id = 'tiempo' class="nav-link text-secondary"></h2>
                         <form class="form-inline my-2 my-lg-0" method="POST">
                             <input name="busqueda" class="form-control mr-sm-2" type="text" placeholder="Palabra (en inglés)" aria-label="Palabra (en inglés)">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -59,5 +59,17 @@
                 </li>
             </ul>
         </footer>
+    {%endblock%}
+    {%block script%}
+    {{super()}}
+    <script type="text/javascript">
+        setInterval(function () {
+        var tiempo = new Date();
+        
+        var placeholder = document.getElementById('tiempo');
+        
+        placeholder.innerHTML = ("0" + tiempo.getHours()).slice(-2)+':'+ ("0" + tiempo.getMinutes()).slice(-2)+':'+ ("0" + tiempo.getSeconds()).slice(-2);
+        }, 1000);
+    </script>
     {%endblock%}
 {%endblock%}

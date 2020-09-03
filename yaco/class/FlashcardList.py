@@ -78,12 +78,12 @@ class FlashcardList(DBWriter):
     #
     def cant_rev_per_hour(self,desde=datetime.now(),horas=24):
         hour_l = [0]*horas
-        desde.replace(hour=0,minute=0,second=0)
+        desde = desde.replace(minute=0,second=0,microsecond = 0)
         for flsh in self.flashcard_list:
             f_date = flsh.get_fecha_sig()
             if f_date<=(desde+timedelta(hours=horas)):
                 for i in range(horas):
-                    if (f_date<=desde+timedelta(hours=i+1)):
+                    if (f_date<desde+timedelta(hours=i+1)):
                         hour_l[i] = hour_l[i] + 1
                         break
         return hour_l 

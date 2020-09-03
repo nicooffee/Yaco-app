@@ -1,0 +1,32 @@
+{%extends "revisioninfo/revision.html"%}
+
+{%block bottom_content%}
+    {%with palabra = flashcard.get_palabra()%}
+        {%if flashcard.get_tipo() == 'reco'%} {%set idioma = 'en'%} {%else%} {%set idioma = 'es'%} {%endif%}
+        {%set defprincipal = palabra.get_definicion_principal(idioma) %}
+        <div class="revision-item p-2 no-border">
+            <form action="" method="POST" style="display: flex; flex-direction: column;">
+                <input name="respuesta" type="text" class="form-control-plaintext text-center white-input bg-danger" autocomplete="off" value="{{error}}" disabled>
+                <button class="btn btn-success" style="margin-left:auto;" type="submit" autofocus>Siguiente</button>
+            </form>
+            
+        </div>
+        <div class="revision-item p-2">
+            <div class="container rounded bg-light text-dark">
+                <p class="text-center display-4">¡Respuesta incorrecta!</p>
+                <p class="text-center"> 
+                    La palabra <a href="{{url_for('palabrainfo.palabra_info',id=palabra.get_id())}}">{{defprincipal.get_definicion()}}</a>
+                    no significa {{error}}. De hecho, sus significados son:
+                    {%with def_list = (palabra.get_definicion_iter('en' if idioma == 'es' else 'es')|list)%}
+                        {%for i in range(def_list|length)%}
+                            {%set def = def_list[i] %}
+                            {%if defprincipal.get_id() != def.get_id()%}
+                                {{def.get_definicion()}}{{def.get_info_adicional()}}{%if i < ((def_list|length)-2)%},&nbsp;{%elif i == ((def_list|length)-2)%} o&nbsp;{%endif%}
+                            {%endif%}
+                        {%endfor%}
+                    {%endwith%}
+                </p>
+            </div>
+        </div>
+    {%endwith%}
+{%endblock%}

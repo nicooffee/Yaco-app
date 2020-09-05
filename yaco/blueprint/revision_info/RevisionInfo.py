@@ -27,6 +27,7 @@ def revisioninfo_before_request():
 
 @revision_info_blueprint.route('/revision-sumario')
 def revision_sumario():
+    session['search'] = ""
     flash_list = session['usr'].list_review_disponible(fecha=datetime.now())
     session['review_disponible'] = FlashcardDict(flash_list)
     return render_template('revisioninfo/revision-sumario.html',user = session['usr'], date = datetime.now(), rev_list = session['lastrev'])

@@ -6,34 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Bienvenido, {{user.get_id()}}</h1>
+                <h1><i class="fa fa-sign-in"></i> Bienvenido, {{user.get_id()}}</h1>
                 <table id="dashboard-data" class="table-sm borderless">
                     <tbody>
                         <tr>
-                            <th scope="row">Tipo cuenta</th>
+                            <th scope="row"><i class="fa fa-credit-card"></i> Tipo cuenta</th>
                             <td>{{user.get_tipo_estudiante()}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Usuario desde</th>
+                            <th scope="row"><i class="fa fa-address-card-o"></i> Usuario desde</th>
                             <td>{{user.get_fecha_registro().strftime('%Y-%m-%d')}} ({{(date-session.get('usr').get_fecha_registro()).days}} días)</td>
                         </tr>
                         <tr>
-                            <th scope="row">Palabras aprendidas</th>
+                            <th scope="row"><i class="fa fa-book"></i> Palabras aprendidas</th>
                             <td>{{user.get_cant_palabra()}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Experiencia</th>
+                            <th scope="row"><i class="fa fa-line-chart"></i> Experiencia</th>
                             <td>{{user.get_exp_total()}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Experiencia/día</th>
+                            <th scope="row"><i class="fa fa-calendar-plus-o"></i> Experiencia/día</th>
                             <td>{{user.get_exp_total()/((date-session.get('usr').get_fecha_registro()).days)}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col">
-                <label for="myChart">Próximas revisiones</label>
+                <label for="myChart"><i class="fa fa-bar-chart"></i> Próximas revisiones</label>
                 <canvas id="myChart"></canvas>
             </div>
         </div>

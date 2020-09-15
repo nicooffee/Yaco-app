@@ -7,12 +7,14 @@ from blueprint.buscador.Buscador import buscador_blueprint
 from blueprint.palabra_info.PalabraInfo import palabra_info_blueprint
 from blueprint.revision_info.RevisionInfo import revision_info_blueprint
 import sys
+import DatabaseData as dbdata
 sys.path.append('class')
 from Estudiante import Estudiante
 
 app = Flask(__name__,static_url_path='/static')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://nico:postgres@127.0.0.1:5432/sessions'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://{}:{}@{}:{}/{}".format(dbdata.user,dbdata.db_sess_pswd,dbdata.host,dbdata.port,dbdata.db_sess_name)
 app.config['SESSION_TYPE'] = 'sqlalchemy'
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = 2628000

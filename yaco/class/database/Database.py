@@ -1,7 +1,13 @@
 import psycopg2
+import DatabaseData
 class PSConnection:
     def __init__(self):
-        self.connection = psycopg2.connect(user="nico",password="postgres",host="127.0.0.1",port="5432",database="yaco")
+        self.connection = psycopg2.connect(
+            user=DatabaseData.user,
+            password=DatabaseData.db_model_pswd,
+            host=DatabaseData.host,
+            port=DatabaseData.port,
+            database=DatabaseData.db_model_name)
         self.cursor = self.connection.cursor()
 
     def query(self,query,params):

@@ -1,4 +1,6 @@
 import urllib.request
+import sys
+sys.path.append('class/config')
 from config import config
 import json
 def get_word(word):

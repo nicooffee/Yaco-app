@@ -28,7 +28,7 @@ app.register_blueprint(revision_info_blueprint)
 ###############################################
 db = SQLAlchemy(app)
 
-Session(app)
+sess = Session(app)
 S = SqlAlchemySessionInterface(app, db, "sessions", "sess_")
 
 @app.route('/logout-complete')

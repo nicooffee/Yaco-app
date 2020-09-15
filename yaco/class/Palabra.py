@@ -1,11 +1,13 @@
 from DefinicionList import DefinicionList
+from RevisionList import RevisionList
+from datetime import datetime
 from Flashcard import Flashcard
 from interface.DBWriter import DBWriter
 from database.Database import PSConnection
 class Palabra(DBWriter):
     lang = ('en','es')
     flsh = ('reco','prod')
-    def __init__(self,id,tipo,es_ofensiva,definicion_eng = DefinicionList(),definicion_esp = DefinicionList()):
+    def __init__(self,id,tipo,es_ofensiva,definicion_eng = DefinicionList(list()),definicion_esp = DefinicionList(list())):
         self.id = id 
         self.tipo = tipo
         self.fla_dic = {Palabra.flsh[0]: None,Palabra.flsh[1]: None}
@@ -24,10 +26,10 @@ class Palabra(DBWriter):
                 definicion_eng=DefinicionList.from_string_list(pal_id,Palabra.lang[0],palabra_info["definicion_eng"]),
                 definicion_esp=DefinicionList.from_string_list(pal_id,Palabra.lang[1],palabra_info["definicion_esp"]),
                 es_ofensiva=palabra_info["es_ofensiva"])
-            p.fla_dic[Palabra.flsh[0]] = Flashcard(p.id + uq_id + "FR" ,p,Palabra.flsh[0])
-            p.fla_dic[Palabra.flsh[1]] = Flashcard(p.id + uq_id + "FP" ,p,Palabra.flsh[1])
+            p.fla_dic[Palabra.flsh[0]] = Flashcard(p.id + uq_id + "FR" ,p,Palabra.flsh[0],datetime.now(),RevisionList(list()))
+            p.fla_dic[Palabra.flsh[1]] = Flashcard(p.id + uq_id + "FP" ,p,Palabra.flsh[1],datetime.now(),RevisionList(list()))
             return p
-        except KeyError  as err:
+        except (KeyError,TypeError ) as err:
             print('Error de key al crear palabra',err)
             return None
     #
@@ -94,6 +96,12 @@ class Palabra(DBWriter):
     def get_es_ofensiva(self):
         return self.es_ofensiva
         
+    def get_flashcard(self,tipo):
+        try:
+            return self.fla_dic[tipo]
+        except KeyError as err:
+            print("Error: tipo de flashcard no encontrado")
+            return None
     def get_flashcard_list(self):
         fla_list = []
         for key,value in self.fla_dic.items():
@@ -102,6 +110,13 @@ class Palabra(DBWriter):
 
     def get_id_key(self):
         return Palabra.to_key(self.id)
+
+    def get_definicion_principal(self,idioma):
+        try:
+            return self.def_lang[idioma].get_definicion_principal()
+        except KeyError as err:
+            print("Error: idioma no encontrado",err)
+            return self.def_lang[Palabra.lang[0]].get_definicion_principal()
 
     def get_definicion_iter(self,idioma):
         try:
@@ -144,13 +159,19 @@ class Palabra(DBWriter):
     #DB#######################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query_p = """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) VALUES (%s,%s,%s);"""
+        psql_query_p =   """INSERT INTO PUBLIC."PALABRA" (pal_id,pal_tipo,pal_es_ofensiva) 
+                            VALUES (%s,%s,%s)
+                            ON CONFLICT (pal_id) DO UPDATE
+                            SET pal_tipo = excluded.pal_tipo,
+                                pal_es_ofensiva = excluded.pal_es_ofensiva"""
         data = (self.id,self.tipo,self.es_ofensiva)
         p_d = psc.query(psql_query_p,data)
         for lang in Palabra.lang:
             self.def_lang[lang].add_data()
             data_list = map(lambda x: (self.id,x),self.def_lang[lang].get_id_iter())
-            psql_query_pd = """INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id) VALUES (%s,%s)"""
+            psql_query_pd = """INSERT INTO PUBLIC."PALABRA_DEFINICION" (pal_id,def_id) 
+                                VALUES (%s,%s)
+                                ON CONFLICT ON CONSTRAINT "PK_PALABRA_DEFINICION" DO NOTHING"""
             psc.query_many(psql_query_pd,data_list)
         return p_d
 

@@ -1,0 +1,75 @@
+{%extends "base.html"%}
+
+
+{%block body%}
+    <div id="content-wrap">
+        {%block header%}
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light shadow bg-light">
+                    <a class="navbar-brand" href="{{url_for('principal.dashboard')}}"><img src="/static/yaco-300x300.png" width="100%" alt="Yaco logo"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{url_for('revisioninfo.revision_sumario')}}">Revisiones <span class="badge badge-primary">{{user.list_review_disponible(date)|length}}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
+                            </li>
+                        </ul>
+                        <h2 id = 'tiempo' class="nav-link text-secondary"></h2>
+                        <form class="form-inline my-2 my-lg-0" method="POST">
+                            <input name="busqueda" class="form-control mr-sm-2" type="text" placeholder="Palabra (en inglés)" aria-label="Palabra (en inglés)">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                        </form>
+                    </div>
+                </nav>
+            </header>
+        {%endblock%}
+        <div class="border border-light main-block container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        {{ show_message(message,category)}}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {%block content%}
+            {%endblock%}    
+        </div>        
+    </div>
+    {%block footer%}
+        <footer id="footer" class="container-fluid navbar navbar-default navbar-bottom">
+            <h3>Yaco</h3>
+            <ul class="nav">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="#!">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!">Ayuda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!">Contacto</a>
+                </li>
+            </ul>
+        </footer>
+    {%endblock%}
+    {%block script%}
+    {{super()}}
+    <script type="text/javascript">
+        setInterval(function () {
+        var tiempo = new Date();
+        
+        var placeholder = document.getElementById('tiempo');
+        
+        placeholder.innerHTML = ("0" + tiempo.getHours()).slice(-2)+':'+ ("0" + tiempo.getMinutes()).slice(-2)+':'+ ("0" + tiempo.getSeconds()).slice(-2);
+        }, 1000);
+    </script>
+    {%endblock%}
+{%endblock%}

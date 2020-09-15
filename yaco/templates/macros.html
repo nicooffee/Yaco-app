@@ -1,0 +1,65 @@
+{% macro show_message(message,type)%}
+    <div class="alert alert-{{type}} alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{ message }}</strong> 
+    </div>
+{% endmacro %}
+
+{% macro srs_name(srs_lvl)%}
+    {%if srs_lvl == 8%}
+        Yaco
+    {%elif srs_lvl == 7%}
+        Loro
+    {%elif srs_lvl == 6%}
+        Cotorra
+    {%else%}
+        Pichón {{srs_lvl}}
+    {%endif%}
+{% endmacro %}
+
+{% macro srs_color(srs_lvl)%}
+    {%if srs_lvl == 8%}
+        bg-dark
+    {%elif srs_lvl == 7%}
+        bg-primary
+    {%elif srs_lvl == 6%}
+        bg-info
+    {%else%}
+        bg-secondary
+    {%endif%}
+{% endmacro %}
+
+{% macro time_str(fecha,inversed)%}
+    {%set sub = fecha-date if inversed else date-fecha%}
+    {%set t_sec = (sub.days*86400) + sub.seconds%}
+    {%set days = (t_sec/86400)|int%}
+    {%set hours = ((t_sec - (days*86400))/3600)|int%}
+    {%set minutes = ((t_sec - (days*86400) - (hours*3600))/60)|int%}
+    {%set seconds = ((t_sec - (days*86400) - (hours*3600) - (minutes*60)))|int%}
+    {%if days>0%}
+        {{days}} {% if days == 1%} día {%else%} días {%endif%}
+    {%elif days == 0%}
+        {%if hours>0%}
+            {{hours}} {% if hours == 1%} hora {%else%} horas {%endif%}
+        {%elif hours == 0%}
+            {%if minutes>0%}
+                {{minutes}} {% if minutes == 1%} minuto {%else%} minutos {%endif%}
+            {%elif minutes == 0%}
+                {%if seconds>=0%}
+                    menos de un minuto
+                {%else%}
+                    Disponible
+                {%endif%}
+            {%else%}
+                Disponible
+            {%endif%}
+        {%else%}
+            Disponible
+        {%endif%}
+    {%else%}
+        Disponible
+    {%endif%}
+
+{% endmacro %}

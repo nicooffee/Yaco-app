@@ -16,7 +16,7 @@ def desglose(J):
     resultado = []
     for word in J:
         definicion_c = 1
-        if "def" in word:
+        if "def" in word and word["meta"]["lang"] == "en":
             for definicion in word["def"]:
                 tipo = definicion["vd"] if "vd" in definicion else word["fl"]
                 for sense in definicion["sseq"]:
@@ -42,7 +42,7 @@ def desglose(J):
 
 if __name__ == "__main__":
     import GetWord
-    palabra = "to%20go%20out"
+    palabra = "aceptar"
     parsed = GetWord.get_word(palabra)
     with open('resp.json','w') as file:
         file.write(desglose(parsed))

@@ -1,0 +1,48 @@
+{%extends "base.html"%}
+
+{%block title%}Yaco - Revisión {%endblock%}
+
+{%block raw_body%}
+    <div id="page-container" class="bg-primary text-white">
+        <div class="container-fluid no-horizontal-border">
+            <div class="revision-box d-flex flex-column flex-vertical-center">
+                <div class="revision-item p-2">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="p-2">
+                            <a href="{{url_for('revisioninfo.revision_sumario')}}"><button type="button" class="btn btn-outline-light">Volver</button></a>
+                        </div> 
+                        <div class="p-2">
+                            Restantes: {{rev_cant}}
+                        </div> 
+                    </div>
+                </div>
+                {%with palabra = flashcard.get_palabra()%}
+                    {%if flashcard.get_tipo() == 'reco'%} {%set idioma = 'en'%} {%else%} {%set idioma = 'es'%} {%endif%}
+                    {%set defprincipal = palabra.get_definicion_principal(idioma) %}
+                    <div class="revision-item p-2"><p class="text-center" style="font-size:80px;">{{defprincipal.get_definicion()}} {{defprincipal.get_info_adicional()}}</p></div>
+                    <div class="revision-item p-2">
+                        <p class="text-center">
+                            {%with def_list = (palabra.get_definicion_iter(idioma)|list)%}
+                                Otras definiciones: 
+                                {%for i in range(def_list|length)%}
+                                    {%set def = def_list[i] %}
+                                    {%if defprincipal.get_id() != def.get_id()%}
+                                        {{def.get_definicion()}} {{def.get_info_adicional()}}{%if i != ((def_list|length)-1)%},&nbsp;{%endif%}
+                                    {%endif%}
+                                {%endfor%}
+                            {%endwith%}
+                        </p>
+                    </div>
+                {%endwith%}
+                {%block bottom_content%}
+                    <div class="revision-item p-2 no-border">
+                        <form action="" method="POST" style="display: flex; flex-direction: column;">
+                            <input name="respuesta" type="text" class="form-control-plaintext text-center white-input bg-dark" autocomplete="off" placeholder="¿Qué significa esta palabra?" required autofocus>
+                            <button class="btn btn-success" style="margin-left: auto;" type="submit">Siguiente</button>
+                        </form>
+                    </div>
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+{%endblock%}

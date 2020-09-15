@@ -47,7 +47,12 @@ class Definicion(DBWriter):
     #DB#######################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) VALUES (%s,%s,%s,%s)"""
+        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) 
+                        VALUES (%s,%s,%s,%s) 
+                        ON CONFLICT (def_id) DO UPDATE
+                        SET def_definicion = excluded.def_definicion,
+                            def_idioma = excluded.def_idioma,
+                            def_info_adicional = excluded.def_info_adicional;"""
         data = (self.id,self.definicion,self.idioma,self.info_adicional)
         return psc.query(psql_query,data)
 

@@ -1,0 +1,133 @@
+{% extends "base_logged.html" %}
+
+{%block title%}Yaco{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1><i class="fa fa-sign-in"></i> Bienvenido, {{user.get_id()}}</h1>
+                <table id="dashboard-data" class="table-sm borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><i class="fa fa-credit-card"></i> Tipo cuenta</th>
+                            <td>{{user.get_tipo_estudiante()}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa fa-address-card-o"></i> Usuario desde</th>
+                            <td>{{user.get_fecha_registro().strftime('%Y-%m-%d')}} ({{(date-session.get('usr').get_fecha_registro()).days}} días)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa fa-book"></i> Palabras aprendidas</th>
+                            <td>{{user.get_cant_palabra()}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa fa-line-chart"></i> Experiencia</th>
+                            <td>{{user.get_exp_total()}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="fa fa-calendar-plus-o"></i> Experiencia/día</th>
+                            <td>{{user.get_exp_total()/((date-session.get('usr').get_fecha_registro()).days)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <label for="myChart"><i class="fa fa-bar-chart"></i> Próximas revisiones</label>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card-deck text-light">
+                    <div class="card bg-secondary">
+                        <div class="card-body text-center">
+                            <p class="h3 card-text">{{srslvl[0]}}</p>
+                            <p class="card-text">Pichón 1-5</p>
+                        </div>
+                    </div>
+                    <div class="card bg-info">
+                        <div class="card-body text-center">
+                            <p class="h3 card-text">{{srslvl[1]}}</p>
+                            <p class="card-text">Cotorra</p>
+                        </div>
+                    </div>
+                    <div class="card bg-primary">
+                        <div class="card-body text-center">
+                            <p class="h3 card-text">{{srslvl[2]}}</p>
+                            <p class="card-text">Loro</p>
+                        </div>
+                    </div>
+                    <div class="card bg-dark">
+                        <div class="card-body text-center">
+                            <p class="h3 card-text">{{srslvl[3]}}</p>
+                            <p class="card-text">Yaco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {%if srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3] != 0%}
+                    <div class="progress">
+                        <div class="progress-bar {{srs_color(1)}}" style="width:{{(srslvl[0]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Pichón 1-5
+                        </div>
+                        <div class="progress-bar {{srs_color(6)}}"  style="width:{{(srslvl[1]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Cotorra
+                        </div>
+                        <div class="progress-bar {{srs_color(7)}}"  style="width:{{(srslvl[2]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Loro
+                        </div>
+                        <div class="progress-bar {{srs_color(8)}}" style="width:{{(srslvl[3]/(srslvl[0]+srslvl[1]+srslvl[2]+srslvl[3])*100)|int}}%">
+                            Yaco
+                        </div>
+                    </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+{%endblock%}
+
+{%block script%}
+    {{super()}}
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var now = new Date();
+        var L = new Array(24);
+        for(var i = 0;i<L.length;i++){
+            L[i] = now.getHours().toString().concat(':00');
+            now.setHours(now.getHours() + 1);
+        }
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+            // The data for our dataset
+            data: {
+                labels: L,
+                datasets: [{
+                    label: 'Revisiones',
+                    borderColor: 'rgb(153,204,255)',
+                    backgroundColor: 'rgb(204,229,255)',
+                    borderWidth: 1,
+                    data: {{user.cant_rev_per_hour()}}
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                scales: {
+                    xAxes: [{
+                        categoryPercentage: 1.0,
+                        barPercentage: 1.0,
+                    }]
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+    </script>
+
+{%endblock%}

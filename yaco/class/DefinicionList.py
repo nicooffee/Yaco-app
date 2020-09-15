@@ -2,7 +2,7 @@ from Definicion import Definicion
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
 class DefinicionList(DBWriter):
-    def __init__(self,definicion_list = []):
+    def __init__(self,definicion_list):
         self.definicion_list = definicion_list
 
     def __add__(self,other):
@@ -119,14 +119,25 @@ class DefinicionList(DBWriter):
             for n_id in range(100):
                 if n_id not in id_index:
                     return n_id
-    
+
+    def get_definicion_principal(self):
+        for d in self.definicion_list:
+            if d.get_es_principal():
+                return d
+        return self.definicion_list[0]
+
     def get_def_extra(self):
         L = filter(lambda d: d.get_es_extra(),self.definicion_list)
         return DefinicionList(definicion_list=list(L))
     #SETTER###################################
     def add_data(self,*arg):
         psc = PSConnection()
-        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) VALUES (%s,%s,%s,%s)"""
+        psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) 
+                        VALUES (%s,%s,%s,%s)
+                        ON CONFLICT (def_id) DO UPDATE
+                        SET def_definicion = excluded.def_definicion,
+                            def_idioma = excluded.def_idioma,
+                            def_info_adicional = excluded.def_info_adicional;"""
         data_list = map(lambda x: x.get_bd_info(),self.definicion_list)
         return psc.query_many(psql_query,data_list)
     def del_data(self,*arg):

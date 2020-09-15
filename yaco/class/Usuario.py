@@ -4,15 +4,15 @@ from Flashcard import Flashcard
 from Palabra import Palabra
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
-import datetime
+from datetime import datetime
 class Usuario(DBWriter):
     def __init__(
             self,
             id,
-            flashcard_list = FlashcardList(),
+            flashcard_list = FlashcardList(list()),
             palabra_dict = PalabraDict(),
-            fecha_registro = datetime.datetime.now(),
-            ultimo_logeo = datetime.datetime.now()):
+            fecha_registro = datetime.now(),
+            ultimo_logeo = datetime.now()):
         self.id = id
         self.flashcard_list = flashcard_list
         self.palabra_dict   = palabra_dict 
@@ -64,7 +64,7 @@ class Usuario(DBWriter):
             psc.query(psql_query_up,data_up)
             data_up2 = (P.get_id(),)
             res = psc.fetch_one(psql_query_up2,data_up2)
-            if res[0]:
+            if res[0]: #Si existe un registro luego de eliminar la relación, significa que existe otro usuario con la palabra.
                 def_extra = P.get_def_extra()
                 def_extra.del_data()
             else:
@@ -73,15 +73,55 @@ class Usuario(DBWriter):
                 F = self.flashcard_list.eliminar_flashcard(F_p.get_id())
                 F_p.del_data()
         return P
-            
+    #
+    #
+    #
+    #
+    #
+    def cant_flashcard(self,nivel=None):
+        return self.flashcard_list.cant_flashcard(nivel)
+    #
+    #
+    #
+    #
+    #
+    def list_review_disponible(self,fecha = datetime.now()):
+        return self.flashcard_list.list_review_disponible(fecha=fecha)
+    #
+    #
+    #
+    #
+    #
+    def cant_rev_per_hour(self,desde=datetime.now(),horas=24):
+        return self.flashcard_list.cant_rev_per_hour(desde,horas)
+
+    @staticmethod
+    def db_exists(usr):
+        psc = PSConnection()
+        psql_query = """SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO" WHERE usu_id = (%s))"""
+        data = (usr,)
+        res = psc.fetch_one(psql_query,data)
+        return res[0]
+
+    @staticmethod
+    def db_check_password(usr,psw):
+        psc = PSConnection()
+        psql_query = """SELECT usu_pass FROM PUBLIC."USUARIO" WHERE usu_id = (%s)"""
+        data = (usr,)
+        res = psc.fetch_one(psql_query,data)
+        return psw == res[0]
 
     #GETTER###################################
     def get_id(self):
         return self.id
     def get_fecha_registro(self):
-        return fecha_registro
+        return self.fecha_registro
     def get_ultimo_logeo(self):
-        return ultimo_logeo
+        return self.ultimo_logeo
+    def get_cant_palabra(self):
+        return self.palabra_dict.cant_palabra()
+    def get_palabra(self,id):
+        return self.palabra_dict.get_palabra(id)
     #SETTER###################################
     def set_id(self,id):
         self.id = id

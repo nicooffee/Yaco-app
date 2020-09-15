@@ -1,10 +1,18 @@
 from Flashcard import Flashcard
-from datetime import datetime
+from datetime import datetime,timedelta
 from database.Database import PSConnection
 from interface.DBWriter import DBWriter
 class FlashcardList(DBWriter):
-    def __init__(self,flashcard_list = []):
+    def __init__(self,flashcard_list):
         self.flashcard_list = flashcard_list
+
+    def __len__(self):
+        return len(self.flashcard_list)
+
+    def __iter__(self):
+        for f in self.flashcard_list:
+            yield f
+
     @classmethod
     def from_db(cls,usu_id,pal_id):
         pass
@@ -43,10 +51,10 @@ class FlashcardList(DBWriter):
     #
     #
     #
-    def fcard_review_disponible(self,fecha = datetime.now()):
+    def list_review_disponible(self,fecha = datetime.now()):
         L_disponible = FlashcardList(flashcard_list = [])
         for F in self.flashcard_list:
-            if F.get_fecha_sig() < fecha:
+            if F.get_fecha_sig() <= fecha:
                 L_disponible.agregar_flashcard(F)
         return L_disponible
     #
@@ -54,6 +62,32 @@ class FlashcardList(DBWriter):
     #
     #
     #
+    def cant_flashcard(self,nivel=None):
+        if nivel is None:
+            return len(self.flashcard_list)
+        else:
+            c = 0
+            for f in self.flashcard_list:
+                if f.get_nivel_srs() == nivel:
+                    c += 1
+            return c
+    #
+    #
+    #
+    #
+    #
+    def cant_rev_per_hour(self,desde=datetime.now(),horas=24):
+        hour_l = [0]*horas
+        desde = desde.replace(minute=0,second=0,microsecond = 0)
+        for flsh in self.flashcard_list:
+            f_date = flsh.get_fecha_sig()
+            if f_date<=(desde+timedelta(hours=horas)):
+                for i in range(horas):
+                    if (f_date<desde+timedelta(hours=i+1)):
+                        hour_l[i] = hour_l[i] + 1
+                        break
+        return hour_l 
+
     #GETTER###################################
     def get_cant_fcard(self):
         return len(self.flashcard_list)

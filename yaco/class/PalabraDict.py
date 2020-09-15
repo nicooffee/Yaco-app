@@ -33,10 +33,10 @@ class PalabraDict:
                 p_aux = Palabra(r[0],r[1],r[2],
                                 definicion_eng=DefinicionList.from_db(usu_id,r[0],Palabra.lang[0]),
                                 definicion_esp=DefinicionList.from_db(usu_id,r[0],Palabra.lang[1]))
-                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],nivel_srs=r[5],revision_list=RevisionList.from_db(r[3]))
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(r[3]),nivel_srs=r[5])
                 p_aux.set_flashcard(f)
             else:
-                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],nivel_srs=r[5])
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(r[3]),nivel_srs=r[5])
                 p_aux.set_flashcard(f)
                 dic.__add_in_dict(p_aux)
                 p_aux = None
@@ -164,12 +164,22 @@ class PalabraDict:
 
     #GETTER###################################
     def get_flashcard_list(self):
-        flist = FlashcardList()
+        flist = FlashcardList(list())
         for key,value in self.dict_id.items():
             for w in value:
                 for f in w.get_flashcard_list():
                     flist.agregar_flashcard(f)
         return flist
+
+    def get_palabra(self,id):
+        try:
+            key = Palabra.to_key(id)
+            for p in self.dict_id[key]:
+                if p.get_id() == id:
+                    return p
+            return None
+        except KeyError:
+            return None
     #SETTER###################################
 
 
@@ -182,7 +192,7 @@ if __name__ == "__main__":
     from function import Desglose
     from function import GetWord
     import json
-    pd = PalabraDict()
+    #pd = PalabraDict()
     print("Crear diccionario")
     for l in PalabraDict.lang:
         print(pd.dict_lang[l])

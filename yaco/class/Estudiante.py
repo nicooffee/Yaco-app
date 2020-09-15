@@ -56,30 +56,31 @@ class Estudiante(Usuario):
             return -1 if r_u == -1 or r_e == -1 else r_u+r_e
         return -1
 
-
-def crear_usuario():
-    E = Estudiante("Nicoffee","free")
-    print("Agregar estudiante a bdd: ",E.add_data("1234"))
-    from function import Desglose
-    from function import GetWord
-    import json
-    print("Agregar una palabra")
-    resp = GetWord.get_word('to%20go%20out')
-    w_json = Desglose.desglose(resp)
-    w_dic = json.loads(w_json)
-    for w in w_dic:
-        E.agregar_palabra(w)
-    print("Eliminar una palabra")
-    E.eliminar_palabra('go:1-d1s26')
-    for key,value in E.palabra_dict.dict_id.items():
-        print('\n',key,'|',end=' ')
-        for w in value:
-            print(w.get_id(),end=' ')
-def cargar_usuario():
-    from datetime import datetime,timedelta
-    est = Estudiante.from_db('Nicoffee')
-    print("Usuario: ",est.get_id())
-    print("C. palabras:",est.palabra_dict.cant_palabra())
-    print("C. flashcards:",len(est.flashcard_list))
-    print("C. fla disp:",len(est.flashcard_list.list_review_disponible(datetime.now() + timedelta(hours=5)).flashcard_list))
-    
+        
+if __name__ == "__main__":
+    def crear_usuario():
+        E = Estudiante("Nicoffee","free")
+        print("Agregar estudiante a bdd: ",E.add_data("1234"))
+        from function import Desglose
+        from function import GetWord
+        import json
+        print("Agregar una palabra")
+        resp = GetWord.get_word('to%20go%20out')
+        w_json = Desglose.desglose(resp)
+        w_dic = json.loads(w_json)
+        for w in w_dic:
+            E.agregar_palabra(w)
+        print("Eliminar una palabra")
+        E.eliminar_palabra('go:1-d1s26')
+        for key,value in E.palabra_dict.dict_id.items():
+            print('\n',key,'|',end=' ')
+            for w in value:
+                print(w.get_id(),end=' ')
+    def cargar_usuario():
+        from datetime import datetime,timedelta
+        est = Estudiante.from_db('Nicoffee')
+        print("Usuario: ",est.get_id())
+        print("C. palabras:",est.palabra_dict.cant_palabra())
+        print("C. flashcards:",len(est.flashcard_list))
+        print("C. fla disp:",len(est.flashcard_list.list_review_disponible(datetime.now() + timedelta(hours=5)).flashcard_list))
+        

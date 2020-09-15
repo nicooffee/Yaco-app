@@ -26,6 +26,8 @@ app.register_blueprint(buscador_blueprint)
 app.register_blueprint(palabra_info_blueprint)
 app.register_blueprint(revision_info_blueprint)
 ###############################################
+
+
 db = SQLAlchemy(app)
 
 sess = Session(app)

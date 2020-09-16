@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <th scope="row"><i class="fa fa-calendar-plus-o"></i> Experiencia/día</th>
-                            <td>{{user.get_exp_total()/((date-session.get('usr').get_fecha_registro()).days)}}</td>
+                            <td>{{user.get_exp_total()/(1+(date-session.get('usr').get_fecha_registro()).days)}}</td>
                         </tr>
                     </tbody>
                 </table>

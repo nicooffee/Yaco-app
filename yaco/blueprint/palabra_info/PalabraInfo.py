@@ -71,7 +71,7 @@ def eliminar_actual(id):
             flash('La palabra no se ha eliminado puesto que no se ha encontrado en las palabras aprendidas')
         else:
             flash('Palabra eliminada exitósamente.',category='warning')
-    if 'search' in session:
+    if 'search' in session and session['search']!='':
         return redirect(url_for('buscar.buscar',word=session['search']))
     else:
         return redirect(url_for('principal.dashboard'))

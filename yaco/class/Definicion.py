@@ -45,8 +45,8 @@ class Definicion(DBWriter):
         self.es_principal = es_principal
 
     #DB#######################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) 
                         VALUES (%s,%s,%s,%s) 
                         ON CONFLICT (def_id) DO UPDATE
@@ -56,8 +56,8 @@ class Definicion(DBWriter):
         data = (self.id,self.definicion,self.idioma,self.info_adicional)
         return psc.query(psql_query,data)
 
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."DEFINICION" WHERE def_id = %s;"""
         data = (self.id,)
         return psc.query(psql_query,data)

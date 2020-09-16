@@ -20,15 +20,15 @@ class Estudiante(Usuario):
         self.tipo_estudiante = tipo_estudiante
         self.exp_total = exp_total
     @classmethod
-    def from_db(cls,usu_id):
-        psc = PSConnection()
+    def from_db(cls,connection,usu_id):
+        psc = connection
         psql_query = """SELECT PUBLIC."USUARIO".usu_id,est_tipo,usu_fecha_registro,est_exp_total
                         FROM PUBLIC."USUARIO"
                         INNER JOIN PUBLIC."ESTUDIANTE" ON PUBLIC."USUARIO".usu_id = PUBLIC."ESTUDIANTE".usu_id
                         WHERE PUBLIC."USUARIO".usu_id = %s"""
         data = (usu_id,)
         res = psc.fetch_one(psql_query,data)
-        p_dict = PalabraDict.from_db(usu_id)
+        p_dict = PalabraDict.from_db(connection,usu_id)
         f_list = p_dict.get_flashcard_list()
         return cls(res[0],res[1],flashcard_list=f_list,palabra_dict=p_dict,fecha_registro=res[2],exp_total=res[3])
     #GETTER###################################
@@ -44,13 +44,13 @@ class Estudiante(Usuario):
         self.exp_total = exp_total
 
     #DB#######################################
-    def add_data(self,*arg):
+    def add_data(self,connection,*arg):
         if len(arg)>0 and isinstance(arg[0],str):
             psql_query_u = """INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro) VALUES (%s,%s,%s)"""
             psql_query_e = """INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total) VALUES (%s,%s,%s);"""
             data_u = (self.id,arg[0],self.fecha_registro)
             data_e = (self.id,self.tipo_estudiante,self.exp_total)
-            psc = PSConnection()
+            psc = connection
             r_u = psc.query(psql_query_u,data_u)
             r_e = psc.query(psql_query_e,data_e)
             return -1 if r_u == -1 or r_e == -1 else r_u+r_e
@@ -78,7 +78,7 @@ if __name__ == "__main__":
                 print(w.get_id(),end=' ')
     def cargar_usuario():
         from datetime import datetime,timedelta
-        est = Estudiante.from_db('Nicoffee')
+        est = Estudiante.from_db(PSConnection(),'Nicoffee')
         print("Usuario: ",est.get_id())
         print("C. palabras:",est.palabra_dict.cant_palabra())
         print("C. flashcards:",len(est.flashcard_list))

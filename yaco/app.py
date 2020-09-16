@@ -9,11 +9,12 @@ from blueprint.revision_info.RevisionInfo import revision_info_blueprint
 import sys
 import DatabaseData as dbdata
 sys.path.append('class')
+from database.Database import PSConnection
 from Estudiante import Estudiante
 
 app = Flask(__name__,static_url_path='/static')
+app.dbconnection = PSConnection()
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://{}:{}@{}:{}/{}".format(dbdata.user,dbdata.db_sess_pswd,dbdata.host,dbdata.port,dbdata.db_sess_name)
 app.config['SESSION_TYPE'] = 'sqlalchemy'
 app.config['SESSION_PERMANENT'] = True
@@ -45,4 +46,5 @@ def logout_complete():
     return redirect(url_for('login.login'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    with app.app_context():
+        app.run(host='0.0.0.0')

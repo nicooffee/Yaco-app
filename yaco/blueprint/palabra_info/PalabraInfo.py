@@ -8,9 +8,11 @@ from flask import (
     request,
     url_for,
     session,
+    current_app,
     flash
 )
 sys.path.append('class')
+from database.Database import PSConnection
 from Palabra import Palabra
 from Forms import SearchForm
 
@@ -18,6 +20,8 @@ palabra_info_blueprint = Blueprint('palabrainfo',__name__,template_folder='templ
 
 @palabra_info_blueprint.before_request
 def palabrainfo_before_request():
+    if 'db' not in g:
+        g.db = current_app.dbconnection
     if 'usr' not in session:
         return redirect(url_for('login.login'))
     if 'search' in session:
@@ -52,7 +56,7 @@ def agregar_actual():
     if 'w_actual' in session:
         w_dict = session.pop('w_actual')
         user = session['usr']
-        w = user.agregar_palabra(w_dict)
+        w = user.agregar_palabra(g.db,w_dict)
         flash('Palabra agregada exitósamente','primary')
         return redirect(url_for('.palabra_info',id=w.get_id()))
     else:
@@ -62,7 +66,7 @@ def agregar_actual():
 def eliminar_actual(id):
     if id != '':
         user = session['usr']
-        w = user.eliminar_palabra(id)
+        w = user.eliminar_palabra(g.db,id)
         if w is None:
             flash('La palabra no se ha eliminado puesto que no se ha encontrado en las palabras aprendidas')
         else:

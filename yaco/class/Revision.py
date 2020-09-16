@@ -30,13 +30,13 @@ class Revision(DBWriter):
     def set_es_correcta(self,es_correcta):
         self.es_correcta = es_correcta
     #DB#######################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."REVISION" (rev_id,rev_es_correcta,rev_nivel_srs) VALUES (%s,%s,%s)"""
         data = (self.id,self.es_correcta,self.nivel_srs)
         return psc.query(psql_query,data)
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."REVISION" WHERE rev_id = %s;"""
         data = (self.id,)
         return psc.query(psql_query,data)

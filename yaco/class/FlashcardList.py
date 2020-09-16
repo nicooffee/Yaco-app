@@ -97,14 +97,14 @@ class FlashcardList(DBWriter):
     #SETTER###################################
 
     #DB#######################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs) VALUES (%s,%s,%s)"""
         data_list = map(lambda x: (x.get_id(),x.get_tipo(),x.get_nivel_srs()),self.flashcard_list)
         return psc.query_many(psql_query,data_list)
         
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."FLASHCARD" WHERE fla_id = %s;"""
         data = map(lambda x: (x.id,),self.flashcard_list)
         return psc.query_many(psql_query,data)

@@ -25,11 +25,11 @@ class Usuario(DBWriter):
     #
     #input: elemento de un desglose
     #output: palabra agregada
-    def agregar_palabra(self,palabra_info):
+    def agregar_palabra(self,connection,palabra_info):
         P = self.palabra_dict.agregar_palabra(palabra_info,self.id)
         if P is not None:
-            P.add_data()
-            psc = PSConnection()
+            P.add_data(connection)
+            psc = connection
             psql_query_up = """INSERT INTO PUBLIC."USUARIO_PALABRA" (usu_id,pal_id) VALUES (%s,%s);"""
             psql_query_f = """INSERT INTO PUBLIC."USU_PAL_FLASHCARD" (usu_id,pal_id,fla_id,fla_fecha_creacion) VALUES (%s,%s,%s,%s);"""
             psql_query_d = """INSERT INTO PUBLIC."USU_PAL_DEFINICION" (usu_id,pal_id,def_id,def_principal,def_extra) VALUES (%s,%s,%s,%s,%s)"""
@@ -37,7 +37,7 @@ class Usuario(DBWriter):
             psc.query(psql_query_up,up_data)
             for f in P.get_flashcard_list():
                 self.flashcard_list.agregar_flashcard(f)
-                f.add_data()
+                f.add_data(connection)
             f_data = map(lambda x: (self.id,P.get_id(),x.get_id(),x.get_fecha_creacion()),P.get_flashcard_list())
             def_0 = P.get_definicion_iter(Palabra.lang[0])
             def_1 = P.get_definicion_iter(Palabra.lang[1])
@@ -54,10 +54,10 @@ class Usuario(DBWriter):
     #
     #input: id de una palabra (de los del desglose)
     #output: palabra eliminada
-    def eliminar_palabra(self,id):
+    def eliminar_palabra(self,connection,id):
         P = self.palabra_dict.eliminar_palabra(id)
         if P is not None:
-            psc = PSConnection()
+            psc = connection
             psql_query_up  = """DELETE FROM PUBLIC."USUARIO_PALABRA" WHERE usu_id = (%s) AND pal_id = (%s)"""
             psql_query_up2 = """SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO_PALABRA" WHERE pal_id = (%s))"""
             data_up = (self.id,P.get_id())
@@ -66,12 +66,12 @@ class Usuario(DBWriter):
             res = psc.fetch_one(psql_query_up2,data_up2)
             if res[0]: #Si existe un registro luego de eliminar la relación, significa que existe otro usuario con la palabra.
                 def_extra = P.get_def_extra()
-                def_extra.del_data()
+                def_extra.del_data(psc)
             else:
-                P.del_data()
+                P.del_data(psc)
             for F_p in P.get_flashcard_list(): 
                 F = self.flashcard_list.eliminar_flashcard(F_p.get_id())
-                F_p.del_data()
+                F_p.del_data(psc)
         return P
     #
     #
@@ -96,16 +96,16 @@ class Usuario(DBWriter):
         return self.flashcard_list.cant_rev_per_hour(desde,horas)
 
     @staticmethod
-    def db_exists(usr):
-        psc = PSConnection()
+    def db_exists(usr,connection):
+        psc = connection
         psql_query = """SELECT EXISTS(SELECT 1 FROM PUBLIC."USUARIO" WHERE usu_id = (%s))"""
         data = (usr,)
         res = psc.fetch_one(psql_query,data)
         return res[0]
 
     @staticmethod
-    def db_check_password(usr,psw):
-        psc = PSConnection()
+    def db_check_password(usr,psw,connection):
+        psc = connection
         psql_query = """SELECT usu_pass FROM PUBLIC."USUARIO" WHERE usu_id = (%s)"""
         data = (usr,)
         res = psc.fetch_one(psql_query,data)
@@ -130,9 +130,9 @@ class Usuario(DBWriter):
     def set_ultimo_logeo(self,ultimo_logeo):
         self.ultimo_logeo = ultimo_logeo
     #DB#######################################
-    def del_data(self,*arg):
+    def del_data(self,connection,*arg):
         psql_query = 'DELETE from PUBLIC."USUARIO" WHERE usu_id = %s;'
-        psc = PSConnection()
+        psc = connection
         data = (self.id,)
         return psc.query(psql_query,data)
 

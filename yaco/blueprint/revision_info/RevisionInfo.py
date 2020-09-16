@@ -7,6 +7,7 @@ from flask import (
     render_template,
     g,
     redirect,
+    current_app,
     request,
     url_for,
     session,
@@ -20,6 +21,8 @@ revision_info_blueprint = Blueprint('revisioninfo',__name__,template_folder='tem
 
 @revision_info_blueprint.before_request
 def revisioninfo_before_request():
+    if 'db' not in g:
+        g.db = current_app.dbconnection
     if 'usr' not in session:
         return redirect(url_for('login.login'))
     if 'lastrev' not in session:
@@ -56,9 +59,9 @@ def sesion_revision(fid):
                 f_aux = data_aux['flashcard']
                 r_aux = f_aux.completar_revision(not data_aux['eq_prev'])                
                 session['lastrev'].append({'id':f_aux.get_palabra().get_id(),'correcta':not data_aux['eq_prev'],'palabra':f_aux.get_palabra().get_definicion_principal('en').get_definicion(),'tipo':f_aux.get_tipo()})
-                f_aux.add_data()
-                r_aux.add_data()
-                psc = PSConnection()
+                f_aux.add_data(g.db)
+                r_aux.add_data(g.db)
+                psc = g.db
                 psql_query = """INSERT INTO PUBLIC."FLASHCARD_REVISION" (rev_id,fla_id,rev_fla_fecha) 
                                 VALUES (%s,%s,%s) 
                                 ON CONFLICT ON CONSTRAINT "PK_FLA_REV" DO NOTHING"""

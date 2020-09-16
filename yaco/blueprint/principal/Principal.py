@@ -1,18 +1,24 @@
 from datetime import datetime
+import sys
 from flask import (
     Blueprint,
     render_template,
     redirect,
     request,
     url_for,
-    session
+    session,
+    current_app,
+    g
 )
 from Forms import SearchForm
-
+sys.path.append('class')
+from database.Database import PSConnection
 
 principal_blueprint = Blueprint('principal',__name__,template_folder='templates')
 @principal_blueprint.before_request
 def before_request():
+    if 'db' not in g:
+        g.db = current_app.dbconnection
     if 'usr' not in session:
         return redirect(url_for('login.login'))
 

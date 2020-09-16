@@ -60,18 +60,18 @@ class Flashcard(DBWriter):
     def set_palabra(self,palabra):
         self.palabra = palabra
     #DB#######################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."FLASHCARD" (fla_id,fla_tipo,fla_nivel_srs) VALUES (%s,%s,%s) ON CONFLICT (fla_id) DO UPDATE SET fla_nivel_srs = excluded.fla_nivel_srs"""
         data = (self.id,self.tipo,self.nivel_srs)
         return psc.query(psql_query,data)
         
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."FLASHCARD" WHERE fla_id = %s;"""
         data = (self.id,)
         d = psc.query(psql_query,data)
-        return self.revision_list.del_data() + d
+        return self.revision_list.del_data(psc) + d
 
 
 if __name__ == "__main__":

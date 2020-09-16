@@ -13,8 +13,8 @@ class PalabraDict:
         for l in PalabraDict.lang:
             self.dict_lang[l] = {}
     @classmethod
-    def from_db(cls,usu_id):
-        psc = PSConnection()
+    def from_db(cls,connection,usu_id):
+        psc = connection
         psql_query = """SELECT PUBLIC."PALABRA".pal_id,pal_tipo,pal_es_ofensiva,PUBLIC."FLASHCARD".fla_id,fla_fecha_creacion,fla_nivel_srs,fla_tipo
                         FROM PUBLIC."PALABRA"
                         INNER JOIN PUBLIC."USU_PAL_FLASHCARD" ON PUBLIC."PALABRA".pal_id = PUBLIC."USU_PAL_FLASHCARD".pal_id
@@ -31,12 +31,12 @@ class PalabraDict:
                     dic.__add_in_dict(p_aux)
                     p_aux = None
                 p_aux = Palabra(r[0],r[1],r[2],
-                                definicion_eng=DefinicionList.from_db(usu_id,r[0],Palabra.lang[0]),
-                                definicion_esp=DefinicionList.from_db(usu_id,r[0],Palabra.lang[1]))
-                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(r[3]),nivel_srs=r[5])
+                                definicion_eng=DefinicionList.from_db(psc,usu_id,r[0],Palabra.lang[0]),
+                                definicion_esp=DefinicionList.from_db(psc,usu_id,r[0],Palabra.lang[1]))
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(connection,r[3]),nivel_srs=r[5])
                 p_aux.set_flashcard(f)
             else:
-                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(r[3]),nivel_srs=r[5])
+                f = Flashcard(r[3],p_aux,r[6],fecha_creacion=r[4],revision_list=RevisionList.from_db(connection,r[3]),nivel_srs=r[5])
                 p_aux.set_flashcard(f)
                 dic.__add_in_dict(p_aux)
                 p_aux = None

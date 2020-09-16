@@ -6,8 +6,8 @@ class RevisionList(DBWriter):
     def __init__(self,revision_list):
         self.revision_list = revision_list
     @classmethod
-    def from_db(cls,fla_id):
-        psc = PSConnection()
+    def from_db(cls,connection,fla_id):
+        psc = connection
         psql_query = """SELECT PUBLIC."REVISION".rev_id,rev_fla_fecha,rev_nivel_srs,rev_es_correcta
                         FROM PUBLIC."REVISION"
                         INNER JOIN PUBLIC."FLASHCARD_REVISION" ON PUBLIC."REVISION".rev_id = PUBLIC."FLASHCARD_REVISION".rev_id
@@ -35,13 +35,13 @@ class RevisionList(DBWriter):
     #SETTER###################################
 
     #DB#######################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."REVISION" (rev_id,rev_es_correcta,rev_nivel_srs) VALUES (%s,%s,%s,%s)"""
         data_list = map(lambda x: x.get_bd_info(),self.revision_list)
         return psc.query_many(psql_query,data_list)
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."REVISION" WHERE rev_id = %s;"""
         data_list = map(lambda x: (x.get_id(),),self.revision_list)
         return psc.query_many(psql_query,data_list)

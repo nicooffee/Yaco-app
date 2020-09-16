@@ -25,8 +25,8 @@ class DefinicionList(DBWriter):
         return cls(definicion_list=L)
     
     @classmethod
-    def from_db(cls,usu_id,pal_id,idioma = None):
-        psc = PSConnection()
+    def from_db(cls,connection,usu_id,pal_id,idioma = None):
+        psc = connection
         psql_query = """SELECT PUBLIC."DEFINICION".def_id,def_definicion,def_idioma,def_info_adicional,def_principal,def_extra
                         FROM PUBLIC."DEFINICION"
                         INNER JOIN PUBLIC."USU_PAL_DEFINICION" ON PUBLIC."DEFINICION".def_id = PUBLIC."USU_PAL_DEFINICION".def_id
@@ -130,8 +130,8 @@ class DefinicionList(DBWriter):
         L = filter(lambda d: d.get_es_extra(),self.definicion_list)
         return DefinicionList(definicion_list=list(L))
     #SETTER###################################
-    def add_data(self,*arg):
-        psc = PSConnection()
+    def add_data(self,connection,*arg):
+        psc = connection
         psql_query = """INSERT INTO PUBLIC."DEFINICION" (def_id,def_definicion,def_idioma,def_info_adicional) 
                         VALUES (%s,%s,%s,%s)
                         ON CONFLICT (def_id) DO UPDATE
@@ -140,8 +140,8 @@ class DefinicionList(DBWriter):
                             def_info_adicional = excluded.def_info_adicional;"""
         data_list = map(lambda x: x.get_bd_info(),self.definicion_list)
         return psc.query_many(psql_query,data_list)
-    def del_data(self,*arg):
-        psc = PSConnection()
+    def del_data(self,connection,*arg):
+        psc = connection
         psql_query = """DELETE from PUBLIC."DEFINICION" WHERE def_id = %s;"""
         data_list = map(lambda x: (x.get_id(),),self.definicion_list)
         return psc.query_many(psql_query,data_list)

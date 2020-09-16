@@ -9,6 +9,7 @@ from flask import (
     url_for,
     session,
     g,
+    current_app,
     flash
 )
 sys.path.append('class/function')
@@ -20,6 +21,8 @@ buscador_blueprint = Blueprint('buscar',__name__,template_folder='templates')
 
 @buscador_blueprint.before_request
 def before_request():
+    if 'db' not in g:
+        g.db = current_app.dbconnection
     if 'usr' not in session:
         return redirect(url_for('login.login'))
 

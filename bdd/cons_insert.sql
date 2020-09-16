@@ -52,3 +52,30 @@ VALUES ('Nicoffee','go:1-d1s1','go:1-d1s1NicoffeeFR',NOW());
 --Creación USU_PAL_DEFINICION
 INSERT INTO PUBLIC."USU_PAL_DEFINICION" (usu_id,pal_id,def_id,def_principal,def_extra)
 VALUES ('Nicoffee','go:1-d1s1:Nicooffee','go:1-d1s1:Nicooffeeen0',TRUE,FALSE);
+
+
+--Creación usuarios grupo de trabajo
+INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
+VALUES ('u_nico','1234',NOW());
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('u_nico','free',0); 
+
+INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
+VALUES ('u_oscar','1234',NOW());
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('u_oscar','free',0); 
+
+INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
+VALUES ('u_gema','1234',NOW());
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('u_gema','free',0); 
+
+INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
+VALUES ('u_seba','1234',NOW());
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('u_seba','free',0); 
+
+INSERT INTO PUBLIC."USUARIO" (usu_id,usu_pass,usu_fecha_registro)
+VALUES ('u_mati','1234',NOW());
+INSERT INTO PUBLIC."ESTUDIANTE" (usu_id,est_tipo,est_exp_total)
+VALUES ('u_mati','free',0); 

@@ -26,7 +26,7 @@ def palabrainfo_before_request():
         return redirect(url_for('login.login'))
     if 'search' in session:
         g.busqueda = session['search']
-        g.last_search = session['search_res']
+    g.last_search = session['search_res'] if 'search_res' in session else []
 
 
 

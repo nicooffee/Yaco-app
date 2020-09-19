@@ -29,7 +29,8 @@ class RevisionList(DBWriter):
     def get_fecha_ult_rev(self):
         rev_L = self.revision_list
         if len(rev_L)>0:
-            return rev_L[0].get_fecha()
+            import functools
+            return functools.reduce(lambda x,y: x if x>y else y,map(lambda x: x.get_fecha(),rev_L),datetime.min)
         else:
             return None
     #SETTER###################################

@@ -63,7 +63,8 @@ class PSConnection:
             password=dbdata.db_model_pswd,
             host=dbdata.host,
             port=dbdata.port,
-            database=dbdata.db_model_name)
+            database=dbdata.db_model_name,
+            application_name='Yaco Web App')
 
     def __del__(self):
         if(self.connection):

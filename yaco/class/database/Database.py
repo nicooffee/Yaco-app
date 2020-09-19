@@ -57,7 +57,7 @@ class PSConnection:
         finally:
             return self.cursor.fetchall()
 
-    def __create_conn():
+    def __create_conn(self):
         return psycopg2.connect(
             user=dbdata.user,
             password=dbdata.db_model_pswd,

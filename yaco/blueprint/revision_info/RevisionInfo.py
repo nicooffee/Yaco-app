@@ -57,7 +57,7 @@ def sesion_revision(fid):
             if form.validate():
                 data_aux = f_dict.pop(fid)
                 f_aux = data_aux['flashcard']
-                r_aux = f_aux.completar_revision(not data_aux['eq_prev'])                
+                r_aux = f_aux.completar_revision(not data_aux['eq_prev'],fecha=datetime.now())                
                 session['lastrev'].append({'id':f_aux.get_palabra().get_id(),'correcta':not data_aux['eq_prev'],'palabra':f_aux.get_palabra().get_definicion_principal('en').get_definicion(),'tipo':f_aux.get_tipo()})
                 f_aux.add_data(g.db)
                 r_aux.add_data(g.db)

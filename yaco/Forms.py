@@ -8,8 +8,8 @@ class SearchForm(Form):
 
 
 class UserForm(Form):
-    usuario = StringField('Usuario', [validators.Length(min=5,max=20,message='Nombre de usuario debe ser entre 5 y 20 caracteres.')])
-    contrasena = StringField('Contraseña',[validators.Length(min=4,max=32,message='Contraseña debe ser entre 8 y 32 caracteres.')])
+    usuario = StringField('Usuario', [validators.Length(min=5,max=20,message='Error de ingreso. Intente otra vez.')])
+    contrasena = StringField('Contraseña',[validators.Length(min=4,max=32,message='Error de ingreso. Intente otra vez.')])
     connection = None
     
     def validate(self):
@@ -19,10 +19,11 @@ class UserForm(Form):
         psw = self.contrasena.data
         connection = self.connection
         if not Usuario.db_exists(usr,connection):
+            self.contrasena.errors.append('Error de ingreso. Intente otra vez.')
             return False
         if Usuario.db_check_password(usr,psw,connection):
             return True
-        self.contrasena.errors.append('Contraseña incorrecta. Intente otra vez.')
+        self.contrasena.errors.append('Error de ingreso. Intente otra vez.')
         return False
 
 class RevisionForm(Form):

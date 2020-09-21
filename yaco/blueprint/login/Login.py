@@ -33,11 +33,7 @@ def login():
         return redirect(url_for('principal.dashboard'))
     else:
         if request.method == 'POST':
-            s=''
-            for field,error in form.errors.items():
-                for e in error:
-                    s = s+' '+e
-            flash(s,category='danger')
+            flash('Error de ingreso. Intente otra vez.',category='danger')
         return render_template('login/login.html')
 
 @login_blueprint.route('/logout')

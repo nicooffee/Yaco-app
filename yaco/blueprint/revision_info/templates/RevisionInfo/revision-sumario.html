@@ -6,12 +6,30 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light shadow bg-light justify-content-between">
             <a class="navbar-brand" href="{{url_for('principal.dashboard')}}"><img src="/static/yaco-300x300.png" width="100%" alt="Yaco logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url_for('principal.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url_for('revisioninfo.revision_sumario')}}">Revisiones <span class="badge badge-primary">{{user.list_review_disponible(date)|length}}</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-danger nav-link" href="{{url_for('login.logout')}}">Salir</a>
+                    </li>
+                </ul>
+            </div>
+            <h3 id = 'tiempo' class="nav-link text-secondary text-center"></h3>
             {%if user.list_review_disponible(date)|length%}
-            <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0">Comenzar revisiones</button></a>
+                <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0">Comenzar revisiones</button></a>
             {%else%}
-            <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0 disabled" aria-disabled="true" disabled>Comenzar revisiones</button></a>
+                <a href="{{url_for('revisioninfo.get_dict_revision')}}"><button class="btn btn-primary my-2 my-sm-0 disabled" aria-disabled="true" disabled>Comenzar revisiones</button></a>
             {%endif%}
         </nav>
+        
     </header>
 {%endblock%}
 {%block content%}

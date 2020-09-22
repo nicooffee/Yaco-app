@@ -36,17 +36,20 @@
     <h1>Sumario</h1>
     <p>A continuación se muestran las palabras revisadas en la última sesión.</p>
     {%if rev_list|length%}
-        <h2>Correctas</h2>
-        {%for rev in rev_list%}
-            {%if rev['correcta'] is sameas true%}
-                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-info">{{rev['palabra']}}({{rev['tipo']}})</button></a>
-            {%endif%}
-        {%endfor%}
-        <h2>Incorrectas</h2>
-        {%for rev in rev_list%}
-            {%if rev['correcta'] is sameas false%}
-                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn btn-danger">{{rev['palabra']}}({{rev['tipo']}})</button></a>
-            {%endif%}
+        {%for correcta, rev_corr in rev_list|groupby("correcta")%}
+            <div class="sp sp-{{'correcta' if correcta is sameas true else 'incorrecta'}} border rounded-{{'bottom' if correcta is sameas true else 'top' }}">
+                <h2>{{'Correctas' if correcta is sameas true else 'Incorrectas'}}</h2>
+                <div class="row">
+                    {%for tipo,rev_corr_t in rev_corr|groupby("tipo")%}
+                        <div class="col">
+                            <h3>{{'Reconocimiento' if tipo == 'reco' else 'Producción'}}</h3>
+                            {%for rev in rev_corr_t%}
+                                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn rounded-0 shadow btn-{{'info' if correcta is sameas true else 'danger'}}">{{rev['palabra']}}</button></a>
+                            {%endfor%}
+                        </div>
+                    {%endfor%}
+                </div>
+            </div>
         {%endfor%}
     {%else%}
         <div class="alert alert-info" role="alert">

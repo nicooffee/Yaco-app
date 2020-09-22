@@ -22,21 +22,6 @@
                     <div class="revision-item p-2">
                         <p class="def-main-rev text-center">{{defprincipal.get_definicion()}} {{defprincipal.get_info_adicional()}}</p>
                     </div>
-                    {%with def_list = (palabra.get_definicion_iter(idioma)|list)%}
-                        {%if def_list|length>1%}
-                            <div class="revision-item p-2">
-                                <p class="text-center">
-                                    Otras definiciones: 
-                                    {%for i in range(def_list|length)%}
-                                        {%set def = def_list[i] %}
-                                        {%if defprincipal.get_id() != def.get_id()%}
-                                            {{def.get_definicion()}} {{def.get_info_adicional()}}{%if i != ((def_list|length)-1)%},&nbsp;{%endif%}
-                                        {%endif%}
-                                    {%endfor%}
-                                </p>
-                            </div>
-                        {%endif%}
-                    {%endwith%}
                     <div class="revision-item p-2"> 
                         <h4 class="text-center">
                             {{palabra.get_tipo()}}
@@ -53,6 +38,25 @@
                                 <button class="btn btn-success" style="margin-left: auto;" type="submit">Siguiente</button>
                             </form>
                         </div>
+                        {%with palabra = flashcard.get_palabra()%}
+                            {%if flashcard.get_tipo() == 'reco'%} {%set idioma = 'en'%} {%else%} {%set idioma = 'es'%} {%endif%}
+                            {%set defprincipal = palabra.get_definicion_principal(idioma) %}
+                            {%with def_list = (palabra.get_definicion_iter(idioma)|list)%}
+                                {%if def_list|length>1%}
+                                    <div class="revision-item p-2">
+                                        <p class="text-center">
+                                            Otras definiciones: 
+                                            {%for i in range(def_list|length)%}
+                                                {%set def = def_list[i] %}
+                                                {%if defprincipal.get_id() != def.get_id()%}
+                                                    {{def.get_definicion()}} {{def.get_info_adicional()}}{%if i != ((def_list|length)-1)%},&nbsp;{%endif%}
+                                                {%endif%}
+                                            {%endfor%}
+                                        </p>
+                                    </div>
+                                {%endif%}
+                            {%endwith%}
+                        {%endwith%}
                     {%endblock%}
                 {%endwith%}
             </div>

@@ -27,7 +27,7 @@
                                 <p class="inline text-warning">No añadida</p>
                             {%else%}
                                 <form action="{{url_for('palabrainfo.eliminar_actual',id=w['id'])}}">
-                                    <button class="btn btn-sm btn-default btn-outline-danger" type="submit">
+                                    <button class="btn btn-sm btn-default btn-outline-danger" type="submit" onclick="stopProp(event);">
                                         <i class="fa fa-trash-o"></i>
                                     </button>
                                 </form>
@@ -43,9 +43,10 @@
     {{super()}}
     <script type="text/javascript">
         function stopProp(event) {
-            confirm('Se eliminará todo el progreso obtenido en las revisiones. ¿Estás seguro de eliminar la palabra?');
             event.stopPropagation(); 
-            event.preventDefault();
+            if (!confirm('Se eliminará todo el progreso obtenido en las revisiones. ¿Estás seguro de eliminar la palabra?')){
+                event.preventDefault();
+            }
         }
     </script>
 {%endblock%}

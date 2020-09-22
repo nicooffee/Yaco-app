@@ -46,6 +46,8 @@ def palabra_info(id):
             g.word = Palabra.from_dict(word_dict,user.get_id())
             if g.word is not None:
                 session['w_actual'] = word_dict
+            else:
+                return redirect(url_for('principal.dashboard'))
         return render_template('palabrainfo/palabra-info.html',
             user = user,
             date = datetime.now()
@@ -74,7 +76,10 @@ def eliminar_actual(id):
     if 'search' in session and session['search']!='':
         return redirect(url_for('buscar.buscar',word=session['search']))
     else:
-        return redirect(url_for('principal.dashboard'))
+        if 'last_page' in session:
+            return redirect(url_for(session['last_page']))
+        else:
+            return redirect(url_for('principal.dashboard'))
 
 def get_word(L,id):
     for w in L:

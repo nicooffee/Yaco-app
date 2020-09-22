@@ -171,6 +171,11 @@ class PalabraDict:
                     flist.agregar_flashcard(f)
         return flist
 
+    def get_palabra_iter(self):
+        for key,value in self.dict_id.items():
+            for w in value:
+                yield w
+
     def get_palabra(self,id):
         try:
             key = Palabra.to_key(id)

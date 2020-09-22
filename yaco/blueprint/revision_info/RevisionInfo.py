@@ -21,6 +21,7 @@ revision_info_blueprint = Blueprint('revisioninfo',__name__,template_folder='tem
 
 @revision_info_blueprint.before_request
 def revisioninfo_before_request():
+    session['last_page'] = 'revisioninfo.revision_sumario'
     if 'db' not in g:
         g.db = current_app.dbconnection
     if 'usr' not in session:

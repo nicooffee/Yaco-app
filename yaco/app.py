@@ -6,6 +6,7 @@ from blueprint.login.Login import login_blueprint
 from blueprint.buscador.Buscador import buscador_blueprint
 from blueprint.palabra_info.PalabraInfo import palabra_info_blueprint
 from blueprint.revision_info.RevisionInfo import revision_info_blueprint
+from blueprint.lista_palabra.ListaPalabra import lista_palabra_blueprint
 import sys
 import DatabaseData as dbdata
 sys.path.append('class')
@@ -28,6 +29,7 @@ app.register_blueprint(login_blueprint)
 app.register_blueprint(buscador_blueprint)
 app.register_blueprint(palabra_info_blueprint)
 app.register_blueprint(revision_info_blueprint)
+app.register_blueprint(lista_palabra_blueprint)
 ###############################################
 
 

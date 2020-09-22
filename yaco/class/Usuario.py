@@ -122,6 +122,8 @@ class Usuario(DBWriter):
         return self.palabra_dict.cant_palabra()
     def get_palabra(self,id):
         return self.palabra_dict.get_palabra(id)
+    def get_palabra_iter(self):
+        return self.palabra_dict.get_palabra_iter()
     #SETTER###################################
     def set_id(self,id):
         self.id = id

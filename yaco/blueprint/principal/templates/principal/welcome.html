@@ -31,6 +31,11 @@
                         </tr>
                     </tbody>
                 </table>
+                {%if user.get_cant_palabra() == 0%}
+                    <a href="#"><button type="button" class="btn btn-outline-warning btn-block" disabled>¡No has aprendido palabras!</button></a>
+                {%else%}
+                    <a href="{{url_for('listapalabra.listar_palabras')}}"><button type="button" class="btn btn-outline-success btn-block">Palabras aprendidas</button></a>
+                {%endif%}
             </div>
             <div class="col">
                 <label for="myChart"><i class="fa fa-bar-chart"></i> Próximas revisiones</label>

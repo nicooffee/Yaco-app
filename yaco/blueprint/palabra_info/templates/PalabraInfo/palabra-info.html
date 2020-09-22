@@ -12,7 +12,7 @@
     {%else%}
         <div class="container word-info">
             {%if g.busqueda == ''%}
-                <p><a href="{{url_for('principal.dashboard')}}"><i class="fa fa-hand-o-left"></i> Volver</a></p>
+                <p><a href="{{url_for(session['last_page']) if 'last_page' else url_for('principal.dashboard')}}"><i class="fa fa-hand-o-left"></i> Volver</a></p>
             {%else%}
                 <p><a href="{{url_for('buscar.buscar',word=g.busqueda)}}"><i class="fa fa-hand-o-left"></i> Volver</a></p>
             {%endif%}

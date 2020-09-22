@@ -14,6 +14,7 @@ class FlashcardDict:
         prev = ''
         self.first = None
         self.last = None
+        f_list.shuffle()
         for i,f in enumerate(f_list):
             if i == 0:
                 self.first = f.get_id()

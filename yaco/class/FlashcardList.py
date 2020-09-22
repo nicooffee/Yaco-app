@@ -88,6 +88,10 @@ class FlashcardList(DBWriter):
                         break
         return hour_l 
 
+
+    def shuffle(self):
+        import random
+        random.shuffle(self.flashcard_list)
     #GETTER###################################
     def get_cant_fcard(self):
         return len(self.flashcard_list)

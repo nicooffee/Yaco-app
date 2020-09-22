@@ -136,3 +136,7 @@ input[type=text].black-input::placeholder{
     font-size:80px;
     text-shadow: 0 2px 4px #a7a7a7;
 }
+
+.btn-sumario{
+    margin-bottom: 3px;
+}

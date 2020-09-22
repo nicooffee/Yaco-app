@@ -44,7 +44,7 @@
                         <div class="col">
                             <h3>{{'Reconocimiento' if tipo == 'reco' else 'Producción'}}</h3>
                             {%for rev in rev_corr_t%}
-                                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn rounded-0 shadow btn-{{'info' if correcta is sameas true else 'danger'}}">{{rev['palabra']}}</button></a>
+                                <a href="{{url_for('palabrainfo.palabra_info',id=rev['id'])}}"><button hr type="button" class="btn-sumario btn rounded-0 shadow btn-{{'info' if correcta is sameas true else 'danger'}}">{{rev['palabra']}}</button></a>
                             {%endfor%}
                         </div>
                     {%endfor%}
